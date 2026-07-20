@@ -198,7 +198,7 @@
 
   /* founder */
   .founder{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-  .founder .g{display:grid;grid-template-columns:.8fr 1.2fr}
+  .founder .g{display:grid;grid-template-columns:1fr}
   @media(max-width:820px){.founder .g{grid-template-columns:1fr}}
   .founder .photo{position:relative;background:var(--paper);border-right:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vw,30px)}
   @media(max-width:820px){.founder .photo{border-right:0;border-bottom:1px solid var(--line)}}
@@ -359,10 +359,77 @@
   .reveal-cap{font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--taupe);margin-top:14px}
   @media(max-width:560px){.reveal-tag{font-size:.5rem;padding:3px 6px}}
 
+  /* anchor offset so links don't land under the sticky nav */
+  section[id]{scroll-margin-top:104px}
+
+  /* ========================================================================
+     INTERACTIVE PRODUCT VIEWER — tabbed vector views + clickable hotspots.
+     Lets visitors click to look at what they're buying. No fabricated photos.
+     ======================================================================== */
+  .viewer{position:relative}
+  .viewer-stage{position:relative;border:1px solid var(--line);border-radius:4px;
+    background:radial-gradient(120% 100% at 32% 22%, var(--paper), var(--cream-2));
+    min-height:340px;display:flex;align-items:center;justify-content:center;padding:36px;overflow:hidden}
+  .viewer-stage::before{content:"";position:absolute;inset:12px;border:1px dashed var(--line-soft);border-radius:3px;pointer-events:none}
+  .viewer-stage .tag{position:absolute;top:16px;left:16px;font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--terra);border:1px solid var(--line);padding:4px 8px;border-radius:2px;background:var(--paper);z-index:5}
+  .viewer-panel{position:relative;display:flex;align-items:center;justify-content:center;width:100%}
+  .viewer-panel[hidden]{display:none}
+  .viewer-panel svg{width:min(210px,62%);height:auto;filter:drop-shadow(0 24px 30px rgba(141,74,31,.26))}
+  .hotspot{position:absolute;width:30px;height:30px;border-radius:50%;border:0;cursor:pointer;padding:0;
+    background:rgba(200,90,40,.14);transform:translate(-50%,-50%);z-index:4;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .hotspot::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--pulp);box-shadow:0 0 0 0 rgba(200,90,40,.5);animation:hpulse 2.6s infinite}
+  .hotspot:hover{background:rgba(200,90,40,.26)}
+  .hotspot[aria-pressed="true"]{background:rgba(58,78,58,.18)}
+  .hotspot[aria-pressed="true"]::after{background:var(--forest);animation:none}
+  @keyframes hpulse{0%{box-shadow:0 0 0 0 rgba(200,90,40,.5)}70%{box-shadow:0 0 0 9px rgba(200,90,40,0)}100%{box-shadow:0 0 0 0 rgba(200,90,40,0)}}
+  .viewer-tabs{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .viewer-tab{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--forest);
+    background:var(--cream);border:1px solid var(--line);padding:9px 14px;border-radius:2px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+  .chapter.alt .viewer-tab{background:var(--paper)}
+  .viewer-tab:hover{border-color:var(--forest)}
+  .viewer-tab[aria-selected="true"],.chapter.alt .viewer-tab[aria-selected="true"]{background:var(--forest);color:var(--cream);border-color:var(--forest)}
+  .viewer-cap{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--terra);font-size:1.04rem;margin-top:14px;min-height:2.6em;line-height:1.5}
+
+  /* ========================================================================
+     "HOW IT'S MADE" — field-to-softgel flow with a simple, cute animation.
+     ======================================================================== */
+  .process{margin-top:8px}
+  .flow-rail{position:relative;height:2px;margin:2px 5% 30px;border-radius:2px;
+    background:repeating-linear-gradient(90deg,var(--line) 0 7px,transparent 7px 15px)}
+  .flow-rail .dot{position:absolute;top:50%;left:0;width:14px;height:14px;border-radius:50%;background:var(--pulp);
+    transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(200,90,40,.15);animation:flowtravel 6s cubic-bezier(.55,0,.45,1) infinite}
+  @keyframes flowtravel{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+  .flow{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;list-style:none}
+  @media(max-width:820px){.flow{grid-template-columns:repeat(2,1fr);gap:18px}.flow-rail{display:none}}
+  @media(max-width:460px){.flow{grid-template-columns:1fr}}
+  .step{position:relative;text-align:center;padding:24px 16px 22px;border:1px solid var(--line);border-radius:4px;background:var(--cream)}
+  .chapter.alt .step{background:var(--paper)}
+  .step .n{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;color:var(--taupe);text-transform:uppercase}
+  .step .ic{width:60px;height:60px;margin:12px auto 14px;color:var(--forest);display:flex;align-items:center;justify-content:center}
+  .step .ic svg{width:100%;height:100%;display:block;overflow:visible}
+  .step h4{font-family:var(--serif);font-style:italic;font-weight:300;font-size:1.1rem;color:var(--forest);margin-bottom:7px;line-height:1.2}
+  .step p{font-size:.82rem;color:#4a4034;line-height:1.5}
+  /* chevrons between steps (desktop only) */
+  .step:not(:last-child)::after{content:"";position:absolute;right:-15px;top:64px;width:11px;height:11px;
+    border-top:2px solid var(--line);border-right:2px solid var(--line);transform:rotate(45deg);z-index:2}
+  @media(max-width:820px){.step:not(:last-child)::after{display:none}}
+  /* cute idle motion */
+  .step .ic{animation:bob 3.4s ease-in-out infinite}
+  .step:nth-child(2) .ic{animation-delay:.35s}
+  .step:nth-child(3) .ic{animation-delay:.7s}
+  .step:nth-child(4) .ic{animation-delay:1.05s}
+  .step:nth-child(5) .ic{animation-delay:1.4s}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .step .drip{transform-origin:center;animation:drip 2.8s ease-in infinite}
+  @keyframes drip{0%,55%{transform:translateY(-6px);opacity:0}70%{opacity:1}100%{transform:translateY(10px);opacity:0}}
+  .process-foot{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;color:var(--taupe);margin-top:26px;line-height:1.7}
+
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
     .scrollcue .ln{animation:none;transform:scaleY(1)}
     .util .dot{animation:none}
+    .flow-rail .dot{opacity:1;left:0}
+    .step .drip{opacity:1;transform:none}
   }
 </style>
 </head>
@@ -387,9 +454,8 @@
     <nav class="links" id="menu">
       <a class="navlink" href="#spectrum">Spectrum</a>
       <a class="navlink" href="#science">Science</a>
-      <a class="navlink" href="#origin">Origin</a>
+      <a class="navlink" href="#process">How it's made</a>
       <a class="navlink" href="#specimen">The Specimen</a>
-      <a class="navlink" href="pulp-website.html">Full record →</a>
       <a href="#waitlist" class="nav-cta" data-waitlist>Join the waitlist</a>
     </nav>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
@@ -592,21 +658,146 @@
   </div>
 </section>
 
+<!-- ===================== HOW IT'S MADE / PROCESS ===================== -->
+<section class="chapter" id="process">
+  <div class="wrap">
+    <div class="eyebrow-row"><span class="fig">Fig. 06 — Process</span><span class="rule-draw"></span><span class="lab">Field → Softgel</span></div>
+    <h2 class="h-lines" style="margin-bottom:10px">
+      <span class="line"><span class="inner" data-rise>From fresh fruit bunch</span></span>
+      <span class="line"><span class="inner" data-rise><em>to a single softgel.</em></span></span>
+    </h2>
+    <p class="lede-2" data-rise style="margin-bottom:38px">Five steps take the ripe palm fruit from a Malaysian estate to the amber oil sealed inside PULP No. 001.</p>
+
+    <div class="process" data-rise>
+      <div class="flow-rail" aria-hidden="true"><span class="dot"></span></div>
+      <ol class="flow">
+        <li class="step">
+          <span class="n">01 · Harvest</span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M32 9c2 3.5 2 6.5 0 9.5"/><path d="M39 12c4-.5 7 2 6.5 6"/>
+            <g fill="#C85A28" stroke="none"><circle cx="26" cy="24" r="5.6"/><circle cx="38" cy="24" r="5.6"/><circle cx="20" cy="34" r="5.6"/><circle cx="32" cy="34" r="5.6"/><circle cx="44" cy="34" r="5.6"/><circle cx="26" cy="44" r="5.6"/><circle cx="38" cy="44" r="5.6"/><circle cx="32" cy="52" r="5.6"/></g>
+          </svg></span>
+          <h4>Fresh fruit bunches</h4>
+          <p>Ripe oil-palm fruit, harvested at a Malaysian estate.</p>
+        </li>
+        <li class="step">
+          <span class="n">02 · Press</span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 16h36"/><path d="M22 16v6M32 16v6M42 16v6"/>
+            <path d="M18 30h28l-6 11H24z" fill="#C85A28" stroke="#6E2F0F"/>
+            <path d="M32 45c2.4 3.4 2.4 6.5 0 6.5s-2.4-3.1 0-6.5z" fill="#B4691E" stroke="none"/>
+          </svg></span>
+          <h4>Milled &amp; pressed</h4>
+          <p>The fruit is milled and pressed for its crude palm oil.</p>
+        </li>
+        <li class="step">
+          <span class="n">03 · Concentrate</span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+            <path d="M30 14c8 11 11 17 11 23a11 11 0 0 1-22 0c0-6 3-12 11-23z" fill="#B4691E" stroke="#6E2F0F"/>
+            <path d="M25 38a5 6 0 0 0 5 5" stroke="#fff" stroke-linecap="round"/>
+            <path d="M48 16l1.4 4 4 1.4-4 1.4L48 27l-1.4-4.2-4-1.4 4-1.4z" fill="#C85A28" stroke="none"/>
+          </svg></span>
+          <h4>Tocotrienols concentrated</h4>
+          <p>The tocotrienol-rich fraction is separated and concentrated.</p>
+        </li>
+        <li class="step">
+          <span class="n">04 · Encapsulate</span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 64 64">
+            <rect x="24" y="10" width="16" height="44" rx="8" fill="#C85A28" stroke="#6E2F0F" stroke-width="1.4"/>
+            <rect x="28" y="16" width="4" height="20" rx="2" fill="#fff" opacity=".45"/>
+          </svg></span>
+          <h4>Sealed in a softgel</h4>
+          <p>The amber oil is filled into a single daily softgel.</p>
+        </li>
+        <li class="step">
+          <span class="n">05 · Bottle</span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="#6E2F0F" stroke-width="1.4" stroke-linejoin="round">
+            <rect x="26" y="8" width="12" height="7" rx="2" fill="#2E4A34" stroke="none"/>
+            <path d="M24 17h16l2 8q2 5 2 12v13a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V37q0-7 2-12z" fill="#C8722F"/>
+            <rect x="24" y="35" width="16" height="15" rx="2" fill="#F7EEDC" stroke="none"/><path d="M28 43h8" stroke="#8D4A1F"/>
+            <g class="drip"><path d="M32 20c1.5 2.1 1.5 4.2 0 4.2s-1.5-2.1 0-4.2z" fill="#B4691E" stroke="none"/></g>
+          </svg></span>
+          <h4>PULP No. 001</h4>
+          <p>Bottled — 60 softgels. Product notification pending.</p>
+        </li>
+      </ol>
+      <p class="process-foot">An illustration of the production process · PULP is a food supplement, not a medicine.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== THE SPECIMEN / PRODUCT ===================== -->
 <section class="chapter alt" id="specimen">
   <div class="wrap">
-    <div class="eyebrow-row"><span class="fig">Fig. 06 — The Specimen</span><span class="rule-draw"></span><span class="lab">PULP Complete</span></div>
+    <div class="eyebrow-row"><span class="fig">Fig. 07 — The Specimen</span><span class="rule-draw"></span><span class="lab">PULP Complete</span></div>
     <div class="spec">
-      <div class="spec-visual" data-rise>
-        <span class="tag">No. 001</span>
-        <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" aria-label="PULP softgel">
-          <defs><radialGradient id="gel" cx="36%" cy="26%" r="82%">
-            <stop offset="0" stop-color="#F0B266"/><stop offset="42%" stop-color="#C85A28"/><stop offset="100%" stop-color="#6e2f0f"/>
-          </radialGradient></defs>
-          <ellipse cx="100" cy="130" rx="58" ry="96" fill="url(#gel)"/>
-          <ellipse cx="78" cy="86" rx="16" ry="30" fill="rgba(255,255,255,.34)"/>
-          <ellipse cx="118" cy="176" rx="9" ry="16" fill="rgba(110,47,15,.35)"/>
-        </svg>
+      <div class="viewer" data-rise>
+        <div class="viewer-stage">
+          <span class="tag">No. 001</span>
+
+          <!-- View 1: softgel with clickable hotspots -->
+          <div class="viewer-panel" id="vp-softgel" role="tabpanel" aria-labelledby="vt-softgel">
+            <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" aria-label="PULP amber softgel">
+              <defs><linearGradient id="vgel" x1="30%" y1="8%" x2="72%" y2="96%">
+                <stop offset="0" stop-color="#F4C67E"/><stop offset="40%" stop-color="#C85A28"/><stop offset="100%" stop-color="#6E2F0F"/>
+              </linearGradient></defs>
+              <ellipse cx="104" cy="276" rx="46" ry="11" fill="#6E2F0F" opacity=".26"/>
+              <rect x="64" y="36" width="72" height="228" rx="36" fill="url(#vgel)"/>
+              <rect x="64" y="36" width="72" height="228" rx="36" fill="none" stroke="#5F280D" stroke-width="1" opacity=".4"/>
+              <path d="M86 66 q-11 68 4 150" stroke="#fff" stroke-width="11" stroke-linecap="round" fill="none" opacity=".32"/>
+              <ellipse cx="90" cy="72" rx="7" ry="15" fill="#fff" opacity=".5"/>
+            </svg>
+            <button class="hotspot" type="button" style="left:50%;top:24%" aria-pressed="false" aria-label="Softgel shell detail" data-detail="Halal softgel shell (notification pending) — one small softgel, once a day."></button>
+            <button class="hotspot" type="button" style="left:50%;top:50%" aria-pressed="false" aria-label="Strength detail" data-detail="50 mg full-spectrum tocotrienol — the whole α β γ δ family in a single softgel."></button>
+            <button class="hotspot" type="button" style="left:50%;top:74%" aria-pressed="false" aria-label="Oil source detail" data-detail="Amber tocotrienol oil, pressed from non-GMO Malaysian palm fruit."></button>
+          </div>
+
+          <!-- View 2: bottle -->
+          <div class="viewer-panel" id="vp-bottle" role="tabpanel" aria-labelledby="vt-bottle" hidden>
+            <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" aria-label="PULP bottle of 60 softgels">
+              <defs><linearGradient id="vbottle" x1="20%" y1="0" x2="90%" y2="100%">
+                <stop offset="0" stop-color="#C8722F"/><stop offset="55%" stop-color="#9C4A1E"/><stop offset="100%" stop-color="#5F280D"/>
+              </linearGradient></defs>
+              <ellipse cx="100" cy="288" rx="56" ry="10" fill="#6E2F0F" opacity=".24"/>
+              <rect x="74" y="26" width="52" height="26" rx="4" fill="#2E4A34"/>
+              <rect x="80" y="50" width="40" height="18" fill="#8D4A1F"/>
+              <path d="M70 70 q30 -6 60 0 l5 24 q5 14 5 40 v100 a18 18 0 0 1 -18 18 h-44 a18 18 0 0 1 -18 -18 v-100 q0 -26 5 -40 z" fill="url(#vbottle)"/>
+              <rect x="66" y="150" width="68" height="84" rx="3" fill="#F7EEDC" opacity=".96"/>
+              <text x="100" y="177" text-anchor="middle" font-family="Caprasimo, serif" font-size="21" fill="#3A4E3A">P<tspan fill="#C85A28">u</tspan>lp</text>
+              <text x="100" y="197" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#8D4A1F">Complete</text>
+              <line x1="78" y1="207" x2="122" y2="207" stroke="#D9C9A8"/>
+              <text x="100" y="223" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" letter-spacing="1" fill="#7A6B58">NO. 001 · 60</text>
+              <rect x="74" y="80" width="11" height="150" rx="6" fill="#fff" opacity=".16"/>
+            </svg>
+          </div>
+
+          <!-- View 3: cross-section -->
+          <div class="viewer-panel" id="vp-cut" role="tabpanel" aria-labelledby="vt-cut" hidden>
+            <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-label="Cross-section of the softgel showing amber tocotrienol oil">
+              <defs><radialGradient id="vcut" cx="42%" cy="38%" r="66%">
+                <stop offset="0" stop-color="#F0B266"/><stop offset="100%" stop-color="#B4691E"/>
+              </radialGradient></defs>
+              <circle cx="110" cy="110" r="86" fill="#8D4A1F"/>
+              <circle cx="110" cy="110" r="80" fill="url(#vcut)"/>
+              <circle cx="110" cy="110" r="80" fill="none" stroke="#6E2F0F" stroke-width="1"/>
+              <g font-family="'Inter Tight',sans-serif" font-weight="600" text-anchor="middle">
+                <circle cx="86" cy="92" r="17" fill="#3A4E3A"/><text x="86" y="98" font-size="16" fill="#F7EEDC">γ</text>
+                <circle cx="133" cy="86" r="15" fill="#C85A28"/><text x="133" y="92" font-size="15" fill="#F7EEDC">α</text>
+                <circle cx="141" cy="129" r="13" fill="#B4691E"/><text x="141" y="134" font-size="13" fill="#F7EEDC">α</text>
+                <circle cx="95" cy="135" r="11" fill="#7B8554"/><text x="95" y="140" font-size="12" fill="#F7EEDC">δ</text>
+                <circle cx="114" cy="112" r="8" fill="#2A1F16"/><text x="114" y="116" font-size="9" fill="#F7EEDC">β</text>
+              </g>
+              <ellipse cx="80" cy="78" rx="14" ry="9" fill="#fff" opacity=".28"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="viewer-tabs" role="tablist" aria-label="Product views">
+          <button class="viewer-tab" type="button" role="tab" id="vt-softgel" aria-controls="vp-softgel" aria-selected="true" data-cap="One amber softgel — 50 mg full-spectrum tocotrienol, taken daily with food. Tap a dot to explore.">Softgel</button>
+          <button class="viewer-tab" type="button" role="tab" id="vt-bottle" aria-controls="vp-bottle" aria-selected="false" tabindex="-1" data-cap="Sixty softgels per bottle — about two months. Non-GMO Malaysian palm fruit.">Bottle</button>
+          <button class="viewer-tab" type="button" role="tab" id="vt-cut" aria-controls="vp-cut" aria-selected="false" tabindex="-1" data-cap="Inside: amber tocotrienol oil — all four tocotrienols (α β γ δ) plus tocopherol.">Cross-section</button>
+        </div>
+        <p class="viewer-cap" id="viewerCap" aria-live="polite">One amber softgel — 50 mg full-spectrum tocotrienol, taken daily with food. Tap a dot to explore.</p>
       </div>
       <div class="spec-panel" data-rise>
         <div class="kie">Certificate of the Specimen</div>
@@ -632,23 +823,6 @@
   <div class="wrap">
     <div class="founder" data-rise>
       <div class="g">
-        <div class="photo">
-          <figure class="plate" style="--ratio:4/5">
-            <div class="plate-frame">
-              <div class="plate-win">
-                <img class="plate-img" src="assets/founder.jpg" loading="lazy"
-                     alt="Portrait of the PULP founder"
-                     onerror="this.closest('.plate').classList.add('is-empty')" />
-                <div class="plate-ph" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-                  <span class="mk">Plate B</span><span class="sj">Founder portrait</span><span class="rt">4 : 5</span>
-                </div>
-                <div class="plate-grade" aria-hidden="true"></div>
-              </div>
-            </div>
-            <figcaption class="plate-cap">Plate B · Founder, Golden Pulp Sdn Bhd.</figcaption>
-          </figure>
-        </div>
         <div class="body">
           <div class="kie">A Note From The Founder</div>
           <h3>Why I built PULP around a fruit the world overlooks.</h3>
@@ -679,13 +853,13 @@
 <!-- ===================== THE FULL RECORD ===================== -->
 <section class="chapter alt record">
   <div class="wrap">
-    <div class="eyebrow-row"><span class="fig">Appendix — The Full Record</span><span class="rule-draw"></span><span class="lab">Read deeper</span></div>
+    <div class="eyebrow-row"><span class="fig">Appendix — On This Page</span><span class="rule-draw"></span><span class="lab">Jump to a section</span></div>
     <div class="grid">
-      <a class="rec" href="pulp-website.html#science"><span class="t">The Science</span><span class="a">→</span></a>
-      <a class="rec" href="pulp-website.html#spectrum"><span class="t">Full Spectrum</span><span class="a">→</span></a>
-      <a class="rec" href="pulp-website.html#origin"><span class="t">Origin</span><span class="a">→</span></a>
-      <a class="rec" href="pulp-website.html#benefits"><span class="t">Benefits</span><span class="a">→</span></a>
-      <a class="rec" href="pulp-website.html#faq"><span class="t">FAQ</span><span class="a">→</span></a>
+      <a class="rec" href="#science"><span class="t">The Science</span><span class="a">→</span></a>
+      <a class="rec" href="#spectrum"><span class="t">Full Spectrum</span><span class="a">→</span></a>
+      <a class="rec" href="#origin"><span class="t">Origin</span><span class="a">→</span></a>
+      <a class="rec" href="#process"><span class="t">How it's made</span><span class="a">→</span></a>
+      <a class="rec" href="#benefits"><span class="t">Benefits</span><span class="a">→</span></a>
       <a class="rec" href="mailto:hello@pulp.my"><span class="t">Contact us</span><span class="a">→</span></a>
     </div>
   </div>
@@ -702,16 +876,16 @@
       </div>
       <div class="foot-col">
         <h5>Explore</h5>
-        <a href="pulp-website.html#science">The Science</a>
-        <a href="pulp-website.html#spectrum">Full Spectrum</a>
-        <a href="pulp-website.html#origin">Origin</a>
-        <a href="pulp-website.html#benefits">Benefits</a>
+        <a href="#science">The Science</a>
+        <a href="#spectrum">Full Spectrum</a>
+        <a href="#process">How it's made</a>
+        <a href="#benefits">Benefits</a>
       </div>
       <div class="foot-col">
         <h5>Contact</h5>
         <a href="mailto:hello@pulp.my">hello@pulp.my</a>
         <a href="https://wa.me/60000000000" target="_blank" rel="noopener">WhatsApp us</a>
-        <a href="#">@pulp.my</a>
+        <a href="https://www.instagram.com/pulp.my/" target="_blank" rel="noopener">@pulp.my</a>
         <p>Selangor, Malaysia</p>
       </div>
     </div>
@@ -813,6 +987,50 @@
       });
       v.addEventListener('error',function(){ if(plate) plate.classList.add('is-empty'); });
       try{ v.preload='metadata'; v.load(); }catch(e){}
+    });
+  })();
+
+  // interactive product viewer — tabs (roving tabindex + arrows) and clickable hotspots
+  (function(){
+    var tabs=[].slice.call(document.querySelectorAll('.viewer-tab'));
+    var cap=document.getElementById('viewerCap');
+    if(!tabs.length) return;
+    function panelOf(t){ return document.getElementById(t.getAttribute('aria-controls')); }
+    function clearHotspots(){ document.querySelectorAll('.hotspot[aria-pressed="true"]').forEach(function(h){h.setAttribute('aria-pressed','false');}); }
+    function select(tab, focus){
+      tabs.forEach(function(t){
+        var on=(t===tab);
+        t.setAttribute('aria-selected', on?'true':'false');
+        t.tabIndex = on?0:-1;
+        var pn=panelOf(t); if(pn) pn.hidden=!on;
+      });
+      clearHotspots();
+      if(cap && tab.getAttribute('data-cap')) cap.textContent=tab.getAttribute('data-cap');
+      if(focus) tab.focus();
+    }
+    tabs.forEach(function(tab,i){
+      tab.addEventListener('click',function(){select(tab,false);});
+      tab.addEventListener('keydown',function(e){
+        var n;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown') n=tabs[(i+1)%tabs.length];
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=tabs[(i-1+tabs.length)%tabs.length];
+        else if(e.key==='Home') n=tabs[0];
+        else if(e.key==='End') n=tabs[tabs.length-1];
+        if(n){e.preventDefault();select(n,true);}
+      });
+    });
+    document.querySelectorAll('.hotspot').forEach(function(h){
+      h.addEventListener('click',function(){
+        var was=h.getAttribute('aria-pressed')==='true';
+        clearHotspots();
+        if(was){
+          var act=document.querySelector('.viewer-tab[aria-selected="true"]');
+          if(cap&&act) cap.textContent=act.getAttribute('data-cap');
+        }else{
+          h.setAttribute('aria-pressed','true');
+          if(cap&&h.getAttribute('data-detail')) cap.textContent=h.getAttribute('data-detail');
+        }
+      });
     });
   })();
 })();
