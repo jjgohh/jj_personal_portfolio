@@ -1,0 +1,16 @@
+# Netlify build config for the PULP React app.
+# Point your Netlify site's base directory at this folder (pulp-app) via a
+# git-connected deploy, or run `npm run build` locally and drag pulp-app/dist.
+[build]
+  base = "pulp-app"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA: serve index.html for any path so client routing / deep links work.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
