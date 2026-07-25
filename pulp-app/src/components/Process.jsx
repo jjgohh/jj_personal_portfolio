@@ -27,7 +27,7 @@ export default function Process() {
   return (
     <section className="chapter" id="process">
       <div className="wrap">
-        <div className="eyebrow-row"><span className="fig">Fig. 06 — Process</span><span className="rule-draw" /><span className="lab">Field → Softgel</span></div>
+        <div className="eyebrow-row"><span className="fig">Fig. 02 — Process</span><span className="rule-draw" /><span className="lab">Field → Softgel</span></div>
         <h2 className="h-lines" style={{ marginBottom: 10 }}>
           <span className="line"><Rise as="span" className="inner">From fresh fruit bunch</Rise></span>
           <span className="line"><Rise as="span" className="inner" delay={0.05}><em>to a single softgel.</em></Rise></span>
