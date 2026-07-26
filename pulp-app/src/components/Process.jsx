@@ -11,11 +11,11 @@ const IC = {
 };
 
 const STEPS = [
-  { n: '01 · Harvest', ic: IC.harvest, h: 'Fresh fruit bunches', p: 'Ripe oil-palm fruit, harvested at a Malaysian estate.' },
-  { n: '02 · Press', ic: IC.press, h: 'Milled & pressed', p: 'The fruit is milled and pressed for its crude palm oil.' },
-  { n: '03 · Concentrate', ic: IC.concentrate, h: 'Tocotrienols concentrated', p: 'The tocotrienol-rich fraction is separated and concentrated.' },
-  { n: '04 · Encapsulate', ic: IC.encapsulate, h: 'Sealed in a softgel', p: 'The amber oil is filled into a single daily softgel.' },
-  { n: '05 · Bottle', ic: IC.bottle, h: 'PULP No. 001', p: 'Bottled — 60 softgels. Product notification pending.' },
+  { n: '01 · Harvest', ic: IC.harvest, h: 'Fresh fruit bunches', p: 'Ripe fruit from a Malaysian estate.' },
+  { n: '02 · Press', ic: IC.press, h: 'Milled & pressed', p: 'Pressed for crude palm oil.' },
+  { n: '03 · Concentrate', ic: IC.concentrate, h: 'Tocotrienols concentrated', p: 'The tocotrienol-rich fraction, separated.' },
+  { n: '04 · Encapsulate', ic: IC.encapsulate, h: 'Sealed in a softgel', p: 'Amber oil, one daily softgel.' },
+  { n: '05 · Bottle', ic: IC.bottle, h: 'PULP No. 001', p: '60 softgels. Product notification pending.' },
 ];
 
 export default function Process() {
@@ -32,7 +32,7 @@ export default function Process() {
           <span className="line"><Rise as="span" className="inner">From fresh fruit bunch</Rise></span>
           <span className="line"><Rise as="span" className="inner" delay={0.05}><em>to a single softgel.</em></Rise></span>
         </h2>
-        <Rise as="p" className="lede-2" style={{ marginBottom: 38 }}>Five steps take the ripe palm fruit from a Malaysian estate to the amber oil sealed inside PULP No. 001.</Rise>
+        <Rise as="p" className="lede-2" style={{ marginBottom: 38 }}>Five steps, from a Malaysian estate to a single softgel.</Rise>
 
         <motion.div className="process" style={reduce ? undefined : { '--draw': draw }}>
           <div className="flow-rail" aria-hidden="true"><span className="rail-fill" /></div>

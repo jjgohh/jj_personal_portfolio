@@ -106,7 +106,7 @@ function Hero({ onWaitlist }) {
   const items = [
     <span className="eyebrow mono"><span className="sq" />Specimen No. 001 · Full-Spectrum Vitamin E</span>,
     <h1>One nutrient.<br />Done completely.<span className="ital">The whole spectrum of vitamin&nbsp;E — in one daily softgel.</span></h1>,
-    <p className="lede">Most vitamin&nbsp;E is one molecule. PULP is the whole family — pressed from non-GMO Malaysian palm fruit.</p>,
+    <p className="lede">Most vitamin&nbsp;E is one molecule. PULP is the whole family.</p>,
     <div className="cta-row">
       <a href="#waitlist" className="btn btn-primary" onClick={(e) => { e.preventDefault(); onWaitlist(); }}>Join the waitlist</a>
       <a href="#spectrum" className="btn btn-ghost">See the spectrum ↓</a>
@@ -230,6 +230,17 @@ function MobileCta({ onOpen, overlayOpen }) {
 const HEART = `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor"><path d="M24 6c8 6 14 12 14 22a14 14 0 1 1-28 0C10 18 16 12 24 6Z"/><path d="M24 20v14M18 27h12"/></svg>`;
 const CELL = `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor"><circle cx="24" cy="24" r="7"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/></svg>`;
 const CHART = `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor"><path d="M8 40 L20 24 L28 32 L40 12"/><path d="M32 12h8v8"/></svg>`;
+// authored palm-frond watermark (decorative brand graphic, not a photo)
+const FROND = `<svg viewBox="0 0 240 420" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M120 412 C118 300 118 190 120 34"/>
+<path d="M120 34 C112 24 120 14 120 6"/>
+<path d="M120 66 C92 52 72 57 54 42"/><path d="M120 66 C148 52 168 57 186 42"/>
+<path d="M120 106 C86 93 66 99 46 86"/><path d="M120 106 C154 93 174 99 194 86"/>
+<path d="M120 148 C84 135 62 142 42 130"/><path d="M120 148 C156 135 178 142 198 130"/>
+<path d="M120 192 C86 180 64 187 46 178"/><path d="M120 192 C154 180 176 187 194 178"/>
+<path d="M120 238 C90 227 70 234 54 227"/><path d="M120 238 C150 227 170 234 186 227"/>
+<path d="M120 286 C96 277 80 283 68 278"/><path d="M120 286 C144 277 160 283 172 278"/>
+</svg>`;
 
 function EyebrowRow({ fig, lab }) {
   return <div className="eyebrow-row"><span className="fig">{fig}</span><span className="rule-draw" /><span className="lab">{lab}</span></div>;
@@ -244,6 +255,7 @@ export default function App() {
 
   return (
     <>
+      <div className="grain" aria-hidden="true" />
       <div className="util">
         <div className="wrap">
           <span className="mono">— MALAYSIA — · TOCOTRIENOL COMPLEX</span>
@@ -258,7 +270,8 @@ export default function App() {
       <Hero onWaitlist={openModal} />
 
       {/* ORIGIN */}
-      <section className="chapter" id="origin">
+      <section className="chapter amb" id="origin">
+        <div className="botmark" style={{ top: '6%', right: '-3%', width: 'min(320px,32vw)' }} aria-hidden="true"><Raw html={FROND} /></div>
         <div className="wrap">
           <EyebrowRow fig="Fig. 01 — Provenance" lab="Elaeis guineensis" />
           <Rise as="div" style={{ marginBottom: 'clamp(30px,5vw,54px)' }}>
@@ -272,11 +285,11 @@ export default function App() {
                 <span className="line"><Rise as="span" className="inner">Grown here.</Rise></span>
                 <span className="line"><Rise as="span" className="inner" delay={0.05}><em>Overlooked everywhere.</em></Rise></span>
               </h2>
-              <Rise as="p" className="lede-2">Malaysian palm fruit carries all four tocotrienols together — nature's richest full-spectrum vitamin&nbsp;E. We built PULP around the part the world leaves out.</Rise>
+              <Rise as="p" className="lede-2">Malaysian palm fruit holds all four tocotrienols — the richest full-spectrum vitamin&nbsp;E in nature.</Rise>
             </div>
             <Rise as="div">
               <div className="bigstat"><Counter to={800} /><span className="unit"> mg/kg</span></div>
-              <div className="bigstat-cap">Tocotrienol-rich fraction per kilogram of palm fruit — among the most generous supplies in nature.</div>
+              <div className="bigstat-cap">Tocotrienol-rich fraction per kg of palm fruit.</div>
             </Rise>
           </div>
           <div className="media-row">
@@ -298,7 +311,7 @@ export default function App() {
             <span className="line"><Rise as="span" className="inner">Four tocotrienols.</Rise></span>
             <span className="line"><Rise as="span" className="inner" delay={0.05}><em>One softgel.</em></Rise></span>
           </h2>
-          <Rise as="p" className="lede-2" style={{ marginBottom: 36 }}>Ordinary vitamin E is usually one molecule, doing one job. Drag the divider to compare it with the full family the palm fruit sets — the same ratio inside every softgel.</Rise>
+          <Rise as="p" className="lede-2" style={{ marginBottom: 36 }}>Drag to compare ordinary vitamin&nbsp;E with the full family — the ratio inside every softgel.</Rise>
           <p className="sr-only">A comparison of ingredient form. Ordinary vitamin E is a single alpha-tocopherol. PULP full spectrum contains alpha, beta, gamma and delta tocotrienols plus alpha-tocopherol — gamma-tocotrienol 32 percent, alpha-tocotrienol 26 percent, alpha-tocopherol 24 percent, delta-tocotrienol 8 percent, beta-tocotrienol 3 percent. This is a comparison of ingredient form, not a health claim.</p>
           <SpectrumReveal />
           <div className="spectrum-foot">
@@ -309,14 +322,15 @@ export default function App() {
       </section>
 
       {/* SCIENCE */}
-      <section className="chapter" id="science">
+      <section className="chapter amb" id="science">
+        <div className="botmark" style={{ bottom: '4%', left: '-4%', width: 'min(300px,30vw)', transform: 'scaleX(-1)' }} aria-hidden="true"><Raw html={FROND} /></div>
         <div className="wrap">
           <EyebrowRow fig="Fig. 04 — Research" lab="Scientific Reports · 2026" />
           <div className="sci">
             <div className="num"><Counter to={15} /><span className="x">×</span></div>
             <div className="body">
-              <Rise as="h4">The rarer half behaves differently — and often more powerfully.</Rise>
-              <Rise as="p">In a 2026 lab study, tocotrienols were about fifteen times more effective than α-tocopherol at curbing ferroptosis — iron-driven cell damage — in human cells.</Rise>
+              <Rise as="h4">The rarer half often behaves more powerfully.</Rise>
+              <Rise as="p">In a 2026 lab study, tocotrienols were ~15× more effective than α-tocopherol at curbing ferroptosis — iron-driven cell damage.</Rise>
               <Rise as="p" className="cite">Yang et al., "Tocotrienols exhibit superior ferroptosis inhibition over tocopherols," <a href="https://www.nature.com/articles/s41598-025-34673-1" target="_blank" rel="noopener">Scientific Reports 16:4497 (2026)</a> · in-vitro, human cells · EC50 0.12 μM vs 2.0 μM. This is early laboratory research on tocotrienols in general, not a claim that PULP treats, cures or prevents any disease.</Rise>
             </div>
           </div>
@@ -331,7 +345,7 @@ export default function App() {
             <span className="line"><Rise as="span" className="inner">Getting it in is</Rise></span>
             <span className="line"><Rise as="span" className="inner" delay={0.05}><em>half the battle.</em></Rise></span>
           </h2>
-          <Rise as="p" className="lede-2" style={{ marginBottom: 40 }}>Tocotrienols are notoriously hard to absorb. PULP's Bio-Enhanced, self-emulsifying delivery gets more of every softgel where it's needed.</Rise>
+          <Rise as="p" className="lede-2" style={{ marginBottom: 40 }}>Tocotrienols are hard to absorb. PULP's Bio-Enhanced delivery gets more where it's needed.</Rise>
           <div className="cmp">
             <div className="row"><div className="top"><span>PULP · Bio-Enhanced delivery</span><span className="v">+46%</span></div><div className="track"><GrowBar w="100%" color="var(--pulp)" /></div></div>
             <div className="row"><div className="top"><span>Standard tocotrienol formulation</span><span className="v">baseline</span></div><div className="track"><GrowBar w="68%" color="var(--taupe)" /></div></div>
@@ -341,16 +355,16 @@ export default function App() {
       </section>
 
       {/* BENEFITS */}
-      <section className="chapter" id="benefits">
+      <section className="chapter amb" id="benefits">
         <div className="wrap">
           <EyebrowRow fig="Fig. 06 — Everyday" lab="Antioxidant support" />
           <h2 className="h-lines" style={{ marginBottom: 34 }}>
             <span className="line"><Rise as="span" className="inner">Why it earns a <em>daily</em> place.</Rise></span>
           </h2>
           <div className="bens">
-            {[['01', HEART, 'Skin barrier', 'A fat-soluble antioxidant that helps defend skin from everyday oxidative stress.'],
-              ['02', CELL, 'Cellular defence', "Works inside cell membranes — where water-soluble antioxidants can't reach."],
-              ['03', CHART, 'Start early', 'Built for people who future-proof, rather than catch up later.']]
+            {[['01', HEART, 'Skin barrier', 'A fat-soluble antioxidant that helps defend skin from oxidative stress.'],
+              ['02', CELL, 'Cellular defence', "Works inside cell membranes — where water-soluble antioxidants can't."],
+              ['03', CHART, 'Start early', 'Built for people who future-proof, not catch up.']]
               .map(([no, ic, h, p], i) => (
                 <Rise as="article" className="ben" key={no} delay={i * 0.08}>
                   <span className="no">{no}</span>
@@ -394,7 +408,7 @@ export default function App() {
             <div className="g"><div className="body">
               <div className="kie">A Note From The Founder</div>
               <h3>Why I built PULP around a fruit the world overlooks.</h3>
-              <p>Here in Malaysia, the oil palm is part of the landscape — yet almost no one makes its most complete nutrient the hero. So we did. PULP is one thing, done completely.</p>
+              <p>In Malaysia, the oil palm is everywhere — yet no one makes its most complete nutrient the hero. So we did.</p>
               <div className="sign"><span className="nm">— Your name</span><span className="role">Founder · Golden Pulp Sdn Bhd · 金果</span></div>
             </div></div>
           </Rise>
@@ -406,7 +420,7 @@ export default function App() {
         <div className="in">
           <div className="kie">Join No. 001</div>
           <h2>Be first in <em>line.</em></h2>
-          <p>We're making a small first batch and won't sell until our product notification with Malaysia's NPRA is complete. Leave your email and you'll be the first to know when PULP is ready to ship.</p>
+          <p>A small first batch. We won't sell until our product notification with Malaysia's NPRA is complete — leave your email and you'll be first to know.</p>
           <CloseForm />
         </div>
       </section>

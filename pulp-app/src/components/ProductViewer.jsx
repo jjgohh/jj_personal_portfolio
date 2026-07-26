@@ -49,9 +49,9 @@ const CUT_SVG = `
 </svg>`;
 
 const VIEWS = [
-  { id: 'softgel', label: 'Softgel', svg: SOFTGEL_SVG, cap: 'One amber softgel — 50 mg full-spectrum tocotrienol, taken daily with food. Tap a dot to explore.' },
-  { id: 'bottle', label: 'Bottle', svg: BOTTLE_SVG, cap: 'Sixty softgels per bottle — about two months. Non-GMO Malaysian palm fruit.' },
-  { id: 'cut', label: 'Cross-section', svg: CUT_SVG, cap: 'Inside: amber tocotrienol oil — all four tocotrienols (α β γ δ) plus tocopherol.' },
+  { id: 'softgel', label: 'Softgel', svg: SOFTGEL_SVG, cap: 'One softgel — 50 mg full-spectrum tocotrienol, daily. Tap a dot to explore.' },
+  { id: 'bottle', label: 'Bottle', svg: BOTTLE_SVG, cap: '60 softgels — about two months. Non-GMO Malaysian palm fruit.' },
+  { id: 'cut', label: 'Cross-section', svg: CUT_SVG, cap: 'Inside: amber oil — all four tocotrienols (α β γ δ) plus tocopherol.' },
 ];
 
 const HOTSPOTS = [
