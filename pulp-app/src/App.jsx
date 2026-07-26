@@ -4,6 +4,7 @@ import ThreeHero from './ThreeHero.jsx';
 import SpectrumReveal from './components/SpectrumReveal.jsx';
 import ProductViewer from './components/ProductViewer.jsx';
 import Process from './components/Process.jsx';
+import ScrollFX from './components/ScrollFX.jsx';
 import { Rise, Counter, Raw, useLockBody } from './lib.jsx';
 
 /* ---------- graded-image plate slots (image + video) ---------- */
@@ -256,6 +257,7 @@ export default function App() {
   return (
     <>
       <div className="grain" aria-hidden="true" />
+      <ScrollFX />
       <div className="util">
         <div className="wrap">
           <span className="mono">— MALAYSIA — · TOCOTRIENOL COMPLEX</span>
