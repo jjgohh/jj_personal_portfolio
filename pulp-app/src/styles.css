@@ -2,7 +2,14 @@
     --cream:#F7EEDC; --cream-2:#F0E5CC; --paper:#FBF6EA;
     --forest:#3A4E3A; --forest-deep:#2E4A34;
     --terra:#8D4A1F; --terra-bright:#A14F26; --pulp:#C85A28;
-    --amber:#B4691E; --taupe:#7A6B58; --moss:#7B8554; --espresso:#2A1F16;
+    --amber:#B4691E; --moss:#7B8554; --espresso:#2A1F16;
+    /* --taupe nudged #7A6B58 -> #796A58: visually identical, clears WCAG AA
+       (4.47:1 -> 4.54:1) for the caption/label text it is used on everywhere. */
+    --taupe:#796A58;
+    /* AA-safe INK variants for BODY-SIZE text. The originals fail 4.5:1 on cream
+       (Moss 3.42, Pulp 3.68, Amber 3.66) but pass 3.0:1 for large display type,
+       so keep the originals for headlines, accents and the wordmark's "u". */
+    --moss-ink:#687147; --pulp-ink:#B15023; --amber-ink:#9E5C1A;
     --line:#D9C9A8; --line-soft:#E7DABE;
     --display:'Caprasimo',serif; --serif:'Fraunces',serif;
     --body:'Inter Tight',sans-serif; --mono:'DM Mono',monospace;
@@ -23,10 +30,14 @@
   .mono{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
   ::selection{background:var(--pulp);color:var(--cream)}
 
-  /* keep pre-animation hidden state ONLY when JS animation is confirmed on */
-  html.js-anim [data-rise]{opacity:0}
+  /* Pre-animation hidden state applies ONLY when JS confirmed animation is on
+     (lib.jsx adds .js-anim, and never under prefers-reduced-motion). If the
+     bundle fails to run, nothing is hidden and the page reads normally. */
+  html.js-anim [data-rise]{opacity:0;transform:translateY(var(--ry,26px));
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1) var(--rd,0s),
+               transform .7s cubic-bezier(.2,.7,.2,1) var(--rd,0s)}
+  html.js-anim [data-rise][data-rise-in]{opacity:1;transform:none}
   html.js-anim [data-hero]{opacity:0}
-  html.js-anim .rule-draw{transform:scaleX(0)}
   html.js-anim .sbar .fill, html.js-anim .cmp .row .fill{width:0}
 
   /* ---------- utility bar ---------- */
@@ -525,3 +536,312 @@
   .plate-frame{transition:transform .4s cubic-bezier(.34,1.56,.4,1),box-shadow .4s}
   .plate:hover .plate-frame{transform:translateY(-4px);box-shadow:0 30px 50px -34px rgba(141,74,31,.5)}
   .rec{transition:transform .3s cubic-bezier(.34,1.56,.4,1),border-color .25s}
+
+  /* ========================================================================
+     WORKSTREAM 1 — Traceability (provenance is the centrepiece)
+     ======================================================================== */
+  .trace-grid{display:grid;gap:clamp(26px,4vw,48px);align-items:start}
+  @media (min-width:900px){.trace-grid{grid-template-columns:1.15fr .85fr}}
+
+  .trace-chain{list-style:none;display:grid;gap:14px;counter-reset:none}
+  .trace-step{position:relative;padding:clamp(16px,2.4vw,22px) clamp(16px,2.4vw,24px);
+    border:1px solid var(--line);border-radius:3px;background:var(--paper)}
+  /* dieline corner ticks — specimen vernacular, not a generic card */
+  .trace-step::before,.trace-step::after{content:"";position:absolute;width:9px;height:9px;
+    border-color:var(--line);border-style:solid;pointer-events:none}
+  .trace-step::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+  .trace-step::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+  /* the chain rule that links the four steps */
+  .trace-step:not(:last-child)::marker{content:none}
+  .trace-chain .trace-step:not(:last-child){margin-bottom:14px}
+
+  .trace-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+  .trace-code{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--terra);white-space:nowrap}
+  .trace-name{font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(1.18rem,2.5vw,1.5rem);color:var(--forest-deep);line-height:1.15}
+  .trace-what{font-size:1rem;line-height:1.62;color:var(--espresso);margin-bottom:12px;text-wrap:pretty}
+
+  .trace-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;
+    padding-top:11px;border-top:1px solid var(--line-soft)}
+  @media (max-width:420px){.trace-meta{grid-template-columns:1fr}}
+  .trace-meta dt{font-family:var(--mono);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--taupe);margin-bottom:3px}
+  .trace-meta dd{font-size:.92rem;line-height:1.45;color:var(--forest-deep);font-weight:500}
+  .trace-meta dd a{color:var(--terra);text-decoration:underline;text-underline-offset:2px;
+    text-decoration-thickness:1px}
+  .trace-meta dd a:hover{color:var(--pulp-ink)}
+
+  /* schematic map */
+  .trace-map{position:sticky;top:120px;border:1px solid var(--line);border-radius:3px;
+    background:var(--cream-2);padding:clamp(16px,2.4vw,24px)}
+  @media (max-width:899px){.trace-map{position:static}}
+  .trace-map-art svg{width:100%;height:auto;display:block}
+  .trace-map figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft);
+    font-size:.82rem;line-height:1.5;color:var(--taupe);text-wrap:pretty}
+
+  /* forward batch commitment */
+  .batch-commit{margin-top:clamp(30px,4.6vw,52px);border:1px solid var(--line);border-radius:3px;
+    background:var(--paper);padding:clamp(20px,3vw,30px)}
+  .batch-commit-head{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .batch-commit-note{margin-top:7px;font-size:.88rem;line-height:1.55;color:var(--taupe);max-width:62ch}
+  .batch-list{display:grid;gap:12px}
+  @media (min-width:720px){.batch-list{grid-template-columns:1fr 1fr;gap:14px 30px}}
+  .batch-row{display:grid;gap:3px;padding-left:15px;position:relative}
+  .batch-row::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;
+    background:var(--pulp);border-radius:50%}
+  .batch-row dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--forest-deep)}
+  .batch-row dd{font-size:.92rem;line-height:1.5;color:var(--espresso)}
+
+  /* ========================================================================
+     WORKSTREAM 3 — Spectrum (isomer glyphs + JS-free composition toggle)
+     ======================================================================== */
+  .glyph-band{display:flex;gap:clamp(14px,4vw,54px);align-items:baseline;justify-content:center;
+    margin:clamp(22px,3.4vw,40px) 0 12px;line-height:1}
+  .glyph{font-family:var(--body);font-weight:600;color:var(--pulp);
+    font-size:clamp(3.4rem,13vw,9rem);letter-spacing:-.02em}
+  .glyph-cap{text-align:center;font-size:.86rem;color:var(--taupe);max-width:52ch;
+    margin:0 auto clamp(28px,4vw,46px);text-wrap:pretty}
+
+  .cmpx{border:1px solid var(--line);border-radius:3px;background:var(--paper);
+    padding:clamp(18px,2.8vw,28px)}
+  .cmpx-switch{border:0}
+  .cmpx-legend{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--taupe);margin-bottom:14px;padding:0}
+  .cmpx-opts{display:inline-flex;border:1px solid var(--line);border-radius:2px;overflow:hidden;
+    margin-bottom:clamp(18px,2.6vw,26px)}
+  /* radios drive everything; visually hidden but focusable */
+  .cmpx-radio{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+  .cmpx-label{display:flex;align-items:center;justify-content:center;min-height:44px;
+    padding:0 clamp(14px,2.6vw,26px);font-size:.86rem;color:var(--forest);cursor:pointer;
+    background:var(--cream);transition:background .25s,color .25s}
+  .cmpx-label + .cmpx-radio + .cmpx-label{border-left:1px solid var(--line)}
+  .cmpx-radio:checked + .cmpx-label{background:var(--forest);color:var(--cream)}
+  .cmpx-radio:focus-visible + .cmpx-label{outline:2px solid var(--pulp);outline-offset:2px}
+
+  .cmpx-grid{display:grid;gap:9px}
+  @media (min-width:620px){.cmpx-grid{grid-template-columns:1fr 1fr}}
+  .iso{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
+    padding:12px 14px;border:1px solid var(--line-soft);border-radius:2px;background:var(--cream);
+    transition:opacity .3s,border-color .3s,background .3s}
+  .iso-g{font-family:var(--body);font-weight:600;font-size:1.3rem;color:var(--pulp-ink);
+    min-width:1.1em;text-align:center}
+  .iso-n{font-size:.9rem;color:var(--espresso)}
+  .iso-state{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--taupe);white-space:nowrap}
+  .iso-state::after{content:"PRESENT"}
+
+  /* STATE A — "Tocopherol only": the four tocotrienols read as absent */
+  #cmpx-toc:checked ~ .cmpx-panels .iso:not(.iso--toc){opacity:.42;border-style:dashed}
+  #cmpx-toc:checked ~ .cmpx-panels .iso:not(.iso--toc) .iso-g{color:var(--taupe)}
+  #cmpx-toc:checked ~ .cmpx-panels .iso:not(.iso--toc) .iso-state::after{content:"NOT PRESENT"}
+  /* STATE B — "Full spectrum": everything present, tocotrienols emphasised */
+  #cmpx-full:checked ~ .cmpx-panels .iso:not(.iso--toc){border-color:var(--pulp);
+    background:rgba(200,90,40,.05)}
+  .cmpx-foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft);
+    font-size:.84rem;color:var(--taupe)}
+
+  /* dose stated plainly */
+  .dose-row{display:grid;gap:12px;margin-top:clamp(24px,3.4vw,36px)}
+  @media (min-width:620px){.dose-row{grid-template-columns:repeat(3,1fr);gap:20px}}
+  .dose-row > div{padding:14px 16px;border-left:2px solid var(--pulp);background:var(--cream-2)}
+  .dose-row dt{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--taupe);margin-bottom:5px}
+  .dose-row dd{font-size:1.02rem;font-weight:500;color:var(--forest-deep)}
+  .spectrum-more{margin-top:clamp(22px,3vw,30px)}
+  .spectrum-more a{font-size:.92rem;color:var(--terra);text-decoration:underline;
+    text-underline-offset:3px;text-decoration-thickness:1px}
+  .spectrum-more a:hover{color:var(--pulp-ink)}
+
+  /* ========================================================================
+     WORKSTREAM 2 — Proof strip + Supplement Facts panel
+     ======================================================================== */
+  .proof-strip{list-style:none;display:grid;gap:10px;margin-bottom:clamp(34px,5vw,58px)}
+  @media (min-width:640px){.proof-strip{grid-template-columns:1fr 1fr}}
+  @media (min-width:1000px){.proof-strip{grid-template-columns:repeat(3,1fr)}}
+  .proof-cell{position:relative;display:grid;gap:5px;padding:15px 16px;border:1px solid var(--line);
+    border-radius:2px;background:var(--paper);border-left-width:3px}
+  .proof-cell--ok{border-left-color:var(--moss-ink)}
+  .proof-cell--pending{border-left-color:var(--line)}
+  .proof-k{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--taupe)}
+  .proof-v{font-size:1.02rem;font-weight:500;color:var(--forest-deep);line-height:1.3}
+  .proof-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:.52rem;
+    letter-spacing:.14em;padding:3px 7px;border-radius:2px}
+  .proof-cell--ok .proof-badge{background:var(--moss-ink);color:var(--cream)}
+  .proof-cell--pending .proof-badge{background:var(--cream-2);color:var(--taupe);
+    border:1px solid var(--line)}
+  .proof-note{font-size:.85rem;line-height:1.5;color:var(--taupe);text-wrap:pretty;max-width:44ch}
+
+  /* Supplement Facts — pharmacopoeia panel logic */
+  .sfacts{border:1.5px solid var(--forest-deep);border-radius:2px;background:var(--paper);
+    padding:clamp(16px,2.6vw,24px)}
+  .sfacts-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    flex-wrap:wrap;padding-bottom:10px;border-bottom:3px solid var(--forest-deep);margin-bottom:2px}
+  .sfacts-sku{font-family:var(--mono);font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--taupe)}
+  .sfacts-table{width:100%;border-collapse:collapse;font-size:.92rem}
+  .sfacts-table th{text-align:left;font-weight:500}
+  .sfacts-table td{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .sfacts-table tr{border-bottom:1px solid var(--line-soft)}
+  .sfacts-table th,.sfacts-table td{padding:8px 0}
+  .sf-serving th,.sf-serving td{font-size:.86rem;color:var(--taupe)}
+  .sfacts-table thead th{font-family:var(--mono);font-size:.56rem;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--forest-deep);border-bottom:1.5px solid var(--forest-deep);
+    padding-top:12px}
+  .sfacts-table thead th:last-child{text-align:right}
+  .sf-total th{font-weight:600;color:var(--forest-deep)}
+  .sf-total td{font-weight:600}
+  .sf-sub th{padding-left:16px;position:relative;color:var(--espresso);font-weight:400}
+  .sf-sub th::before{content:"";position:absolute;left:4px;top:50%;width:5px;height:1px;
+    background:var(--line)}
+  .sf-sub td{color:var(--taupe);font-size:.84rem}
+  .sfacts-nrv{margin-top:11px;font-size:.8rem;line-height:1.5;color:var(--taupe);text-wrap:pretty}
+
+  .sfacts-meta{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:12px}
+  .sfacts-meta dt{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--taupe);margin-bottom:4px}
+  .sfacts-meta dd{font-size:.9rem;line-height:1.55;color:var(--espresso);text-wrap:pretty}
+  .sfacts-reg{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:var(--taupe);line-height:1.7}
+  .sfacts-disc{margin-top:8px;font-size:.84rem;line-height:1.55;color:var(--espresso);
+    font-weight:500;text-wrap:pretty}
+
+  /* ========================================================================
+     WORKSTREAM 5 — Founder, reservation; WS2 — citations; footer additions
+     ======================================================================== */
+  .fnd{display:grid;gap:clamp(24px,4vw,46px);align-items:start}
+  @media (min-width:820px){.fnd{grid-template-columns:.8fr 1.2fr}}
+  .fnd-frame{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line);
+    border-radius:2px;background:var(--cream-2)}
+  .fnd-frame img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2}
+  .fnd-ph{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:5px;text-align:center;padding:16px}
+  .fnd-ph .mk{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--terra)}
+  .fnd-ph .sj{font-family:var(--serif);font-style:italic;color:var(--forest-deep);font-size:1.05rem}
+  .fnd-ph .rt{font-family:var(--mono);font-size:.54rem;letter-spacing:.12em;color:var(--taupe)}
+  .fnd-portrait figcaption{margin-top:10px;font-family:var(--mono);font-size:.56rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
+  .fnd-quote{border:0}
+  .fnd-quote p{font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(1.1rem,2.1vw,1.42rem);line-height:1.52;color:var(--forest-deep);
+    text-wrap:pretty}
+  .fnd-quote p + p{margin-top:16px}
+  .fnd-sign{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:4px}
+  .fnd-sign .nm{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--terra)}
+  .fnd-sign .role{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--taupe)}
+
+  /* reservation / founders' batch */
+  .batch-facts{margin:clamp(22px,3.4vw,34px) auto 0;max-width:56ch}
+  .bf{display:flex;align-items:baseline;justify-content:center;gap:12px}
+  .bf-n{font-family:var(--display);font-size:clamp(3rem,9vw,5.4rem);line-height:1;color:var(--pulp)}
+  .bf-k{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream);opacity:.82}
+  .bf-note{margin-top:12px;font-size:.9rem;line-height:1.6;opacity:.86;text-wrap:pretty}
+
+  .price-anchor{display:grid;gap:12px;margin:clamp(22px,3.2vw,32px) auto 0;max-width:44ch}
+  @media (min-width:560px){.price-anchor{grid-template-columns:1fr 1fr;gap:18px}}
+  .price-anchor > div{padding:12px 14px;border:1px solid rgba(247,238,220,.22);border-radius:2px}
+  .price-anchor dt{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;
+    text-transform:uppercase;opacity:.72;margin-bottom:5px}
+  .price-anchor dd{font-size:1.06rem;font-weight:500}
+  .price-note{margin-top:14px;font-size:.86rem;line-height:1.6;opacity:.8;max-width:56ch;
+    margin-left:auto;margin-right:auto;text-wrap:pretty}
+
+  .rsv-form{margin:clamp(24px,3.4vw,34px) auto 0;max-width:520px;display:grid;gap:12px}
+  @media (min-width:560px){.rsv-form{grid-template-columns:1fr auto;align-items:end}}
+  .rsv-field{display:grid;gap:6px;text-align:left}
+  .rsv-field label{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;
+    text-transform:uppercase;opacity:.78}
+  .rsv-field input{width:100%;min-height:52px;padding:14px 16px;font-size:1rem;
+    font-family:var(--body);color:var(--espresso);background:var(--paper);
+    border:1px solid var(--line);border-radius:2px}
+  .rsv-field input:focus-visible{outline:2px solid var(--pulp);outline-offset:2px}
+  .rsv-field input[aria-invalid="true"]{border-color:var(--pulp);border-width:2px}
+  .rsv-btn{min-height:52px;padding:0 26px;font-size:.9rem;font-family:var(--body);
+    background:var(--pulp);color:var(--cream);border:0;border-radius:2px;cursor:pointer;
+    transition:background .25s,transform .25s;white-space:nowrap}
+  .rsv-btn:hover:not(:disabled){background:var(--terra-bright);transform:translateY(-2px)}
+  .rsv-btn:disabled{opacity:.7;cursor:default}
+  .rsv-btn:focus-visible{outline:2px solid var(--cream);outline-offset:2px}
+  /* min-height reserves space so error/idle swaps never shift layout */
+  .rsv-note{margin:12px auto 0;max-width:520px;min-height:2.8em;font-size:.84rem;
+    line-height:1.5;opacity:.78;text-wrap:pretty}
+  .rsv-err{color:#FFC9A8;opacity:1;font-weight:500}
+
+  .rsv-done{margin:clamp(24px,3.4vw,34px) auto 0;max-width:520px;text-align:left;
+    border:1px solid rgba(247,238,220,.24);border-radius:3px;padding:clamp(20px,3vw,28px)}
+  .rsv-tick{display:block;font-size:1.6rem;color:var(--pulp);margin-bottom:8px}
+  .rsv-done h3{font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:10px}
+  .rsv-pos{font-size:1rem;margin-bottom:12px}
+  .rsv-next{margin:0 0 18px 18px;display:grid;gap:7px}
+  .rsv-next li{font-size:.92rem;line-height:1.55;opacity:.88}
+  .rsv-share{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;
+    border:1px solid var(--cream);border-radius:2px;font-size:.86rem;
+    transition:background .25s,color .25s}
+  .rsv-share:hover{background:var(--cream);color:var(--forest-deep)}
+
+  /* citations */
+  .cites{list-style:none;display:grid;gap:14px}
+  .cite-row{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:16px 18px;
+    border:1px solid var(--line);border-radius:2px;background:var(--paper)}
+  .cite-n{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--terra);
+    padding-top:3px}
+  .cite-main{font-size:.96rem;line-height:1.6;color:var(--espresso);text-wrap:pretty}
+  .cite-title{color:var(--forest-deep)}
+  .cite-method{margin-top:6px;font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--taupe)}
+  .cite-link{display:inline-block;margin-top:9px;font-size:.86rem;color:var(--terra);
+    text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+  .cite-link:hover{color:var(--pulp-ink)}
+  .cites-foot{margin-top:18px;font-size:.86rem;line-height:1.6;color:var(--taupe);text-wrap:pretty}
+  .cites-foot a{color:var(--terra);text-decoration:underline;text-underline-offset:2px}
+
+  /* footer payment row */
+  .pay-row{margin-top:clamp(24px,3.4vw,34px);padding-top:18px;border-top:1px solid rgba(247,238,220,.16)}
+  .pay-k{display:block;font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;
+    text-transform:uppercase;opacity:.6;margin-bottom:10px}
+  .pay-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .pay-list li{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+    padding:6px 10px;border:1px solid rgba(247,238,220,.24);border-radius:2px;opacity:.78}
+  @media (min-width:900px){.foot-top{grid-template-columns:1.4fr 1fr 1fr 1.1fr}}
+
+  /* ========================================================================
+     WORKSTREAM 4 — hero CSS stagger (replaces framer-motion), skip link,
+     dismissible mobile CTA, focus visibility
+     ======================================================================== */
+  /* hero entry: pure CSS, gated on .js-anim so a failed bundle shows everything */
+  @keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  html.js-anim [data-hero]{opacity:0;
+    animation:heroIn .8s cubic-bezier(.2,.7,.2,1) var(--hd,0s) forwards}
+  @media (prefers-reduced-motion:reduce){
+    html.js-anim [data-hero]{opacity:1;animation:none}
+  }
+
+  /* skip link — essential for keyboard users */
+  .skip{position:absolute;left:-9999px;top:0;z-index:100;padding:12px 18px;
+    background:var(--forest-deep);color:var(--cream);font-size:.9rem;border-radius:0 0 3px 0}
+  .skip:focus{left:0}
+
+  /* visible focus everywhere, in Pulp Orange */
+  a:focus-visible,button:focus-visible,input:focus-visible,
+  [tabindex]:focus-visible,summary:focus-visible{
+    outline:2px solid var(--pulp);outline-offset:2px;border-radius:2px}
+
+  /* dismissible mobile CTA */
+  .mcta{display:flex;gap:8px;align-items:stretch}
+  .mcta-btn{flex:1}
+  .mcta-x{flex:0 0 auto;width:44px;min-height:48px;display:flex;align-items:center;
+    justify-content:center;background:transparent;border:1px solid var(--line);
+    border-radius:2px;color:var(--forest);cursor:pointer}
+  .mcta-x svg{width:18px;height:18px}
+
+  /* body copy never below 16px on mobile */
+  @media (max-width:640px){
+    .trace-what,.iso-n,.proof-v,.sfacts-meta dd,.cite-main,.fnd-quote p,
+    .rsv-field input,.dose-row dd{font-size:1rem}
+    .glyph-band{gap:10px}
+  }

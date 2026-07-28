@@ -1,5 +1,60 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+
+/*
+  WORKSTREAM 4 — framer-motion removed.
+
+  GSAP (ScrollFX) already owns scroll choreography, so framer-motion was ~40KB
+  gzipped of duplicate capability on the critical path. These helpers reproduce
+  the same API (Rise / Counter) on an IntersectionObserver + CSS transitions,
+  costing well under 1KB.
+
+  Graceful degradation is the whole trick: the hidden start state lives behind
+  `html.js-anim`, a class this module adds only when JS runs AND the visitor has
+  not asked for reduced motion. If the bundle fails, or reduced motion is on,
+  the class is never added and every element renders at its natural, visible
+  position. Nothing is ever hidden by CSS alone.
+*/
+
+const REDUCE_Q = '(prefers-reduced-motion: reduce)';
+
+function prefersReduce() {
+  return typeof window !== 'undefined' && window.matchMedia
+    ? window.matchMedia(REDUCE_Q).matches
+    : false;
+}
+
+// Arm the animated start state exactly once, on the client, motion permitting.
+if (typeof document !== 'undefined' && !prefersReduce()) {
+  document.documentElement.classList.add('js-anim');
+}
+
+export function useReducedMotion() {
+  const [reduce, setReduce] = useState(prefersReduce);
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    const mq = window.matchMedia(REDUCE_Q);
+    const on = () => setReduce(mq.matches);
+    mq.addEventListener ? mq.addEventListener('change', on) : mq.addListener(on);
+    return () => (mq.removeEventListener ? mq.removeEventListener('change', on) : mq.removeListener(on));
+  }, []);
+  return reduce;
+}
+
+// Fires once when the element first enters the viewport.
+export function useInViewOnce(ref, { margin = '0px 0px -12% 0px' } = {}) {
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || seen) return;
+    if (!('IntersectionObserver' in window)) { setSeen(true); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { setSeen(true); io.disconnect(); }
+    }, { rootMargin: margin });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref, seen, margin]);
+  return seen;
+}
 
 // Render trusted, static inline SVG/markup (our own brand line-art) verbatim.
 export function Raw({ html, as = 'span', className, ...rest }) {
@@ -7,34 +62,28 @@ export function Raw({ html, as = 'span', className, ...rest }) {
   return <Tag className={className} dangerouslySetInnerHTML={{ __html: html }} {...rest} />;
 }
 
-// Scroll-triggered reveal. Falls back to a static, visible element under
-// reduced-motion so nothing moves involuntarily.
-export function Rise({ as = 'div', children, className, y = 26, delay = 0, style, ...rest }) {
-  const reduce = useReducedMotion();
-  const M = motion[as] || motion.div;
-  if (reduce) {
-    const Tag = as;
-    return <Tag className={className} style={style} {...rest}>{children}</Tag>;
-  }
+// Scroll-triggered reveal. Same call signature as the old framer version.
+export function Rise({ as: Tag = 'div', children, className, y = 26, delay = 0, style, ...rest }) {
+  const ref = useRef(null);
+  const inView = useInViewOnce(ref);
   return (
-    <M
+    <Tag
+      ref={ref}
       className={className}
-      style={style}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-      transition={{ duration: 0.7, ease: [0.2, 0.7, 0.2, 1], delay }}
+      data-rise=""
+      {...(inView ? { 'data-rise-in': '' } : {})}
+      style={{ '--ry': `${y}px`, '--rd': `${delay}s`, ...style }}
       {...rest}
     >
       {children}
-    </M>
+    </Tag>
   );
 }
 
 // Count-up that runs once when scrolled into view (static under reduced-motion).
 export function Counter({ to, duration = 1.6 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
+  const inView = useInViewOnce(ref, { margin: '0px 0px -10% 0px' });
   const reduce = useReducedMotion();
   const [val, setVal] = useState(0);
   useEffect(() => {
