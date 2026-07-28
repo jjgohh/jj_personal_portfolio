@@ -3,9 +3,14 @@
     --forest:#3A4E3A; --forest-deep:#2E4A34;
     --terra:#8D4A1F; --terra-bright:#A14F26; --pulp:#C85A28;
     --amber:#B4691E; --moss:#7B8554; --espresso:#2A1F16;
-    /* --taupe nudged #7A6B58 -> #796A58: visually identical, clears WCAG AA
-       (4.47:1 -> 4.54:1) for the caption/label text it is used on everywhere. */
-    --taupe:#796A58;
+    /* --taupe #7A6B58 -> #736554. The original failed AA on every surface
+       (4.47:1 on cream, 4.18:1 on cream-2). This clears 4.5:1 on the DARKEST
+       surface it appears on, cream-2 (4.51), so it passes everywhere:
+       4.90 on cream, 5.24 on paper. Visually indistinguishable. */
+    --taupe:#736554;
+    /* Pulp Orange on the dark forest ground is only 2.31:1 — even 48px display
+       type needs 3.0. Same hue, lightened, for dark sections only. */
+    --pulp-on-dark:#E29A72;
     /* AA-safe INK variants for BODY-SIZE text. The originals fail 4.5:1 on cream
        (Moss 3.42, Pulp 3.68, Amber 3.66) but pass 3.0:1 for large display type,
        so keep the originals for headlines, accents and the wordmark's "u". */
@@ -95,7 +100,10 @@
   .hero .lede{font-size:clamp(1rem,1.4vw,1.16rem);color:#4a4034;max-width:44ch;margin-top:26px}
   .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:32px}
   .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:2px;font-size:.86rem;cursor:pointer;border:1px solid transparent;transition:transform .25s,background .25s,color .25s,border-color .25s}
-  .btn-primary{background:var(--pulp);color:var(--cream);border-color:var(--pulp)}
+  /* CTA uses --pulp-ink, not --pulp: cream on #C85A28 is 3.68:1 and fails AA at
+     button text sizes. #B15023 is the same hue at 4.51:1. The wordmark's "u" and
+     all display-size accents keep the exact signed-off #C85A28. */
+  .btn-primary{background:var(--pulp-ink);color:var(--cream);border-color:var(--pulp-ink)}
   .btn-primary:hover{background:var(--terra);border-color:var(--terra);transform:translateY(-2px)}
   .btn-ghost{background:transparent;color:var(--forest);border-color:var(--line)}
   .btn-ghost:hover{border-color:var(--forest);transform:translateY(-2px)}
@@ -845,3 +853,28 @@
     .rsv-field input,.dose-row dd{font-size:1rem}
     .glyph-band{gap:10px}
   }
+
+  /* ========================================================================
+     WCAG AA remediation (measured on a 390px mobile render, not assumed)
+     ======================================================================== */
+  .bf-n{color:var(--pulp-on-dark)}
+  .rsv-btn{background:var(--pulp-ink)}
+  .rsv-btn:hover:not(:disabled){background:var(--terra-bright)}
+  footer .foot-col .foot-h{color:var(--cream);opacity:.96;font-family:var(--mono);
+    font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;
+    margin-bottom:10px}
+  footer .foot-col a,footer .foot-col p{color:var(--cream);opacity:.86}
+  footer .foot-col a:hover{opacity:1;text-decoration:underline}
+  /* tap targets reach 44px */
+  .brand{min-height:44px;justify-content:center}
+  footer .foot-col a{display:flex;align-items:center;min-height:44px}
+  .pay-list li{min-height:32px;display:flex;align-items:center}
+  /* stretch the hidden composition radios over their labels so the accessible
+     hit area matches the visible 44px control instead of a 1px box */
+  .cmpx-opts{position:relative}
+  .cmpx-radio{width:auto;height:auto;inset:0 auto 0 0;margin:0}
+
+  /* sticky mobile CTA: same AA fix as the other primary buttons */
+  .mcta-btn{background:var(--pulp-ink)!important;color:var(--cream)!important}
+  /* modal close was 43x43 — one pixel under the 44px minimum */
+  .modal-close{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}

@@ -33,7 +33,7 @@ export default function SiteFooter() {
           </div>
 
           <div className="foot-col">
-            <h5>Explore</h5>
+            <h2 className="foot-h">Explore</h2>
             <a href="#spectrum">Composition</a>
             <a href="#traceability">Traceability</a>
             <a href="#proof">Proof &amp; label</a>
@@ -41,7 +41,7 @@ export default function SiteFooter() {
           </div>
 
           <div className="foot-col">
-            <h5>Contact</h5>
+            <h2 className="foot-h">Contact</h2>
             <a href="mailto:hello@pulp.my">hello@pulp.my</a>
             <a href="https://wa.me/[WHATSAPP NUMBER]" target="_blank" rel="noopener">
               WhatsApp — [WHATSAPP NUMBER]
@@ -50,7 +50,7 @@ export default function SiteFooter() {
           </div>
 
           <div className="foot-col">
-            <h5>Registered entity</h5>
+            <h2 className="foot-h">Registered entity</h2>
             <p>Golden Pulp Sdn Bhd (金果有限公司)</p>
             <p>Company no. [SSM NUMBER]</p>
             <p>[REGISTERED ADDRESS]</p>

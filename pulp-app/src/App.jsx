@@ -18,7 +18,15 @@ import { useLockBody, useReducedMotion } from './lib.jsx';
   code-split by lazy() so mobile never downloads it at all, and gated behind a
   post-paint idle callback so it can never compete with LCP.
 */
-const ThreeHero = lazy(() => import('./ThreeHero.jsx'));
+/* The .catch is load-bearing, not defensive noise. In the single-file Artifact
+   build the dynamic chunk cannot be inlined and therefore does not exist, so the
+   import rejects. An uncaught lazy() rejection unmounts the whole React tree —
+   i.e. a blank page. Resolving to a null component instead means the 3D simply
+   never appears and the rest of the site is untouched. Same protection on a flaky
+   network. */
+const ThreeHero = lazy(() =>
+  import('./ThreeHero.jsx').catch(() => ({ default: () => null }))
+);
 
 function useAffords3D() {
   const [ok, setOk] = useState(false);
