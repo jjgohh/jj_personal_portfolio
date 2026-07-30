@@ -111,7 +111,7 @@ export default function ScrollFX() {
 
       /* ── 6. ESSENTIALS: four cells wipe in on the same beat ── */
       if (has('.ess-grid')) {
-        gsap.from('.ess-grid > div', {
+        gsap.from('.ess-grid > div, .ess-note', {
           yPercent: 14, opacity: 0, duration: 0.7, ease: EASE, stagger: STAGGER,
           scrollTrigger: { trigger: '.ess-grid', start: START, ...once },
         });

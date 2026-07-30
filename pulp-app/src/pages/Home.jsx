@@ -81,33 +81,40 @@ export default function Home({ onReserve, cta }) {
       <section className="chapter essentials linked" id="essentials" aria-labelledby="ess-h">
         <div className="wrap">
           <h2 id="ess-h" className="sr-only">The essentials</h2>
-          <Rise as="dl" className="ess-grid">
-            <div><dt>Per softgel</dt><dd><Counter to={50} /> mg</dd><dd className="ess-sub">tocotrienol complex</dd></div>
-            <div><dt>In the bottle</dt><dd><Counter to={60} /></dd><dd className="ess-sub">softgels · ~2 months</dd></div>
-            <div><dt>How to take it</dt><dd>One daily</dd><dd className="ess-sub">with any meal</dd></div>
-            <div><dt>Made in</dt><dd>Malaysia</dd><dd className="ess-sub">grown, extracted, bottled</dd></div>
-          </Rise>
+          {/* One panel, one set of hairlines. The stat row and the two notes
+              share a single outer border so the right edge lines up and the
+              whole thing reads as one specimen data panel rather than a
+              full-width grid with two narrower boxes orphaned underneath. */}
+          <Rise as="div" className="ess-panel">
+            <dl className="ess-grid">
+              <div><dt>Per softgel</dt><dd><Counter to={50} /> mg</dd><dd className="ess-sub">tocotrienol complex</dd></div>
+              <div><dt>In the bottle</dt><dd><Counter to={60} /></dd><dd className="ess-sub">softgels · ~2 months</dd></div>
+              <div><dt>How to take it</dt><dd>One daily</dd><dd className="ess-sub">with any meal</dd></div>
+              <div><dt>Made in</dt><dd>Malaysia</dd><dd className="ess-sub">grown, extracted, bottled</dd></div>
+            </dl>
 
-          {/* The moment of use, made concrete — a routine a buyer can picture.
-              A usage instruction, not a health claim. */}
-          <Rise as="p" className="routine">
-            <span className="routine-k">The routine</span>
-            One softgel with breakfast. Sixty in a bottle, so about two months per bottle.
-            That is the whole thing — there is no loading phase and nothing to measure.
-          </Rise>
+            <div className="ess-notes">
+              {/* the moment of use, made concrete — a usage instruction, not a claim */}
+              <div className="ess-note">
+                <span className="ess-note-k">The routine</span>
+                <p>
+                  One softgel with breakfast. Sixty in a bottle, so about two months per
+                  bottle. That is the whole thing — no loading phase, nothing to measure.
+                </p>
+              </div>
 
-          {/* Safety handled EARLY and in plain sight. For an ingestible this is
-              both the honest thing and the converting thing: the sooner "is this
-              safe for me" is answered, the fewer people leave to go looking. */}
-          <Rise as="div" className="safety">
-            <span className="safety-k">Before you reserve</span>
-            <p>
-              PULP is a food supplement, not a medicine, and is not intended to replace
-              medicine. Keep out of reach of children. Not suitable for anyone with a known
-              sensitivity to any listed ingredient. If you are pregnant, nursing or taking
-              medication, speak to your doctor or pharmacist before use.
-            </p>
-            <a href={href('/proof')} onClick={go('/proof')}>Read the full label and warnings →</a>
+              {/* safety early and in plain sight, not buried in the FAQ */}
+              <div className="ess-note ess-note--care">
+                <span className="ess-note-k">Before you reserve</span>
+                <p>
+                  PULP is a food supplement, not a medicine, and is not intended to replace
+                  medicine. Keep out of reach of children. Not suitable for anyone with a
+                  known sensitivity to any listed ingredient. If you are pregnant, nursing
+                  or taking medication, speak to your doctor or pharmacist before use.
+                </p>
+                <a href={href('/proof')} onClick={go('/proof')}>Read the full label and warnings →</a>
+              </div>
+            </div>
           </Rise>
         </div>
       </section>
