@@ -84,8 +84,30 @@ export default function Home({ onReserve, cta }) {
           <Rise as="dl" className="ess-grid">
             <div><dt>Per softgel</dt><dd><Counter to={50} /> mg</dd><dd className="ess-sub">tocotrienol complex</dd></div>
             <div><dt>In the bottle</dt><dd><Counter to={60} /></dd><dd className="ess-sub">softgels · ~2 months</dd></div>
-            <div><dt>How to take it</dt><dd>One daily</dd><dd className="ess-sub">with food</dd></div>
+            <div><dt>How to take it</dt><dd>One daily</dd><dd className="ess-sub">with any meal</dd></div>
             <div><dt>Made in</dt><dd>Malaysia</dd><dd className="ess-sub">grown, extracted, bottled</dd></div>
+          </Rise>
+
+          {/* The moment of use, made concrete — a routine a buyer can picture.
+              A usage instruction, not a health claim. */}
+          <Rise as="p" className="routine">
+            <span className="routine-k">The routine</span>
+            One softgel with breakfast. Sixty in a bottle, so about two months per bottle.
+            That is the whole thing — there is no loading phase and nothing to measure.
+          </Rise>
+
+          {/* Safety handled EARLY and in plain sight. For an ingestible this is
+              both the honest thing and the converting thing: the sooner "is this
+              safe for me" is answered, the fewer people leave to go looking. */}
+          <Rise as="div" className="safety">
+            <span className="safety-k">Before you reserve</span>
+            <p>
+              PULP is a food supplement, not a medicine, and is not intended to replace
+              medicine. Keep out of reach of children. Not suitable for anyone with a known
+              sensitivity to any listed ingredient. If you are pregnant, nursing or taking
+              medication, speak to your doctor or pharmacist before use.
+            </p>
+            <a href={href('/proof')} onClick={go('/proof')}>Read the full label and warnings →</a>
           </Rise>
         </div>
       </section>
@@ -170,6 +192,26 @@ export default function Home({ onReserve, cta }) {
             <a href={href('/proof')} onClick={go('/proof')}>
               See all six checks and the full label →
             </a>
+          </Rise>
+        </div>
+      </section>
+
+      {/* A named human before the ask. PULP has no customers yet, so there are
+          no reviews to show and none will be invented — the founder is the
+          honest substitute for social proof. */}
+      <section className="chapter fnote linked" id="fnote" aria-labelledby="fnote-h">
+        <div className="wrap">
+          <Rise as="blockquote" className="fnote-q">
+            <h2 id="fnote-h" className="sr-only">A note from the founder</h2>
+            <p>
+              “We ship this fruit out of Malaysia and buy it back on a foreign label.
+              PULP is my attempt at the other order of things.”
+            </p>
+            <footer>
+              <span className="fnote-nm">— [FOUNDER NAME]</span>
+              <span className="fnote-role">Founder · Golden Pulp Sdn Bhd</span>
+              <a href={href('/story')} onClick={go('/story')}>Read the full note →</a>
+            </footer>
           </Rise>
         </div>
       </section>

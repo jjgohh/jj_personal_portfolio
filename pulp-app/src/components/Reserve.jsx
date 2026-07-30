@@ -121,6 +121,14 @@ export default function Reserve() {
                 {status === 'busy' ? 'Reserving…' : 'Reserve your bottle'}
               </button>
             </form>
+            {/* Status markers sit WITH the control, not in a distant section:
+                the objections a buyer has are strongest at the moment they act. */}
+            <ul className="rsv-trust">
+              <li>Non-GMO Malaysian palm fruit</li>
+              <li>50 mg per softgel · 60 per bottle</li>
+              <li>NPRA notification pending</li>
+              <li>No payment taken</li>
+            </ul>
             {/* reserved height: status changes never shift layout */}
             <p className="rsv-note" id="rsv-status" role="status" aria-live="polite">
               {status === 'error'

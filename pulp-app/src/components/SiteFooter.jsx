@@ -21,7 +21,7 @@ const PAYMENTS = ['FPX', 'DuitNow QR', "Touch 'n Go eWallet", 'GrabPay', 'Visa',
 
 export default function SiteFooter() {
   return (
-    <footer>
+    <footer className="site-footer">
       <div className="wrap">
         <div className="foot-top">
           <div className="foot-brand">
