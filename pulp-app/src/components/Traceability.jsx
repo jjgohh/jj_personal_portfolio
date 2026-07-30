@@ -99,10 +99,10 @@ export default function Traceability() {
           <span className="lab">Fruit → Bottle</span>
         </div>
 
-        <h2 className="h-lines" style={{ marginBottom: 12 }}>
+        <h1 className="h-lines" style={{ marginBottom: 12 }}>
           <span className="line"><Rise as="span" className="inner">Grown, extracted and</Rise></span>
           <span className="line"><Rise as="span" className="inner" delay={0.05}><em>bottled in Malaysia.</em></Rise></span>
-        </h2>
+        </h1>
         <Rise as="p" className="lede-2" style={{ marginBottom: 'clamp(28px,4.4vw,46px)' }}>
           Four steps, one country. Every step names who does it.
         </Rise>
@@ -113,7 +113,7 @@ export default function Traceability() {
               <Rise as="li" className="trace-step" key={s.code} delay={i * 0.07}>
                 <div className="trace-head">
                   <span className="trace-code">{s.code}</span>
-                  <h3 className="trace-name">{s.name}</h3>
+                  <h2 className="trace-name">{s.name}</h2>
                 </div>
                 <p className="trace-what">{s.what}</p>
                 <dl className="trace-meta">

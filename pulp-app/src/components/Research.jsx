@@ -44,11 +44,11 @@ export default function Research() {
           <span className="lab">Ingredient class</span>
         </div>
 
-        <h2 className="h-lines" style={{ marginBottom: 12 }}>
+        <h1 className="h-lines" style={{ marginBottom: 12 }}>
           <span className="line">
             <Rise as="span" className="inner">Published research on <em>tocotrienols.</em></Rise>
           </span>
-        </h2>
+        </h1>
         <Rise as="p" className="lede-2" style={{ marginBottom: 'clamp(24px,3.6vw,38px)' }}>
           These are references to the published literature on tocotrienols as an ingredient
           class. They are not claims about this product, and PULP makes no claim to treat,

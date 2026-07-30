@@ -34,10 +34,12 @@ export default function SiteFooter() {
 
           <div className="foot-col">
             <h2 className="foot-h">Explore</h2>
-            <a href="#spectrum">Composition</a>
-            <a href="#traceability">Traceability</a>
-            <a href="#proof">Proof &amp; label</a>
-            <a href="#research">Research</a>
+            <a href="#/product">The Specimen</a>
+            <a href="#/composition">Composition</a>
+            <a href="#/traceability">Traceability</a>
+            <a href="#/proof">Proof &amp; label</a>
+            <a href="#/research">Research</a>
+            <a href="#/faq">FAQ</a>
           </div>
 
           <div className="foot-col">

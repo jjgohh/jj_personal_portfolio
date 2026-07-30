@@ -878,3 +878,138 @@
   .mcta-btn{background:var(--pulp-ink)!important;color:var(--cream)!important}
   /* modal close was 43x43 — one pixel under the 44px minimum */
   .modal-close{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+
+  /* ========================================================================
+     ECOMMERCE IA — dropdown nav, shallow landing page, PDP, FAQ, CTA band
+     ======================================================================== */
+  /* --- nav dropdown --- */
+  .navlink.is-current{color:var(--terra)}
+  .navlink.is-current::after{width:100%}
+  .dd{position:relative}
+  .ddbtn{display:inline-flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;
+    font-family:var(--body);font-size:.82rem;color:var(--forest);padding:4px 0;min-height:44px}
+  .ddcaret{width:14px;height:14px;transition:transform .25s}
+  .ddbtn[aria-expanded="true"] .ddcaret{transform:rotate(180deg)}
+  .ddpop{position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,-6px);
+    width:min(330px,86vw);background:var(--paper);border:1px solid var(--line);border-radius:3px;
+    box-shadow:0 26px 50px -28px rgba(42,31,22,.4);padding:7px;z-index:60;
+    opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+  .ddpop.open{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+  .ddpop ul{list-style:none;display:grid;gap:1px}
+  .ddpop a{display:grid;gap:2px;padding:11px 13px;border-radius:2px;min-height:44px;
+    align-content:center;transition:background .2s}
+  .ddpop a:hover,.ddpop a:focus-visible{background:var(--cream-2)}
+  .ddpop a.is-current{background:var(--cream-2)}
+  .ddpop a.is-current .ddt{color:var(--terra)}
+  .ddt{font-size:.92rem;color:var(--forest-deep);font-weight:500}
+  .ddd{font-size:.78rem;color:var(--taupe);line-height:1.4}
+  @media(max-width:860px){
+    .dd{width:100%}
+    .ddbtn{width:100%;justify-content:space-between;padding:14px 0;font-size:1.02rem;
+      border-bottom:1px solid var(--line-soft)}
+    .ddpop{position:static;transform:none;width:100%;box-shadow:none;border:0;background:transparent;
+      padding:0;opacity:1;pointer-events:auto;height:0;overflow:hidden;transition:height .25s}
+    .ddpop.open{height:auto;padding:6px 0 10px}
+    .ddpop a{padding-left:14px;border-left:2px solid var(--line)}
+  }
+
+  /* --- landing: the essentials strip --- */
+  .essentials{padding-top:clamp(38px,6vw,70px);padding-bottom:clamp(38px,6vw,70px)}
+  .ess-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;
+    overflow:hidden}
+  @media(min-width:560px){.ess-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:900px){.ess-grid{grid-template-columns:repeat(4,1fr)}}
+  .ess-grid > div{background:var(--paper);padding:clamp(18px,2.6vw,26px);display:grid;gap:3px;
+    align-content:start}
+  .ess-grid dt{font-family:var(--mono);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--taupe);margin-bottom:5px}
+  .ess-grid dd{font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2rem);color:var(--forest-deep);
+    line-height:1.05}
+  .ess-grid .ess-sub{font-family:var(--body);font-size:.86rem;color:var(--taupe);line-height:1.4}
+
+  /* --- landing: why this form --- */
+  .why{display:grid;gap:clamp(24px,4vw,48px);align-items:center}
+  @media(min-width:860px){.why{grid-template-columns:1.05fr .95fr}}
+  .why-glyphs{display:flex;gap:clamp(8px,2.4vw,22px);justify-content:center;align-items:baseline;
+    line-height:1}
+  .why-glyphs .glyph{font-size:clamp(2.8rem,10vw,6.4rem)}
+  .why-more{margin-top:18px}
+  .why-more a{font-size:.94rem;color:var(--terra);text-decoration:underline;text-underline-offset:3px;
+    text-decoration-thickness:1px}
+  .why-more a:hover{color:var(--pulp-ink)}
+
+  /* --- landing: trust row --- */
+  .trust-row{list-style:none;display:grid;gap:9px}
+  @media(min-width:620px){.trust-row{grid-template-columns:1fr 1fr}}
+  @media(min-width:1000px){.trust-row{grid-template-columns:repeat(4,1fr)}}
+  .trust-row li{display:grid;gap:7px;padding:14px 15px;background:var(--paper);
+    border:1px solid var(--line);border-left-width:3px;border-radius:2px}
+  .tb{font-family:var(--mono);font-size:.52rem;letter-spacing:.14em;padding:3px 7px;border-radius:2px;
+    justify-self:start;background:var(--cream-2);color:var(--taupe);border:1px solid var(--line)}
+  .tb--ok{background:var(--moss-ink);color:var(--cream);border-color:var(--moss-ink)}
+  .tk{font-size:.96rem;color:var(--forest-deep);font-weight:500}
+
+  /* --- product page (PDP) --- */
+  .pdp{display:grid;gap:clamp(26px,4vw,52px);align-items:start}
+  @media(min-width:900px){.pdp{grid-template-columns:1.05fr .95fr}}
+  .pdp-gallery{width:100%}
+  .pdp-box{border:1px solid var(--line);border-radius:3px;background:var(--paper);
+    padding:clamp(20px,3vw,30px)}
+  @media(min-width:900px){.pdp-box{position:sticky;top:118px}}
+  .pdp-title{font-family:var(--display);font-weight:400;color:var(--forest);
+    font-size:clamp(2rem,4.6vw,2.9rem);line-height:1;letter-spacing:-.01em}
+  .pdp-title .u{color:var(--pulp)}
+  .pdp-title em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--terra);
+    font-size:.72em}
+  .pdp-sub{margin-top:9px;font-size:.96rem;color:var(--taupe)}
+  .pdp-price{margin-top:20px;padding:16px 0;border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);display:grid;gap:12px}
+  @media(min-width:520px){.pdp-price{grid-template-columns:1fr 1fr;gap:18px}}
+  .pdp-price dt{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--taupe);margin-bottom:5px}
+  .pdp-price dd{font-size:1.02rem;color:var(--espresso)}
+  .pdp-price-main{font-size:1.5rem!important;font-weight:600;color:var(--forest-deep)}
+  .pdp-actions{margin-top:20px}
+  .pdp-cta{width:100%;justify-content:center;min-height:54px;font-size:.95rem}
+  .pdp-cta-note{margin-top:11px;font-size:.85rem;line-height:1.55;color:var(--taupe);text-wrap:pretty}
+  .pdp-facts{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:grid;gap:11px}
+  .pdp-facts > div{display:grid;grid-template-columns:9.5em 1fr;gap:12px;align-items:baseline}
+  @media(max-width:460px){.pdp-facts > div{grid-template-columns:1fr;gap:2px}}
+  .pdp-facts dt{font-family:var(--mono);font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--taupe)}
+  .pdp-facts dd{font-size:.94rem;line-height:1.5;color:var(--espresso)}
+  .pdp-links{list-style:none;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+    display:grid;gap:2px}
+  .pdp-links a{display:flex;align-items:center;min-height:44px;font-size:.92rem;color:var(--terra);
+    text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+  .pdp-links a:hover{color:var(--pulp-ink)}
+  .pdp-disc{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-soft);
+    font-size:.84rem;line-height:1.55;color:var(--espresso);font-weight:500;text-wrap:pretty}
+
+  /* --- FAQ: native details/summary, zero JS --- */
+  .faq{display:grid;gap:9px}
+  .faq-item{border:1px solid var(--line);border-radius:2px;background:var(--paper)}
+  .faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:16px 18px;min-height:56px;cursor:pointer;list-style:none}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:focus-visible{outline:2px solid var(--pulp);outline-offset:-2px}
+  .faq-q{font-size:1rem;font-weight:500;color:var(--forest-deep);line-height:1.45}
+  .faq-i{position:relative;flex:0 0 auto;width:16px;height:16px}
+  .faq-i::before,.faq-i::after{content:"";position:absolute;background:var(--terra);
+    transition:transform .25s,opacity .25s}
+  .faq-i::before{top:7.5px;left:0;width:16px;height:1.5px}
+  .faq-i::after{left:7.25px;top:0;width:1.5px;height:16px}
+  .faq-item[open] .faq-i::after{transform:rotate(90deg);opacity:0}
+  .faq-a{padding:0 18px 18px}
+  .faq-a p{font-size:.98rem;line-height:1.68;color:var(--espresso);max-width:68ch;text-wrap:pretty}
+  .faq-a a{color:var(--terra);text-decoration:underline;text-underline-offset:2px}
+
+  /* --- CTA band closing the deep pages --- */
+  .ctaband{background:var(--forest-deep);color:var(--cream);
+    padding:clamp(30px,4.6vw,52px) 0}
+  .ctaband .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  .ctaband p{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.4vw,1.5rem)}
+  .ctaband .btn-primary{min-height:52px}
+  /* standalone "read more" links are navigation, not inline prose — give them a
+     44px target (WCAG 2.5.8 only exempts links inside a sentence) */
+  .why-more a,.spectrum-more a{display:inline-flex;align-items:center;min-height:44px}

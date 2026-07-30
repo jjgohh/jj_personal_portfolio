@@ -47,10 +47,10 @@ export default function Proof() {
           <span className="lab">Status &amp; label</span>
         </div>
 
-        <h2 className="h-lines" style={{ marginBottom: 12 }}>
+        <h1 className="h-lines" style={{ marginBottom: 12 }}>
           <span className="line"><Rise as="span" className="inner">What we can show you,</Rise></span>
           <span className="line"><Rise as="span" className="inner" delay={0.05}><em>and what we can't yet.</em></Rise></span>
-        </h2>
+        </h1>
         <Rise as="p" className="lede-2" style={{ marginBottom: 'clamp(26px,4vw,42px)' }}>
           Six checks. Two confirmed, four pending. Nothing is ticked before it is true.
         </Rise>
