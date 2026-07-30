@@ -85,7 +85,12 @@ export function Counter({ to, duration = 1.6 }) {
   const ref = useRef(null);
   const inView = useInViewOnce(ref, { margin: '0px 0px -10% 0px' });
   const reduce = useReducedMotion();
-  const [val, setVal] = useState(0);
+  /* Starts at the FINAL value, not 0. Prerendered HTML has to read correctly for
+     someone whose JavaScript never runs — "0 mg" would be a wrong fact on the
+     page. The client starts there too, so hydration matches; the count-up then
+     ramps from 0 when the element scrolls into view, which is below the fold in
+     every current use, so the final value is never seen before it animates. */
+  const [val, setVal] = useState(to);
   useEffect(() => {
     if (!inView) return;
     if (reduce) { setVal(to); return; }

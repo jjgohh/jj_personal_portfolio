@@ -3,13 +3,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-/* iOS Safari collapses/expands its address bar during scroll, which fires a
-   resize and makes ScrollTrigger recalculate every trigger mid-gesture — the
-   page visibly jumps and pinned/scrubbed sections snap. This tells ScrollTrigger
-   to ignore that particular resize, which is the documented remedy. */
-ScrollTrigger.config({ ignoreMobileResize: true });
+/* Registration and config live INSIDE the hook, not at module scope: this module
+   is also imported by the prerender step, which runs in Node where ScrollTrigger
+   has no window to attach to. */
 
 /*
   Scroll choreography.
@@ -50,6 +46,13 @@ export default function ScrollFX() {
   const barRef = useRef(null);
 
   useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger, useGSAP);
+    /* iOS Safari collapses/expands its address bar during scroll, which fires a
+       resize and makes ScrollTrigger recalculate every trigger mid-gesture — the
+       page visibly jumps and pinned/scrubbed sections snap. This is the
+       documented remedy. */
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
     const mm = gsap.matchMedia();
 
     mm.add('(prefers-reduced-motion: no-preference)', () => {

@@ -9,6 +9,11 @@ export default defineConfig({
   plugins: [react(), viteSingleFile()],
   build: {
     outDir: 'dist-artifact',
+    // Classic IIFE, not an ES module. A <script type="module"> is subject to
+    // module/CORS rules that browsers apply differently to file:// URLs, and this
+    // build is opened straight off disk (AirDrop, Files app, email attachment).
+    // A classic script has none of that exposure and runs identically over https.
+    rollupOptions: { output: { format: 'iife', inlineDynamicImports: true } },
     cssCodeSplit: false,
     assetsInlineLimit: 100000000,
     reportCompressedSize: false,

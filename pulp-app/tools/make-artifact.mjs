@@ -12,12 +12,33 @@
 */
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const outDir = process.argv[2] || '.';
 const src = 'dist-artifact/index.html';
 
 if (!fs.existsSync(src)) {
   console.error(`missing ${src} — run: npx vite build --config vite.artifact.config.js`);
+  process.exit(1);
+}
+
+/*
+  PRERENDER. Without this, #root ships empty and the whole page depends on
+  JavaScript running — which means a blank page in the iPhone Files app, whose
+  Quick Look preview does not execute page scripts. Baking the markup in makes
+  the file readable everywhere; React hydrates on top when it can.
+*/
+let prerendered = '';
+const ssrEntry = 'dist-ssr/entry-server.js';
+if (fs.existsSync(ssrEntry)) {
+  const { render } = await import(pathToFileURL(path.resolve(ssrEntry)).href);
+  prerendered = render();
+  if (!prerendered || prerendered.length < 2000) {
+    console.error('prerender produced suspiciously little markup — refusing to ship a near-blank file');
+    process.exit(1);
+  }
+} else {
+  console.error(`missing ${ssrEntry} — run: npx vite build --config vite.ssr.config.js`);
   process.exit(1);
 }
 
@@ -36,10 +57,13 @@ if (external.length) {
   process.exit(1);
 }
 
+// A CLASSIC script, not type="module": browsers apply module/CORS rules to
+// file:// URLs and this file is opened straight off disk. The artifact build
+// emits IIFE for exactly this reason.
 const fragment =
   `<style>\n${css}\n</style>\n` +
-  `<div id="root"></div>\n` +
-  `<script type="module">\n${js}\n</script>\n`;
+  `<div id="root">${prerendered}</div>\n` +
+  `<script>\n${js}\n</script>\n`;
 
 /*
   iOS / Safari notes on the head below — each line is load-bearing:
@@ -87,5 +111,6 @@ fs.writeFileSync(fullPath, head + fragment + '\n</body>\n</html>\n');
 
 const kb = (s) => Math.round(s.length / 1024) + 'KB';
 console.log(`no external references  ✓`);
+console.log(`prerendered markup      ${Math.round(prerendered.length / 1024)}KB into #root`);
 console.log(`${fragPath}  ${kb(fragment)}`);
 console.log(`${fullPath}  ${kb(head + fragment)}`);

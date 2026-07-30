@@ -30,6 +30,8 @@ export const ROUTES = {
 };
 
 function read() {
+  // The prerender step runs in Node, where there is no location.
+  if (typeof window === 'undefined') return '/';
   const raw = (window.location.hash || '').replace(/^#/, '');
   if (!raw || raw === '/') return '/';
   // tolerate legacy in-page anchors (#spectrum) from older links//bookmarks

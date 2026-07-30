@@ -76,8 +76,13 @@
       -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
       flex-direction:column;gap:2px;background:var(--paper);border-bottom:1px solid var(--line);
       padding:12px var(--gutter) calc(20px + env(safe-area-inset-bottom));
-      transform:translateY(-140%);transition:transform .4s cubic-bezier(.2,.7,.2,1);z-index:49}
-    .links.open{transform:none}
+      transform:translateY(-140%);transition:transform .4s cubic-bezier(.2,.7,.2,1),
+        visibility 0s linear .4s;z-index:49;visibility:hidden}
+    /* visibility, not just transform: translateY(-140%) is relative to the
+       sheet's own height, so a taller sheet can leave its bottom edge peeking
+       above the nav. Hiding is delayed until the slide-out finishes. */
+    .links.open{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1),
+      visibility 0s}
     .links a.navlink{padding:14px 0;width:100%;border-bottom:1px solid var(--line-soft);font-size:1.02rem;min-height:44px;display:flex;align-items:center}
     .nav-cta{width:100%;text-align:center;justify-content:center;margin-top:12px;min-height:48px;display:flex;align-items:center}
     .burger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-8px}
