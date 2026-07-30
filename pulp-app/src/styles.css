@@ -56,7 +56,7 @@
   @media(max-width:640px){.util .hide-sm{display:none}}
 
   /* ---------- nav ---------- */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(247,238,220,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(247,238,220,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
   .nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
   .brand{display:flex;flex-direction:column;line-height:1}
   .brand .mark{font-family:var(--display);font-size:1.6rem;color:var(--forest);letter-spacing:.01em}
@@ -73,6 +73,7 @@
   @media(max-width:860px){
     .links{position:fixed;top:calc(98px + env(safe-area-inset-top));left:0;right:0;
       max-height:calc(100dvh - 98px - env(safe-area-inset-top));overflow-y:auto;
+      -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
       flex-direction:column;gap:2px;background:var(--paper);border-bottom:1px solid var(--line);
       padding:12px var(--gutter) calc(20px + env(safe-area-inset-bottom));
       transform:translateY(-140%);transition:transform .4s cubic-bezier(.2,.7,.2,1);z-index:49}
@@ -518,7 +519,7 @@
      (Layered on the existing system; brand tokens unchanged.)
      ======================================================================== */
   /* GSAP scroll-progress bar (top of page) */
-  .gsx-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:70;pointer-events:none;
+  .gsx-progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;height:3px;z-index:70;pointer-events:none;
     transform:scaleX(0);transform-origin:left center;
     background:linear-gradient(90deg,var(--terra),var(--pulp) 55%,var(--amber))}
   @media (prefers-reduced-motion:reduce){.gsx-progress{display:none}}
@@ -1036,7 +1037,7 @@
      CONNECTED SCROLL SYSTEM — rail, section connectors, landing visuals
      ======================================================================== */
   /* --- the fixed left rail (the connective thread) --- */
-  .rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:40;display:none;
+  .rail{position:fixed;left:max(22px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%);z-index:40;display:none;
     pointer-events:none}
   @media (min-width:1100px){.rail{display:block}}
   @media (prefers-reduced-motion:reduce){.rail{display:none}}
@@ -1154,3 +1155,64 @@
     gap:7px;justify-content:center}
   .rsv-trust li{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;
     padding:6px 10px;border:1px solid rgba(247,238,220,.3);border-radius:2px;opacity:.9}
+
+  /* ========================================================================
+     iOS / SAFARI (WebKit) HARDENING
+     Audited against known mobile-Safari behaviours. Notes for future editors so
+     these are not "cleaned up" by someone who thinks they are redundant.
+     ======================================================================== */
+
+  /* 1. Hover states must not stick after a tap. iOS fires :hover on touch and
+        leaves it applied until you tap elsewhere, so every transform-on-hover
+        gets frozen mid-effect. Gate ALL of them behind a real pointer. */
+  @media (hover:none) {
+    .ben:hover, .plate:hover .plate-frame, .rec:hover,
+    .btn-primary:hover, .btn-ghost:hover, .nav-cta:hover,
+    .rsv-btn:hover:not(:disabled), .fam:hover, .trace-step:hover,
+    .mcta-btn:hover, .pdp-cta:hover {
+      transform:none;
+    }
+    .links a.navlink:hover::after { width:0; }
+  }
+
+  /* 2. The grain overlay is a full-viewport fixed layer with mix-blend-mode.
+        On mobile Safari that forces everything beneath it to re-composite every
+        frame, which is the single most expensive thing on this page during
+        scroll. Desktop keeps the texture; touch devices get the performance. */
+  @media (hover:none) and (pointer:coarse) {
+    .grain { display:none; }
+  }
+
+  /* 3. Fixed bottom UI must clear the home indicator, and iOS reports the inset
+        only when the viewport meta carries viewport-fit=cover (it does). */
+  @media (min-width:861px) {
+    .mcta { bottom:max(24px, env(safe-area-inset-bottom, 0px)); right:max(24px, env(safe-area-inset-right, 0px)); }
+  }
+
+  /* 4. Landscape on a notched iPhone puts a real inset on the left/right edges.
+        The gutter has to respect it or content slides under the sensor housing. */
+  @supports (padding: max(0px)) {
+    .wrap {
+      padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+      padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+    }
+  }
+
+  /* 5. Prevent the rubber-band scroll from revealing a white band behind the
+        page, and stop horizontal chaining on a page that is never wider than
+        the viewport. */
+  html { background:var(--cream); overscroll-behavior-x:none; }
+
+  /* 6. iOS renders form controls with its own chrome unless told otherwise. */
+  input, button, textarea, select {
+    -webkit-appearance:none; appearance:none; border-radius:0;
+    font: inherit;
+  }
+  input, textarea { -webkit-user-select:text; user-select:text; }
+  /* Every text input stays at 16px: below that, Safari zooms the page on focus
+     and the visitor is left scrolled sideways mid-form. */
+  input[type="email"], input[type="text"] { font-size:max(16px, 1rem); }
+
+  /* 7. Long words / URLs must not force a horizontal scrollbar on a 320px phone. */
+  body { overflow-wrap:break-word; }
+  .sfacts-table th, .trace-meta dd, .cite-main { overflow-wrap:anywhere; }

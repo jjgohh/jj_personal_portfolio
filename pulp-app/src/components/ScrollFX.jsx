@@ -5,6 +5,12 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+/* iOS Safari collapses/expands its address bar during scroll, which fires a
+   resize and makes ScrollTrigger recalculate every trigger mid-gesture — the
+   page visibly jumps and pinned/scrubbed sections snap. This tells ScrollTrigger
+   to ignore that particular resize, which is the documented remedy. */
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 /*
   Scroll choreography.
 
