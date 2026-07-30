@@ -1,6 +1,8 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { Rise } from '../lib.jsx';
+import { Rise, Counter } from '../lib.jsx';
 import Reserve from '../components/Reserve.jsx';
+import ScrollRail from '../components/ScrollRail.jsx';
+import { FamilyDiagram, ChainTeaser } from '../components/Visuals.jsx';
 import { href, navigate } from '../router.jsx';
 
 /* 3D stays deferred and desktop-only. The .catch is load-bearing: in the
@@ -45,6 +47,7 @@ export default function Home({ onReserve, cta }) {
 
   return (
     <>
+      <ScrollRail />
       <section className="hero" id="top">
         {show3D && <Suspense fallback={null}><ThreeHero /></Suspense>}
         <div className="hero-inner"><div className="wrap"><div className="hero-copy">
@@ -75,12 +78,12 @@ export default function Home({ onReserve, cta }) {
       </section>
 
       {/* THE ESSENTIALS — the only product facts on the landing page */}
-      <section className="chapter essentials" aria-labelledby="ess-h">
+      <section className="chapter essentials linked" id="essentials" aria-labelledby="ess-h">
         <div className="wrap">
           <h2 id="ess-h" className="sr-only">The essentials</h2>
           <Rise as="dl" className="ess-grid">
-            <div><dt>Per softgel</dt><dd>50 mg</dd><dd className="ess-sub">tocotrienol complex</dd></div>
-            <div><dt>In the bottle</dt><dd>60</dd><dd className="ess-sub">softgels · ~2 months</dd></div>
+            <div><dt>Per softgel</dt><dd><Counter to={50} /> mg</dd><dd className="ess-sub">tocotrienol complex</dd></div>
+            <div><dt>In the bottle</dt><dd><Counter to={60} /></dd><dd className="ess-sub">softgels · ~2 months</dd></div>
             <div><dt>How to take it</dt><dd>One daily</dd><dd className="ess-sub">with food</dd></div>
             <div><dt>Made in</dt><dd>Malaysia</dd><dd className="ess-sub">grown, extracted, bottled</dd></div>
           </Rise>
@@ -88,7 +91,7 @@ export default function Home({ onReserve, cta }) {
       </section>
 
       {/* WHY THIS FORM — three lines, then out to the full explainer */}
-      <section className="chapter amb" aria-labelledby="why-h">
+      <section className="chapter amb linked" id="why" aria-labelledby="why-h">
         <div className="wrap">
           <div className="eyebrow-row">
             <span className="fig">Why this form</span>
@@ -111,16 +114,41 @@ export default function Home({ onReserve, cta }) {
                 </a>
               </Rise>
             </div>
-            <Rise as="div" className="why-glyphs" aria-hidden="true">
-              <span className="glyph">α</span><span className="glyph">β</span>
-              <span className="glyph">γ</span><span className="glyph">δ</span>
-            </Rise>
+            <div className="why-vis">
+              <div className="why-glyphs" aria-hidden="true">
+                <span className="glyph">α</span><span className="glyph">β</span>
+                <span className="glyph">γ</span><span className="glyph">δ</span>
+              </div>
+              <FamilyDiagram />
+            </div>
           </div>
         </div>
       </section>
 
+      {/* WHERE IT COMES FROM — a visual, not a paragraph. Full chain on /traceability. */}
+      <section className="chapter chainsec linked" id="chain" aria-labelledby="chain-h">
+        <div className="wrap">
+          <div className="eyebrow-row">
+            <span className="fig">Fruit to softgel</span>
+            <span className="rule-draw" />
+            <span className="lab">One country</span>
+          </div>
+          <h2 id="chain-h" className="h-lines" style={{ marginBottom: 'clamp(22px,3.2vw,34px)' }}>
+            <span className="line">
+              <Rise as="span" className="inner">Three steps, <em>all Malaysian.</em></Rise>
+            </span>
+          </h2>
+          <ChainTeaser />
+          <Rise as="p" className="why-more">
+            <a href={href('/traceability')} onClick={go('/traceability')}>
+              See every step, and who does it →
+            </a>
+          </Rise>
+        </div>
+      </section>
+
       {/* TRUST AT A GLANCE — status summary, detail lives on /proof */}
-      <section className="chapter alt" aria-labelledby="trust-h">
+      <section className="chapter alt linked" id="status" aria-labelledby="trust-h">
         <div className="wrap">
           <div className="eyebrow-row">
             <span className="fig">Where we stand</span>

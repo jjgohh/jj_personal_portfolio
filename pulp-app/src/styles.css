@@ -1013,3 +1013,86 @@
   /* standalone "read more" links are navigation, not inline prose — give them a
      44px target (WCAG 2.5.8 only exempts links inside a sentence) */
   .why-more a,.spectrum-more a{display:inline-flex;align-items:center;min-height:44px}
+
+  /* ========================================================================
+     CONNECTED SCROLL SYSTEM — rail, section connectors, landing visuals
+     ======================================================================== */
+  /* --- the fixed left rail (the connective thread) --- */
+  .rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:40;display:none;
+    pointer-events:none}
+  @media (min-width:1100px){.rail{display:block}}
+  @media (prefers-reduced-motion:reduce){.rail{display:none}}
+  .rail-line{position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line);
+    overflow:hidden}
+  .rail-line-fill{position:absolute;inset:0;background:var(--terra);transform:scaleY(0);
+    transform-origin:top center}
+  .rail ul{list-style:none;display:grid;gap:18px;position:relative}
+  .rail button{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;
+    cursor:pointer;pointer-events:auto;color:var(--taupe);transition:color .3s}
+  .rail-tick{width:11px;height:11px;border:1px solid var(--line);border-radius:50%;
+    background:var(--cream);flex:0 0 auto;position:relative;transition:border-color .3s,background .3s}
+  .rail-tick::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--pulp);
+    transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.4,1)}
+  .rail-n{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em}
+  .rail-l{font-family:var(--mono);font-size:.54rem;letter-spacing:.13em;text-transform:uppercase;
+    opacity:0;transform:translateX(-4px);transition:opacity .3s,transform .3s}
+  .rail li.is-on button{color:var(--forest-deep)}
+  .rail li.is-on .rail-tick{border-color:var(--pulp)}
+  .rail li.is-on .rail-tick::after{transform:scale(1)}
+  .rail li.is-on .rail-l{opacity:1;transform:none}
+  .rail li.is-past .rail-tick{border-color:var(--terra);background:var(--terra)}
+  .rail button:hover .rail-l{opacity:1;transform:none}
+
+  /* --- the hairline each section draws down into the next --- */
+  .linked{--link:0}
+  .linked::after{content:"";position:absolute;left:50%;bottom:0;width:1px;height:clamp(26px,4vw,46px);
+    background:linear-gradient(var(--line),var(--terra));transform:translate(-50%,50%) scaleY(var(--link));
+    transform-origin:top center;pointer-events:none;z-index:2}
+  /* GSAP never runs under reduced motion, so nothing would set --link and the
+     connectors would sit collapsed. Set it on the SECTION, where the property is
+     declared and inherited from — not on ::after. */
+  @media (prefers-reduced-motion:reduce){.linked{--link:1}}
+
+  /* --- composition: glyph row + family diagram --- */
+  .why-vis{display:grid;gap:clamp(18px,2.6vw,28px)}
+  .fam{border:1px solid var(--line);border-radius:3px;background:var(--paper);
+    padding:clamp(15px,2.2vw,22px)}
+  .fam-rows{display:grid;gap:13px}
+  .fam-row{display:grid;gap:7px}
+  .fam-rk{font-family:var(--mono);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--taupe)}
+  .fam-nodes{display:flex;gap:8px}
+  /* --fill drives the "is in the bottle" state so GSAP can tween it */
+  .fam-node{--fill:1;position:relative;flex:1 1 0;min-width:0;aspect-ratio:1/1;max-width:58px;
+    display:flex;align-items:center;justify-content:center;border:1px solid var(--line);
+    border-radius:50%;background:var(--cream)}
+  /* --pulp-ink, not --pulp: the cream glyph sits ON this fill, and cream on
+     #C85A28 is 3.68:1 — a fail at this text size. Same fix as the CTAs. */
+  .fam-node::before{content:"";position:absolute;inset:-1px;border-radius:50%;
+    background:var(--pulp-ink);opacity:calc(var(--fill) * 1);transform:scale(var(--fill));
+    transition:none}
+  .fam-node:not(.is-in)::before{display:none}
+  .fam-node.is-in{border-color:var(--pulp-ink)}
+  .fam-g{position:relative;z-index:2;font-family:var(--body);font-weight:600;
+    font-size:clamp(.95rem,2.2vw,1.2rem);color:var(--taupe)}
+  .fam-node.is-in .fam-g{color:var(--cream)}
+  .fam figcaption{margin-top:13px;padding-top:11px;border-top:1px solid var(--line-soft);
+    font-size:.82rem;line-height:1.5;color:var(--taupe);text-wrap:pretty}
+
+  /* --- origin chain teaser --- */
+  .chainsec{padding-top:clamp(40px,6vw,74px);padding-bottom:clamp(40px,6vw,74px)}
+  .chain{display:flex;align-items:flex-start;gap:0;flex-wrap:nowrap}
+  .chain-step{flex:1 1 0;min-width:0;display:grid;justify-items:center;gap:7px;text-align:center;
+    padding:0 clamp(2px,1vw,10px)}
+  .chain-ic{width:clamp(42px,9vw,66px);height:clamp(42px,9vw,66px);color:var(--terra);
+    display:flex;align-items:center;justify-content:center}
+  .chain-ic svg{width:100%;height:100%;display:block}
+  .chain-n{font-family:var(--mono);font-size:.54rem;letter-spacing:.14em;color:var(--taupe)}
+  .chain-t{font-size:.9rem;line-height:1.4;color:var(--forest-deep);font-weight:500;
+    text-wrap:balance}
+  .chain-link{flex:0 0 auto;width:clamp(20px,7vw,90px);height:1px;background:var(--line-soft);
+    margin-top:clamp(21px,4.5vw,33px);overflow:hidden;position:relative}
+  .chain-link-fill{position:absolute;inset:0;background:var(--terra);transform:scaleX(0);
+    transform-origin:left center}
+  @media (prefers-reduced-motion:reduce){.chain-link-fill{transform:none}}
+  @media (max-width:420px){.chain-t{font-size:.8rem}}
