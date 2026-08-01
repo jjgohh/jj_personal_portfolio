@@ -3,11 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "PULP — full-spectrum tocotrienol vitamin E landing page (Vite + React + framer-motion)",
+  "description": "PULP \u2014 full-spectrum tocotrienol vitamin E landing page (Vite + React + framer-motion)",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && vite build --config vite.ssr.config.js && node tools/prerender-dist.mjs",
+    "preview": "vite preview",
+    "build:artifact": "vite build --config vite.artifact.config.js && vite build --config vite.ssr.config.js && node tools/make-artifact.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
