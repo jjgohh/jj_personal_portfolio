@@ -30,43 +30,81 @@ import React, { useRef, useState } from 'react';
     Every CTA on the site reads "Reserve your bottle".
 */
 
-const BATCH_CAP = 88; // fengshui-favourable double-prosperity count. 168 also valid.
+export const BATCH_CAP = 88; // fengshui-favourable double-prosperity count. 168 also valid.
 
 // Real remaining count or nothing. Set to a number ONLY when fed by live data.
 const REMAINING = null;
 
-async function submitReservation(email) {
-  // INTEGRATION POINT — no provider hardcoded. Replace with the real call.
-  // Intentionally resolves without a position so the UI proves the honest path.
+/*
+  INTEGRATION POINT. The implementation MUST THROW on a non-2xx response —
+  fetch() resolves for 500/502/429, so `return r.json()` alone would render
+  "You're on the list" while the provider was rate-limiting you, silently losing
+  exactly the launch-day spike you most want to capture.
+*/
+export async function submitReservation(email) {
   await new Promise((r) => setTimeout(r, 450));
   return {};
 }
 
-export default function Reserve() {
-  const inputRef = useRef(null);
-  const [status, setStatus] = useState('idle'); // idle | busy | error | done
+const TIMEOUT_MS = 15000;
+
+/*
+  One submit path for every reservation surface. This exists because the modal —
+  which is the primary CTA on the hero, the nav, the sticky mobile bar, the PDP
+  and the CTA band on all six deep routes — used to validate the email and jump
+  straight to a success message WITHOUT ever calling submitReservation. Every
+  reservation taken through it was discarded behind a checkmark. Any new surface
+  must use this hook rather than reimplementing submit.
+*/
+export function useReservation() {
+  const [status, setStatus] = useState('idle');  // idle | busy | error | done
   const [error, setError] = useState('');
   const [position, setPosition] = useState(null);
 
-  const submit = async (e) => {
-    e.preventDefault();
-    const email = (inputRef.current.value || '').trim();
+  const submit = async (email) => {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setError('Enter a valid email address, for example you@email.com.');
       setStatus('error');
-      inputRef.current.focus();
-      return;
+      return false;
     }
     setError('');
     setStatus('busy');
+    let timer;
     try {
-      const res = await submitReservation(email);
-      if (res && typeof res.position === 'number') setPosition(res.position);
+      // Without this a stalled connection leaves the button disabled and
+      // reading "Reserving…" forever, with no way back but a page reload.
+      const res = await Promise.race([
+        submitReservation(email),
+        new Promise((_, rej) => { timer = setTimeout(() => rej(new Error('timeout')), TIMEOUT_MS); }),
+      ]);
+      if (res && typeof res === 'object' && typeof res.position === 'number') setPosition(res.position);
       setStatus('done');
+      return true;
     } catch (err) {
-      setError("We couldn't save your reservation. Please try again.");
+      // Never swallow silently: with no server acknowledging reservations, a
+      // broken form otherwise produces zero signal anywhere.
+      console.error('[reservation] submit failed', err);
+      setError(err && err.message === 'timeout'
+        ? 'That took too long — check your connection and try again.'
+        : "We couldn't save your reservation. Please try again, or email hello@pulp.my.");
       setStatus('error');
+      return false;
+    } finally {
+      clearTimeout(timer);
     }
+  };
+
+  return { status, error, position, submit };
+}
+
+export default function Reserve() {
+  const inputRef = useRef(null);
+  const { status, error, position, submit: send } = useReservation();
+
+  const submit = async (e) => {
+    e.preventDefault();
+    const ok = await send((inputRef.current.value || '').trim());
+    if (!ok && inputRef.current) inputRef.current.focus();
   };
 
   const shareText = encodeURIComponent(

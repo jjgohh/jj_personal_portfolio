@@ -1,5 +1,6 @@
 import React from 'react';
 import { Rise } from '../lib.jsx';
+import { href, navigate } from '../router.jsx';
 
 /*
   WORKSTREAM 3 — the ownable "why this form" explainer.
@@ -47,12 +48,12 @@ export default function Spectrum() {
         </Rise>
 
         {/* the isomer glyphs — the visual signature, and the one place to be bold */}
-        <Rise as="div" className="glyph-band" aria-hidden="true">
+        <div className="glyph-band" aria-hidden="true">
           <span className="glyph">α</span>
           <span className="glyph">β</span>
           <span className="glyph">γ</span>
           <span className="glyph">δ</span>
-        </Rise>
+        </div>
         <Rise as="p" className="glyph-cap">
           The four tocotrienol isomers. Set in Inter Tight — the brand's body face, and the
           one carrying the Greek glyphs.
@@ -64,10 +65,16 @@ export default function Spectrum() {
             <legend className="cmpx-legend">
               Composition comparison — which forms of vitamin E are present
             </legend>
+            {/* The inputs MUST be siblings of .cmpx-panels. They used to live
+                inside .cmpx-opts, which put .cmpx-panels outside the reach of
+                `#cmpx-toc:checked ~ .cmpx-panels` — so the toggle did nothing and
+                every isomer read PRESENT in both states, misrepresenting ordinary
+                vitamin E as containing tocotrienols. label[for] still associates
+                them, so the visual grouping is unaffected. */}
+            <input type="radio" name="cmpx" id="cmpx-toc" className="cmpx-radio" defaultChecked />
+            <input type="radio" name="cmpx" id="cmpx-full" className="cmpx-radio" />
             <div className="cmpx-opts">
-              <input type="radio" name="cmpx" id="cmpx-toc" className="cmpx-radio" defaultChecked />
               <label htmlFor="cmpx-toc" className="cmpx-label">Tocopherol only</label>
-              <input type="radio" name="cmpx" id="cmpx-full" className="cmpx-radio" />
               <label htmlFor="cmpx-full" className="cmpx-label">Full spectrum</label>
             </div>
 
@@ -96,7 +103,9 @@ export default function Spectrum() {
         </Rise>
 
         <Rise as="p" className="spectrum-more">
-          <a href="#research">Read the published research on tocotrienols →</a>
+          <a href={href('/research')} onClick={(e) => { e.preventDefault(); navigate('/research'); }}>
+            Read the published research on tocotrienols →
+          </a>
         </Rise>
       </div>
     </section>

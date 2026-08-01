@@ -26,8 +26,20 @@ for (const [p, hint] of [[target, 'npx vite build'], [ssrEntry, 'npx vite build 
 
 const { render } = await import(pathToFileURL(path.resolve(ssrEntry)).href);
 const markup = render();
-if (!markup || markup.length < 2000) {
-  console.error('prerender-dist: prerender returned too little markup — refusing to ship a near-blank page');
+/* Same reasoning as make-artifact.mjs: a length floor of 2000 passes a build whose
+   <main> is entirely empty, because the chrome alone is ~5.4KB. Assert content. */
+if (typeof markup !== 'string') {
+  console.error(`prerender-dist: render() returned ${typeof markup}, expected a string`);
+  process.exit(1);
+}
+const missing = ['id="reserve"', 'ess-panel', 'trust-row', 'chain-step']
+  .filter((m) => !markup.includes(m));
+if (missing.length) {
+  console.error('prerender-dist: prerender is missing expected content: ' + missing.join(', '));
+  process.exit(1);
+}
+if (markup.length < 12000) {
+  console.error(`prerender-dist: prerender is ${markup.length} chars, expected ~16000`);
   process.exit(1);
 }
 

@@ -8,10 +8,10 @@ import Traceability from './components/Traceability.jsx';
 import Proof from './components/Proof.jsx';
 import Founder from './components/Founder.jsx';
 import Research from './components/Research.jsx';
-import Reserve from './components/Reserve.jsx';
 import SiteFooter from './components/SiteFooter.jsx';
 import ScrollFX from './components/ScrollFX.jsx';
-import { useLockBody } from './lib.jsx';
+import { useLockBody, useArmReveals } from './lib.jsx';
+import { useReservation, BATCH_CAP } from './components/Reserve.jsx';
 import { ROUTES, useRoute, navigate, href } from './router.jsx';
 
 /* ONE CTA verb sitewide. The button, the modal, the confirmation and the
@@ -21,8 +21,11 @@ const CTA = 'Reserve your bottle';
 /* ---------- reservation modal ---------- */
 function ReserveModal({ open, onClose }) {
   const modalRef = useRef(null), emailRef = useRef(null), lastFocus = useRef(null);
-  const [status, setStatus] = useState('idle');
-  const [error, setError] = useState('');
+  /* Shared with the Reserve section. Previously this component validated the
+     email and set status straight to 'done' without ever contacting the
+     integration point, so every reservation taken through the modal — the
+     primary CTA everywhere on the site — was thrown away behind a checkmark. */
+  const { status, error, submit: send } = useReservation();
   useLockBody(open);
 
   useEffect(() => {
@@ -49,14 +52,10 @@ function ReserveModal({ open, onClose }) {
     return () => document.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    const v = (emailRef.current.value || '').trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) {
-      setError('Enter a valid email address, for example you@email.com.');
-      setStatus('error'); emailRef.current.focus(); return;
-    }
-    setError(''); setStatus('done');
+    const ok = await send((emailRef.current.value || '').trim());
+    if (!ok && emailRef.current) emailRef.current.focus();
   };
 
   return (
@@ -74,7 +73,7 @@ function ReserveModal({ open, onClose }) {
         <div className="sample-mini" aria-hidden="true" />
         <h3 id="modalTitle">Reserve your <em>bottle.</em></h3>
         <p className="m-lede">
-          The first batch is capped at 88 bottles. Reserving costs nothing and commits you
+          The first batch is capped at {BATCH_CAP} bottles. Reserving costs nothing and commits you
           to nothing — we cannot sell until NPRA notification is complete.
         </p>
         {status !== 'done' ? (
@@ -84,7 +83,9 @@ function ReserveModal({ open, onClose }) {
               <input id="modal-email" type="email" ref={emailRef} placeholder="you@email.com"
                 autoComplete="email" inputMode="email" aria-invalid={status === 'error'}
                 aria-describedby="modal-status" required />
-              <button type="submit">{CTA}</button>
+              <button type="submit" disabled={status === 'busy'}>
+                {status === 'busy' ? 'Reserving…' : CTA}
+              </button>
             </form>
             <p className="wl-note" id="modal-status" role="status" aria-live="polite">
               {status === 'error'
@@ -141,7 +142,7 @@ function CtaBand({ onReserve }) {
   return (
     <section className="ctaband">
       <div className="wrap">
-        <p>The first batch is capped at 88 bottles.</p>
+        <p>The first batch is capped at {BATCH_CAP} bottles.</p>
         <button type="button" className="btn btn-primary" onClick={onReserve}>{CTA}</button>
       </div>
     </section>
@@ -155,6 +156,7 @@ export default function App() {
   const openModal = () => setModalOpen(true);
   const mainRef = useRef(null);
   const firstRender = useRef(true);
+  useArmReveals();
 
   /* Route change: reset scroll and move focus to the new page so keyboard and
      screen-reader users are not left where the previous page was. Skipped on
@@ -164,9 +166,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'auto' });
     const el = mainRef.current;
     if (el) {
-      el.setAttribute('tabindex', '-1');
       el.focus({ preventScroll: true });
-      el.removeAttribute('tabindex');
     }
     document.title = route === '/'
       ? 'PULP — Full-Spectrum Vitamin E, Grown and Bottled in Malaysia'
@@ -188,7 +188,15 @@ export default function App() {
 
   return (
     <>
-      <a className="skip" href="#main">Skip to content</a>
+      {/* Focuses <main> directly instead of setting location.hash — on a
+          hash-routed site an href="#main" is a navigation, not an anchor. */}
+      <a className="skip" href="#main" onClick={(e) => {
+        e.preventDefault();
+        const el = mainRef.current;
+        if (!el) return;
+        el.focus();
+        el.scrollIntoView({ block: 'start' });
+      }}>Skip to content</a>
       <div className="grain" aria-hidden="true" />
       {/* keyed so every scroll animation is rebuilt for the new page's DOM */}
       <ScrollFX key={route} />
@@ -207,7 +215,7 @@ export default function App() {
 
       <Nav route={route} onReserve={openModal} cta={CTA} />
 
-      <main id="main" ref={mainRef}>{page()}</main>
+      <main id="main" ref={mainRef} tabIndex={-1}>{page()}</main>
 
       <SiteFooter />
       <MobileCta onOpen={openModal} overlayOpen={modalOpen} route={route} />

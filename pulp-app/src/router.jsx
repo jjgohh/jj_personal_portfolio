@@ -29,6 +29,12 @@ export const ROUTES = {
   '/faq': 'FAQ',
 };
 
+/* Last resolved route. An unrecognised hash — an in-page anchor like #main from
+   the skip link, or a third-party fragment — must LEAVE THE ROUTE ALONE rather
+   than fall back to '/'. Resetting to Home meant activating "Skip to content" on
+   any deep page navigated away from it. */
+let current = '/';
+
 function read() {
   // The prerender step runs in Node, where there is no location.
   if (typeof window === 'undefined') return '/';
@@ -41,7 +47,9 @@ function read() {
   };
   const path = raw.startsWith('/') ? raw : '/' + raw;
   const clean = path.split('?')[0].replace(/\/$/, '') || '/';
-  return legacy[clean] || (ROUTES[clean] ? clean : '/');
+  const next = legacy[clean] || (ROUTES[clean] ? clean : current);
+  current = next;
+  return next;
 }
 
 export function useRoute() {

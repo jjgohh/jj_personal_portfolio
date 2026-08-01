@@ -33,20 +33,33 @@ const ssrEntry = 'dist-ssr/entry-server.js';
 if (fs.existsSync(ssrEntry)) {
   const { render } = await import(pathToFileURL(path.resolve(ssrEntry)).href);
   prerendered = render();
-  if (!prerendered || prerendered.length < 2000) {
-    console.error('prerender produced suspiciously little markup — refusing to ship a near-blank file');
-    process.exit(1);
-  }
+  assertPrerender(prerendered);
 } else {
   console.error(`missing ${ssrEntry} — run: npx vite build --config vite.ssr.config.js`);
   process.exit(1);
 }
 
 const html = fs.readFileSync(src, 'utf8');
-const css = (html.match(/<style[^>]*>([\s\S]*?)<\/style>/) || [, ''])[1];
-const js = (html.match(/<script type="module"[^>]*>([\s\S]*?)<\/script>/) || [, ''])[1];
-if (!css) throw new Error('no inlined CSS found — is viteSingleFile still configured?');
-if (!js) throw new Error('no inlined JS found — is viteSingleFile still configured?');
+/*
+  A first-match regex silently drops a second block and truncates at any nested
+  </style> or </script>, and the old `if (!css)` guard only caught TOTAL absence —
+  partial capture was indistinguishable from success. Count the matches and refuse
+  anything but exactly one of each.
+*/
+const one = (re, label) => {
+  const all = [...html.matchAll(re)];
+  if (all.length !== 1) {
+    console.error(`expected exactly 1 ${label} block in ${src}, found ${all.length} — refusing to guess`);
+    process.exit(1);
+  }
+  return all[0][1];
+};
+const css = one(/<style[^>]*>([\s\S]*?)<\/style>/g, '<style>');
+const js = one(/<script[^>]*>([\s\S]*?)<\/script>/g, '<script>');
+if (!css.trim() || !js.trim()) {
+  console.error('an inlined block was empty — is viteSingleFile still configured?');
+  process.exit(1);
+}
 
 // Fail loudly if anything external survived: the Artifact CSP blocks every host,
 // and a phone opening the file offline would silently lose fonts.
@@ -109,8 +122,77 @@ const fullPath = path.join(outDir, 'PULP-final.html');
 fs.writeFileSync(fragPath, fragment);
 fs.writeFileSync(fullPath, head + fragment + '\n</body>\n</html>\n');
 
+/* Read back what was actually written. Every failure mode above used to exit 0
+   with a success banner and a plausible KB figure. */
+verifyOutput(fragPath, { fragment: true });
+verifyOutput(fullPath, { fragment: false });
+
 const kb = (s) => Math.round(s.length / 1024) + 'KB';
 console.log(`no external references  ✓`);
 console.log(`prerendered markup      ${Math.round(prerendered.length / 1024)}KB into #root`);
 console.log(`${fragPath}  ${kb(fragment)}`);
 console.log(`${fullPath}  ${kb(head + fragment)}`);
+
+
+/*
+  A length floor of 2000 was useless: the page chrome alone (utility bar, nav,
+  footer) renders ~5.4KB, so a build whose <main> came out completely empty sailed
+  past it and shipped a file with a header, a footer and nothing between. And
+  `undefined < 2000` is false, so any non-string — a Promise from a streaming
+  renderer, say — passed too and shipped "[object Promise]".
+*/
+function assertPrerender(markup) {
+  if (typeof markup !== 'string') {
+    console.error(`prerender returned ${typeof markup}, expected a string`);
+    process.exit(1);
+  }
+  const required = ['id="reserve"', 'ess-panel', 'trust-row', 'fnote-q', 'chain-step', 'data-rise'];
+  const missing = required.filter((m) => !markup.includes(m));
+  if (missing.length) {
+    console.error('prerender is missing expected content: ' + missing.join(', '));
+    process.exit(1);
+  }
+  if (markup.length < 12000) {
+    console.error(`prerender is ${markup.length} chars, expected ~16000 — refusing to ship`);
+    process.exit(1);
+  }
+}
+
+/*
+  Checks must be ANCHORED, not substring counts. The emitted file embeds an entire
+  JS bundle, and that bundle legitimately contains the literal strings `<script>`,
+  `<html`, `<head` and `<body` (react-dom builds markup from strings). A naive
+  `out.match(/<script/g).length !== 1` therefore fails on a perfectly good file —
+  it did, first time out. Only look at the document's edges and at #root.
+*/
+function verifyOutput(file, { fragment }) {
+  const out = fs.readFileSync(file, 'utf8');
+  const problems = [];
+
+  const rootOpen = out.indexOf('<div id="root">');
+  const scriptOpen = out.indexOf('<script>', rootOpen);
+  if (rootOpen === -1) problems.push('no <div id="root"> found');
+  else if (scriptOpen === -1) problems.push('no <script> found after #root');
+  else {
+    const inner = out.slice(rootOpen + '<div id="root">'.length, scriptOpen);
+    if (inner.length < 12000) problems.push(`#root holds only ${inner.length} chars of markup`);
+  }
+
+  const head = out.slice(0, 60).toLowerCase();
+  if (fragment) {
+    if (head.includes('<!doctype')) problems.push('fragment must not start with a doctype');
+    if (!out.startsWith('<style>')) problems.push('fragment must start with its <style> block');
+  } else {
+    if (!head.includes('<!doctype html>')) problems.push('standalone file must start with a doctype');
+    if (!out.trimEnd().endsWith('</html>')) problems.push('standalone file must end with </html>');
+  }
+  if (!out.trimEnd().endsWith(fragment ? '</script>' : '</html>')) {
+    if (fragment) problems.push('fragment must end with its </script>');
+  }
+
+  if (problems.length) {
+    console.error(`${file} failed verification:`);
+    problems.forEach((x) => console.error('  ' + x));
+    process.exit(1);
+  }
+}

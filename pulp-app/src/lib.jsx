@@ -23,9 +23,30 @@ function prefersReduce() {
     : false;
 }
 
-// Arm the animated start state exactly once, on the client, motion permitting.
-if (typeof document !== 'undefined' && !prefersReduce()) {
-  document.documentElement.classList.add('js-anim');
+/*
+  Arms the animated start state. Deliberately NOT called at module scope: the gate
+  hides real content (`html.js-anim [data-rise]{opacity:0}`) and is lifted only by
+  React writing data-rise-in. Setting it during module evaluation meant a throw
+  anywhere in the remaining bundle left content hidden with nothing left to reveal
+  it. Call this from a mounted component, so it can only arm once React is proven
+  alive; the timer disarms it if no element has been revealed, so nothing can stay
+  hidden indefinitely.
+*/
+const REVEAL_BACKSTOP_MS = 4000;
+
+export function useArmReveals() {
+  useEffect(() => {
+    if (prefersReduce()) return;
+    const html = document.documentElement;
+    html.classList.add('js-anim');
+    const t = setTimeout(() => {
+      if (!document.querySelector('[data-rise][data-rise-in]')) {
+        html.classList.remove('js-anim');
+        console.warn('[pulp] no reveals fired within 4s — disarming the hide gate');
+      }
+    }, REVEAL_BACKSTOP_MS);
+    return () => clearTimeout(t);
+  }, []);
 }
 
 export function useReducedMotion() {
@@ -44,14 +65,21 @@ export function useReducedMotion() {
 export function useInViewOnce(ref, { margin = '0px 0px -12% 0px' } = {}) {
   const [seen, setSeen] = useState(false);
   useEffect(() => {
+    if (seen) return;
     const el = ref.current;
-    if (!el || seen) return;
+    // Fail OPEN on a missing ref or a missing observer: no dependency here ever
+    // changes, so returning early would leave the element hidden permanently.
+    if (!el) { setSeen(true); return; }
     if (!('IntersectionObserver' in window)) { setSeen(true); return; }
     const io = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) { setSeen(true); io.disconnect(); }
     }, { rootMargin: margin });
     io.observe(el);
-    return () => io.disconnect();
+    // If the observer never fires — element clipped, or in a display:none subtree —
+    // reveal anyway rather than hide content for good. This is the failure mode
+    // that cost four headlines.
+    const backstop = setTimeout(() => setSeen(true), 3000);
+    return () => { io.disconnect(); clearTimeout(backstop); };
   }, [ref, seen, margin]);
   return seen;
 }

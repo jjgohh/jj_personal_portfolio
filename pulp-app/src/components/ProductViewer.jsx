@@ -26,7 +26,7 @@ const BOTTLE_SVG = `
   <text x="100" y="177" text-anchor="middle" font-family="Caprasimo, serif" font-size="21" fill="#3A4E3A">P<tspan fill="#C85A28">u</tspan>lp</text>
   <text x="100" y="197" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="11" fill="#8D4A1F">Complete</text>
   <line x1="78" y1="207" x2="122" y2="207" stroke="#D9C9A8"/>
-  <text x="100" y="223" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" letter-spacing="1" fill="#7A6B58">NO. 001 · 60</text>
+  <text x="100" y="223" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" letter-spacing="1" fill="#736554">NO. 001 · 60</text>
   <rect x="74" y="80" width="11" height="150" rx="6" fill="#fff" opacity=".16"/>
 </svg>`;
 

@@ -110,7 +110,7 @@ export default function Traceability() {
         <div className="trace-grid">
           <ol className="trace-chain">
             {STEPS.map((s, i) => (
-              <Rise as="li" className="trace-step" key={s.code} delay={i * 0.07}>
+              <li className="trace-step" key={s.code}>
                 <div className="trace-head">
                   <span className="trace-code">{s.code}</span>
                   <h2 className="trace-name">{s.name}</h2>
@@ -126,7 +126,7 @@ export default function Traceability() {
                     </dd>
                   </div>
                 </dl>
-              </Rise>
+              </li>
             ))}
           </ol>
 
