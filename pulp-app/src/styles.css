@@ -8,9 +8,11 @@
        surface it appears on, cream-2 (4.51), so it passes everywhere:
        4.90 on cream, 5.24 on paper. Visually indistinguishable. */
     --taupe:#736554;
-    /* Pulp Orange on the dark forest ground is only 2.31:1 — even 48px display
-       type needs 3.0. Same hue, lightened, for dark sections only. */
-    --pulp-on-dark:#E29A72;
+    /* Pulp Orange on the dark forest ground is only 2.12:1 — even display type
+       needs 3.0. Two lightened steps of the same hue, for dark sections only:
+       -on-dark clears the 3.0 large-text bar (3.71:1), -on-dark-sm clears the
+       full 4.5:1 body bar (4.62:1) for small labels. */
+    --pulp-on-dark:#E2936F; --pulp-on-dark-sm:#E9AC90;
     /* AA-safe INK variants for BODY-SIZE text. The originals fail 4.5:1 on cream
        (Moss 3.42, Pulp 3.68, Amber 3.66) but pass 3.0:1 for large display type,
        so keep the originals for headlines, accents and the wordmark's "u". */
@@ -230,9 +232,9 @@
   .close::after{content:"";position:absolute;right:-90px;bottom:-90px;width:280px;height:280px;border:1px solid rgba(247,238,220,.12);border-radius:50%}
   .close::before{content:"";position:absolute;left:-110px;top:-110px;width:300px;height:300px;border:1px solid rgba(247,238,220,.08);border-radius:50%}
   .close .in{position:relative;z-index:2;max-width:600px;margin:0 auto}
-  .close .kie{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;color:var(--pulp);text-transform:uppercase;margin-bottom:20px}
+  .close .kie{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;color:var(--pulp-on-dark-sm);text-transform:uppercase;margin-bottom:20px}
   .close h2{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,6vw,4.4rem);line-height:.98}
-  .close h2 em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--pulp)}
+  .close h2 em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--pulp-on-dark)}
   .close p{color:rgba(247,238,220,.82);margin:20px auto 0;max-width:46ch}
   .wl{display:flex;gap:10px;max-width:440px;margin:32px auto 0}
   @media(max-width:520px){.wl{flex-direction:column}}
@@ -1229,3 +1231,5 @@
     text-decoration-thickness:1px}
   .ess-note a:hover{color:var(--pulp-ink)}
   @media (max-width:640px){.ess-note p{font-size:1rem}}
+  /* the confirmation glyph also sits on the dark ground */
+  .rsv-tick{color:var(--pulp-on-dark)}
