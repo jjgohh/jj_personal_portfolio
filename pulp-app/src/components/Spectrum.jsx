@@ -37,8 +37,8 @@ export default function Spectrum() {
         </div>
 
         <h1 className="h-lines" style={{ marginBottom: 12 }}>
-          <span className="line"><Rise as="span" className="inner">Most vitamin E is</Rise></span>
-          <span className="line"><Rise as="span" className="inner" delay={0.05}><em>one molecule.</em></Rise></span>
+          <span className="line"><span className="inner">Most vitamin E is</span></span>
+          <span className="line"><span className="inner"><em>one molecule.</em></span></span>
         </h1>
         <Rise as="p" className="lede-2" style={{ marginBottom: 'clamp(26px,4vw,40px)' }}>
           Vitamin E is a family of eight related molecules — four tocopherols and four

@@ -100,8 +100,8 @@ export default function Traceability() {
         </div>
 
         <h1 className="h-lines" style={{ marginBottom: 12 }}>
-          <span className="line"><Rise as="span" className="inner">Grown, extracted and</Rise></span>
-          <span className="line"><Rise as="span" className="inner" delay={0.05}><em>bottled in Malaysia.</em></Rise></span>
+          <span className="line"><span className="inner">Grown, extracted and</span></span>
+          <span className="line"><span className="inner"><em>bottled in Malaysia.</em></span></span>
         </h1>
         <Rise as="p" className="lede-2" style={{ marginBottom: 'clamp(28px,4.4vw,46px)' }}>
           Four steps, one country. Every step names who does it.

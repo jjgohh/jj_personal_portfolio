@@ -142,7 +142,7 @@ export default function Faq() {
         </div>
 
         <h1 className="h-lines" style={{ marginBottom: 14 }}>
-          <span className="line"><Rise as="span" className="inner">Questions, <em>answered.</em></Rise></span>
+          <span className="line"><span className="inner">Questions, <em>answered.</em></span></span>
         </h1>
         <Rise as="p" className="lede-2" style={{ marginBottom: 'clamp(24px,3.6vw,38px)' }}>
           If something here is unclear, ask us directly — the contact details in the footer

@@ -130,8 +130,8 @@ export default function Home({ onReserve, cta }) {
           <div className="why">
             <div>
               <h2 id="why-h" className="h-lines" style={{ marginBottom: 14 }}>
-                <span className="line"><Rise as="span" className="inner">Most vitamin E is</Rise></span>
-                <span className="line"><Rise as="span" className="inner" delay={0.05}><em>one molecule.</em></Rise></span>
+                <span className="line"><span className="inner">Most vitamin E is</span></span>
+                <span className="line"><span className="inner"><em>one molecule.</em></span></span>
               </h2>
               <Rise as="p" className="lede-2">
                 Vitamin E is a family of eight. Most supplements contain one of them —
@@ -164,7 +164,7 @@ export default function Home({ onReserve, cta }) {
           </div>
           <h2 id="chain-h" className="h-lines" style={{ marginBottom: 'clamp(22px,3.2vw,34px)' }}>
             <span className="line">
-              <Rise as="span" className="inner">Three steps, <em>all Malaysian.</em></Rise>
+              <span className="inner">Three steps, <em>all Malaysian.</em></span>
             </span>
           </h2>
           <ChainTeaser />
@@ -186,7 +186,7 @@ export default function Home({ onReserve, cta }) {
           </div>
           <h2 id="trust-h" className="h-lines" style={{ marginBottom: 18 }}>
             <span className="line">
-              <Rise as="span" className="inner">Nothing ticked before it's <em>true.</em></Rise>
+              <span className="inner">Nothing ticked before it's <em>true.</em></span>
             </span>
           </h2>
           <Rise as="ul" className="trust-row">

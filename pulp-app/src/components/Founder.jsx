@@ -23,7 +23,7 @@ export default function Founder() {
         </div>
 
         <h1 className="h-lines" style={{ marginBottom: 'clamp(24px,3.6vw,40px)' }}>
-          <span className="line"><Rise as="span" className="inner">Why we built <em>PULP.</em></Rise></span>
+          <span className="line"><span className="inner">Why we built <em>PULP.</em></span></span>
         </h1>
 
         <Rise as="div" className="fnd">

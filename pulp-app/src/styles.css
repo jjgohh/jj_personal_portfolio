@@ -1233,3 +1233,61 @@
   @media (max-width:640px){.ess-note p{font-size:1rem}}
   /* the confirmation glyph also sits on the dark ground */
   .rsv-tick{color:var(--pulp-on-dark)}
+
+  /* ========================================================================
+     NO-JS SCROLL ANIMATION FALLBACK
+
+     Why: the single-file build is prerendered, so it renders fine with scripts
+     off — but GSAP never runs there, so it renders STATIC. That is exactly what
+     the iPhone Files app shows, because its Quick Look preview displays HTML and
+     CSS but does not execute page JavaScript.
+
+     Scroll-driven CSS animations need no JavaScript at all, so they cover that
+     case. Guards, all three necessary:
+       @supports          — silently skipped where animation-timeline is absent
+       html:not(.js-anim) — only when JS did NOT take over, so it can never
+                            fight GSAP for the same element
+       no-preference      — js-anim is also absent under reduced motion, so
+                            without this guard the fallback would animate for
+                            exactly the people who asked us not to
+     ======================================================================== */
+  @keyframes sdRise { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+  @keyframes sdWipe { from{transform:translateY(105%)} to{transform:none} }
+  @keyframes sdGrow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      html:not(.js-anim) [data-rise],
+      html:not(.js-anim) .ess-grid > div,
+      html:not(.js-anim) .ess-note,
+      html:not(.js-anim) .trust-row li,
+      html:not(.js-anim) .chain-step,
+      html:not(.js-anim) .fam-node,
+      html:not(.js-anim) .trace-step,
+      html:not(.js-anim) .proof-cell,
+      html:not(.js-anim) .cite-row {
+        animation: sdRise linear both;
+        animation-timeline: view();
+        animation-range: entry 2% cover 26%;
+      }
+      /* headline lines keep their masked wipe, since .line already clips */
+      html:not(.js-anim) .h-lines .inner {
+        animation: sdWipe linear both;
+        animation-timeline: view();
+        animation-range: entry 4% cover 24%;
+      }
+      /* the Fig. rules still draw themselves across */
+      html:not(.js-anim) .eyebrow-row .rule-draw {
+        transform-origin: left center;
+        animation: sdGrow linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 30%;
+      }
+      /* and the page keeps a progress bar */
+      html:not(.js-anim) .gsx-progress {
+        transform-origin: left center;
+        animation: sdGrow linear both;
+        animation-timeline: scroll(root block);
+      }
+    }
+  }

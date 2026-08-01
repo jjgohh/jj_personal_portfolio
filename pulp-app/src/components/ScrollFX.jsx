@@ -25,8 +25,15 @@ import { useGSAP } from '@gsap/react';
 
   Division of labour with the rest of the app: Rise (IntersectionObserver + CSS)
   owns container-level fades; GSAP owns the children inside those containers and
-  everything scroll-linked. They never target the same node, so the two systems
-  cannot fight.
+  everything scroll-linked.
+
+  The two must NEVER target the same node, and getting this wrong is not cosmetic.
+  `.h-lines .inner` was briefly both: Rise held it at opacity:0 until its
+  IntersectionObserver fired, while GSAP translated it yPercent:108 — fully out of
+  `.line`, which is overflow:hidden. Clipped out of view, the observer never
+  reported an intersection, so the opacity gate never lifted and four section
+  headlines were invisible for good. Headline spans are now plain and
+  GSAP-owned. If you add a reveal, pick ONE owner per element.
 
   Graceful degradation: no hidden start state is baked into CSS for anything GSAP
   owns — all start states are set at runtime by gsap.from(). If the bundle fails,

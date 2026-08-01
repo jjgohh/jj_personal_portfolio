@@ -46,7 +46,7 @@ export default function Research() {
 
         <h1 className="h-lines" style={{ marginBottom: 12 }}>
           <span className="line">
-            <Rise as="span" className="inner">Published research on <em>tocotrienols.</em></Rise>
+            <span className="inner">Published research on <em>tocotrienols.</em></span>
           </span>
         </h1>
         <Rise as="p" className="lede-2" style={{ marginBottom: 'clamp(24px,3.6vw,38px)' }}>

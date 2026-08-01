@@ -658,8 +658,8 @@ function Home({ onReserve, cta }) {
       /* @__PURE__ */ jsxs("div", { className: "why", children: [
         /* @__PURE__ */ jsxs("div", { children: [
           /* @__PURE__ */ jsxs("h2", { id: "why-h", className: "h-lines", style: { marginBottom: 14 }, children: [
-            /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", children: "Most vitamin E is" }) }),
-            /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", delay: 0.05, children: /* @__PURE__ */ jsx("em", { children: "one molecule." }) }) })
+            /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: "Most vitamin E is" }) }),
+            /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: /* @__PURE__ */ jsx("em", { children: "one molecule." }) }) })
           ] }),
           /* @__PURE__ */ jsx(Rise, { as: "p", className: "lede-2", children: "Vitamin E is a family of eight. Most supplements contain one of them — α-tocopherol. PULP contains the four tocotrienols, plus α-tocopherol." }),
           /* @__PURE__ */ jsx(Rise, { as: "p", className: "why-more", children: /* @__PURE__ */ jsx("a", { href: href("/composition"), onClick: go("/composition"), children: "See exactly what's inside →" }) })
@@ -681,7 +681,7 @@ function Home({ onReserve, cta }) {
         /* @__PURE__ */ jsx("span", { className: "rule-draw" }),
         /* @__PURE__ */ jsx("span", { className: "lab", children: "One country" })
       ] }),
-      /* @__PURE__ */ jsx("h2", { id: "chain-h", className: "h-lines", style: { marginBottom: "clamp(22px,3.2vw,34px)" }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs(Rise, { as: "span", className: "inner", children: [
+      /* @__PURE__ */ jsx("h2", { id: "chain-h", className: "h-lines", style: { marginBottom: "clamp(22px,3.2vw,34px)" }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs("span", { className: "inner", children: [
         "Three steps, ",
         /* @__PURE__ */ jsx("em", { children: "all Malaysian." })
       ] }) }) }),
@@ -694,7 +694,7 @@ function Home({ onReserve, cta }) {
         /* @__PURE__ */ jsx("span", { className: "rule-draw" }),
         /* @__PURE__ */ jsx("span", { className: "lab", children: "Status" })
       ] }),
-      /* @__PURE__ */ jsx("h2", { id: "trust-h", className: "h-lines", style: { marginBottom: 18 }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs(Rise, { as: "span", className: "inner", children: [
+      /* @__PURE__ */ jsx("h2", { id: "trust-h", className: "h-lines", style: { marginBottom: 18 }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs("span", { className: "inner", children: [
         "Nothing ticked before it's ",
         /* @__PURE__ */ jsx("em", { children: "true." })
       ] }) }) }),
@@ -1071,7 +1071,7 @@ function Faq() {
       /* @__PURE__ */ jsx("span", { className: "rule-draw" }),
       /* @__PURE__ */ jsx("span", { className: "lab", children: "Answered plainly" })
     ] }),
-    /* @__PURE__ */ jsx("h1", { className: "h-lines", style: { marginBottom: 14 }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs(Rise, { as: "span", className: "inner", children: [
+    /* @__PURE__ */ jsx("h1", { className: "h-lines", style: { marginBottom: 14 }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs("span", { className: "inner", children: [
       "Questions, ",
       /* @__PURE__ */ jsx("em", { children: "answered." })
     ] }) }) }),
@@ -1100,8 +1100,8 @@ function Spectrum() {
       /* @__PURE__ */ jsx("span", { className: "lab", children: "α β γ δ + toc" })
     ] }),
     /* @__PURE__ */ jsxs("h1", { className: "h-lines", style: { marginBottom: 12 }, children: [
-      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", children: "Most vitamin E is" }) }),
-      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", delay: 0.05, children: /* @__PURE__ */ jsx("em", { children: "one molecule." }) }) })
+      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: "Most vitamin E is" }) }),
+      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: /* @__PURE__ */ jsx("em", { children: "one molecule." }) }) })
     ] }),
     /* @__PURE__ */ jsx(Rise, { as: "p", className: "lede-2", style: { marginBottom: "clamp(26px,4vw,40px)" }, children: "Vitamin E is a family of eight related molecules — four tocopherols and four tocotrienols. Most supplements contain one of them. PULP contains the four tocotrienols, plus α-tocopherol." }),
     /* @__PURE__ */ jsxs(Rise, { as: "div", className: "glyph-band", "aria-hidden": "true", children: [
@@ -1218,8 +1218,8 @@ function Traceability() {
       /* @__PURE__ */ jsx("span", { className: "lab", children: "Fruit → Bottle" })
     ] }),
     /* @__PURE__ */ jsxs("h1", { className: "h-lines", style: { marginBottom: 12 }, children: [
-      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", children: "Grown, extracted and" }) }),
-      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", delay: 0.05, children: /* @__PURE__ */ jsx("em", { children: "bottled in Malaysia." }) }) })
+      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: "Grown, extracted and" }) }),
+      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: /* @__PURE__ */ jsx("em", { children: "bottled in Malaysia." }) }) })
     ] }),
     /* @__PURE__ */ jsx(Rise, { as: "p", className: "lede-2", style: { marginBottom: "clamp(28px,4.4vw,46px)" }, children: "Four steps, one country. Every step names who does it." }),
     /* @__PURE__ */ jsxs("div", { className: "trace-grid", children: [
@@ -1309,8 +1309,8 @@ function Proof() {
       /* @__PURE__ */ jsx("span", { className: "lab", children: "Status & label" })
     ] }),
     /* @__PURE__ */ jsxs("h1", { className: "h-lines", style: { marginBottom: 12 }, children: [
-      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", children: "What we can show you," }) }),
-      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx(Rise, { as: "span", className: "inner", delay: 0.05, children: /* @__PURE__ */ jsx("em", { children: "and what we can't yet." }) }) })
+      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: "What we can show you," }) }),
+      /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsx("span", { className: "inner", children: /* @__PURE__ */ jsx("em", { children: "and what we can't yet." }) }) })
     ] }),
     /* @__PURE__ */ jsx(Rise, { as: "p", className: "lede-2", style: { marginBottom: "clamp(26px,4vw,42px)" }, children: "Six checks. Two confirmed, four pending. Nothing is ticked before it is true." }),
     /* @__PURE__ */ jsx(Rise, { as: "ul", className: "proof-strip", children: PROOF.map((p) => /* @__PURE__ */ jsxs("li", { className: "proof-cell proof-cell--" + p.state, children: [
@@ -1401,7 +1401,7 @@ function Founder() {
       /* @__PURE__ */ jsx("span", { className: "rule-draw" }),
       /* @__PURE__ */ jsx("span", { className: "lab", children: "A note" })
     ] }),
-    /* @__PURE__ */ jsx("h1", { className: "h-lines", style: { marginBottom: "clamp(24px,3.6vw,40px)" }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs(Rise, { as: "span", className: "inner", children: [
+    /* @__PURE__ */ jsx("h1", { className: "h-lines", style: { marginBottom: "clamp(24px,3.6vw,40px)" }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs("span", { className: "inner", children: [
       "Why we built ",
       /* @__PURE__ */ jsx("em", { children: "PULP." })
     ] }) }) }),
@@ -1467,7 +1467,7 @@ function Research() {
       /* @__PURE__ */ jsx("span", { className: "rule-draw" }),
       /* @__PURE__ */ jsx("span", { className: "lab", children: "Ingredient class" })
     ] }),
-    /* @__PURE__ */ jsx("h1", { className: "h-lines", style: { marginBottom: 12 }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs(Rise, { as: "span", className: "inner", children: [
+    /* @__PURE__ */ jsx("h1", { className: "h-lines", style: { marginBottom: 12 }, children: /* @__PURE__ */ jsx("span", { className: "line", children: /* @__PURE__ */ jsxs("span", { className: "inner", children: [
       "Published research on ",
       /* @__PURE__ */ jsx("em", { children: "tocotrienols." })
     ] }) }) }),
