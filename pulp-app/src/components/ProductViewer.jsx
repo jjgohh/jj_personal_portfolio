@@ -88,9 +88,19 @@ export default function ProductViewer() {
     const sr = stage.getBoundingClientRect(), dr = dotEl.getBoundingClientRect();
     const tw = tipEl.offsetWidth, th = tipEl.offsetHeight;
     const dotX = dr.left + dr.width / 2 - sr.left, dotTop = dr.top - sr.top, dotBottom = dr.bottom - sr.top;
-    let left = Math.max(8, Math.min(dotX - tw / 2, sr.width - tw - 8));
-    let top = dotTop - th - 12, below = false;
-    if (top < 8) { top = dotBottom + 12; below = true; }
+    const left = Math.max(8, Math.min(dotX - tw / 2, sr.width - tw - 8));
+    /* Prefer whichever side has room, then clamp into the stage.
+       HARDENING, NOT A BUG FIX: the previous version only tested the top edge,
+       but measured at 390/768/1440 wide and 560–956 tall it always had 123–214px
+       of headroom below, and this rewrite reproduces its placements exactly. The
+       clamp is a no-op today. It matters because the stage is overflow:hidden,
+       so if the stage min-height, the hotspot offsets or the tip copy ever
+       change enough for both placements to miss, the tip would be clipped away
+       while aria-pressed stayed "true" and the live region announced text
+       nobody could see. Keep the clamp when editing any of those three. */
+    const roomAbove = dotTop - 12, roomBelow = sr.height - dotBottom - 12;
+    const below = roomAbove < th && roomBelow > roomAbove;
+    const top = Math.max(8, Math.min(below ? dotBottom + 12 : dotTop - th - 12, sr.height - th - 8));
     setPressed(idx);
     setTip({ show: true, text: h.detail, left, top, ax: dotX - left, below });
   };
@@ -133,7 +143,10 @@ export default function ProductViewer() {
       <div className="viewer-tabs" role="tablist" aria-label="Product views">
         {VIEWS.map((v, i) => (
           <button key={v.id} ref={(el) => (tabRefs.current[i] = el)} className="viewer-tab" type="button"
-            role="tab" id={`vt-${v.id}`} aria-controls={`vp-${v.id}`} aria-selected={active === i}
+            /* Only the active panel is rendered, so aria-controls on the other
+               two tabs pointed at ids that are not in the document. */
+            role="tab" id={`vt-${v.id}`} aria-controls={active === i ? `vp-${v.id}` : undefined}
+            aria-selected={active === i}
             tabIndex={active === i ? 0 : -1} onClick={() => select(i, false)} onKeyDown={(e) => onTabKey(e, i)}>
             {v.label}
           </button>

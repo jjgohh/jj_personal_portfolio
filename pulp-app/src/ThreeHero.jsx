@@ -133,8 +133,31 @@ export default function ThreeHero() {
         window.removeEventListener('resize', layout);
         window.removeEventListener('pointermove', onPointer);
         document.removeEventListener('visibilitychange', onVis);
-        pmrem.dispose(); renderer.dispose();
+        // renderer.dispose() frees the context's own caches, not the objects we
+        // built, so without this walk every geometry, material and texture
+        // survives the unmount.
+        scene.traverse((o) => {
+          if (o.geometry) o.geometry.dispose();
+          const mats = Array.isArray(o.material) ? o.material : o.material ? [o.material] : [];
+          mats.forEach((m) => {
+            Object.values(m).forEach((v) => { if (v && v.isTexture) v.dispose(); });
+            m.dispose();
+          });
+        });
+        if (scene.environment) scene.environment.dispose();
+        pmrem.dispose();
+        renderer.dispose();
+        renderer.forceContextLoss();
       };
+
+      /* cleanup is only assigned here, at the end of the async body. If the
+         component unmounted any time after the dynamic import resolved, React
+         already ran the destructor while cleanup was still the no-op — so the
+         renderer, the IntersectionObserver and three listeners above were
+         created and never released, one leaked WebGL context per mount.
+         `disposed` can only have been set by that destructor, which runs
+         synchronously, so checking it once here covers every interleaving. */
+      if (disposed) cleanup();
     })();
 
     return () => { disposed = true; cleanup(); };
