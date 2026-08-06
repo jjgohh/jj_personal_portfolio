@@ -52,6 +52,13 @@ function read() {
   return next;
 }
 
+/* The prerender always renders Home, because the server never receives the hash
+   fragment. The entry point needs to know whether the route about to render is
+   that same Home before it decides to hydrate. */
+export function initialRoute() {
+  return read();
+}
+
 export function useRoute() {
   const [route, setRoute] = useState(read);
   useEffect(() => {

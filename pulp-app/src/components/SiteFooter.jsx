@@ -19,6 +19,19 @@ import React from 'react';
 
 const PAYMENTS = ['FPX', 'DuitNow QR', "Touch 'n Go eWallet", 'GrabPay', 'Visa', 'Mastercard'];
 
+/*
+  Replace with the real number in full international form, digits only, e.g.
+  '60123456789'. Leave the placeholder alone until it is real: the brief requires
+  these to stay visible rather than be invented.
+
+  While it is a placeholder the number must NOT be wrapped in a link. It used to
+  render href="https://wa.me/[WHATSAPP NUMBER]", which ships as a live link that
+  goes nowhere — worse than an obvious gap, because a buyer checking whether a
+  pre-launch supplement brand is reachable clicks it and concludes it is not.
+*/
+const WHATSAPP = '[WHATSAPP NUMBER]';
+const whatsappReady = /^\d{8,15}$/.test(WHATSAPP);
+
 export default function SiteFooter() {
   return (
     <footer className="site-footer">
@@ -45,9 +58,16 @@ export default function SiteFooter() {
           <div className="foot-col">
             <h2 className="foot-h">Contact</h2>
             <a href="mailto:hello@pulp.my">hello@pulp.my</a>
-            <a href="https://wa.me/[WHATSAPP NUMBER]" target="_blank" rel="noopener">
-              WhatsApp — [WHATSAPP NUMBER]
-            </a>
+            {whatsappReady ? (
+              <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener">
+                WhatsApp — {WHATSAPP}
+              </a>
+            ) : (
+              /* a <p> because .foot-col p is already styled identically to
+                 .foot-col a, so this needs no new CSS and lines up with the
+                 registered-entity lines in the next column */
+              <p>WhatsApp — {WHATSAPP}</p>
+            )}
             <a href="https://www.instagram.com/pulpmy/" target="_blank" rel="noopener">@pulpmy</a>
           </div>
 
