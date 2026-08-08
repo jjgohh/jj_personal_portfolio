@@ -8,8 +8,10 @@ import { useEffect, useState, useCallback } from 'react';
      Path-based routing would 404 there.
   2. It needs no host rewrite rules, so the same build is correct on Netlify,
      a plain S3 bucket, or opened straight from disk.
-  3. No router dependency, which matters because first-load JS is on a hard
-     105KB gzipped budget.
+  3. No router dependency, which matters because first-load JS is on a budget
+     enforced at build time — see CEILING_KB in tools/prerender-dist.mjs. Change
+     it there, not here: this comment used to name a figure of its own that the
+     bundle had already outgrown, so the argument rested on a stale number.
 
   TRADE-OFF, stated honestly: hash fragments are weaker for SEO than real paths,
   and pre-launch that is an acceptable price. At NPRA clearance, when organic

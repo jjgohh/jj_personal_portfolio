@@ -19,7 +19,17 @@
     --moss-ink:#687147; --pulp-ink:#B15023; --amber-ink:#9E5C1A;
     --line:#D9C9A8; --line-soft:#E7DABE;
     --display:'Caprasimo',serif; --serif:'Fraunces',serif;
-    --body:'Inter Tight',sans-serif; --mono:'DM Mono',monospace;
+    --body:'Inter Tight',sans-serif;
+    /* Inter Tight sits between DM Mono and the generic monospace on purpose. Only
+       DM Mono's latin subset is loaded, so the Greek isomer glyphs in .lab
+       (α β γ δ) were falling through to whatever monospace face the OS supplies
+       — measured identical to bare `monospace`, and different on every platform.
+       Inter Tight is already loaded WITH a Greek subset, and Spectrum.jsx's own
+       caption calls it "the one carrying the Greek glyphs". CSS fallback is
+       per-glyph, so latin still renders in DM Mono (verified: 28.8px vs Inter
+       Tight's 30.61px for "ABC") while Greek now comes from Inter Tight (33.91px
+       instead of the system 38.53px). Digits are unaffected. */
+    --mono:'DM Mono','Inter Tight',monospace;
     --gutter:clamp(20px,5vw,56px);
   }
   *{margin:0;padding:0;box-sizing:border-box}
