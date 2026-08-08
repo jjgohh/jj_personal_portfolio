@@ -1,0 +1,18 @@
+# PRIVATE PREVIEW — REMOVE THIS FILE AT LAUNCH.
+#
+# PULP cannot be sold until NPRA product notification is complete, so this site
+# must not appear in search results yet. It is a pre-notification page for a
+# supplement, and the founders' price, MAL[NUMBER] and KKLIU [NUMBER] are still
+# placeholders that a crawler could cache and keep serving after they are real.
+#
+# The matching <meta name="robots" content="noindex, nofollow"> lives in
+# index.html. Delete BOTH in the same commit at launch — leaving either one
+# behind silently blocks all organic search.
+#
+# Note the division of labour: this file stops well-behaved crawlers fetching the
+# page at all, while the meta tag stops a page reached some other way (a shared
+# link, a backlink) from being indexed. Neither alone is sufficient, and robots.txt
+# on its own does NOT prevent indexing of a URL discovered elsewhere.
+
+User-agent: *
+Disallow: /
