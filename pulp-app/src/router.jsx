@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 
 /*
   Minimal hash router — no dependency, ~1KB.
@@ -78,13 +78,6 @@ export function navigate(to) {
     return;
   }
   window.location.hash = to;
-}
-
-export function useLinkHandler() {
-  return useCallback((to) => (e) => {
-    if (e) e.preventDefault();
-    navigate(to);
-  }, []);
 }
 
 export function href(to) {

@@ -3,3 +3,6 @@ dist
 *.log
 dist-artifact
 dist-ssr
+
+# graphify code-graph output — regenerate with `graphify update .`
+graphify-out

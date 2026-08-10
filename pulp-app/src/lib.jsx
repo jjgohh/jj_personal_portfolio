@@ -145,12 +145,3 @@ export function useLockBody(active) {
     return () => { document.body.style.overflow = prev; };
   }, [active]);
 }
-
-// True on touch/coarse-pointer devices.
-export function useIsTouch() {
-  const [touch, setTouch] = useState(false);
-  useEffect(() => {
-    if (window.matchMedia) setTouch(window.matchMedia('(hover:none) and (pointer:coarse)').matches);
-  }, []);
-  return touch;
-}
