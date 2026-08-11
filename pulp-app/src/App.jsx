@@ -107,11 +107,24 @@ function ReserveModal({ open, onClose }) {
 function MobileCta({ onOpen, overlayOpen, route }) {
   const [past, setPast] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  /* A scroll listener ran this on every scroll frame just to compare one number.
+     setPast collapsed most of those to no-ops, so it was cheap in re-renders but
+     still woke JS on every frame of every scroll, on the phones this bar exists
+     for. An unstyled sentinel occupying the top 420px answers the same question
+     with zero frames of work: once it has left the viewport, we are past 420px.
+     Appended to body rather than rendered, because the containing block for a
+     static body is the initial one anchored at the document origin, so top:0 is
+     the top of the PAGE — inside this component's own subtree it would be
+     positioned against the sticky bar instead. */
   useEffect(() => {
-    const on = () => setPast(window.scrollY > 420);
-    on();
-    window.addEventListener('scroll', on, { passive: true });
-    return () => window.removeEventListener('scroll', on);
+    if (!('IntersectionObserver' in window)) { setPast(true); return; }
+    const mark = document.createElement('div');
+    mark.setAttribute('aria-hidden', 'true');
+    mark.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:420px;pointer-events:none';
+    document.body.appendChild(mark);
+    const io = new IntersectionObserver(([e]) => setPast(!e.isIntersecting), { threshold: 0 });
+    io.observe(mark);
+    return () => { io.disconnect(); mark.remove(); };
   }, [route]);
   // never compete with the reservation block that already sits on the home page
   const [atReserve, setAtReserve] = useState(false);
