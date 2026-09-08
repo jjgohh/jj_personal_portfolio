@@ -11,11 +11,24 @@ import { spawn } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { findExternalSubresources } from './external-refs.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = Number(process.env.CHECK_PORT || 4321);
 const BASE = `http://localhost:${PORT}`;
-const ROUTES = ['/', '/product', '/composition', '/traceability', '/proof', '/research', '/story', '/faq'];
+const ROUTES = ['/', '/product', '/composition', '/traceability', '/proof', '/research', '/story', '/faq',
+  '/privacy', '/terms', '/404'];
+
+/* Per-route text floors. Home must be substantial; a 404 must NOT be, and
+   holding it to the same floor was the check being wrong about the page rather
+   than the page being thin. */
+const MIN_TEXT = { '/': 1500, '/404': 250 };
+
+/* Every route the client router will resolve. Any in-page href pointing at a
+   hash outside this set is a broken link, because read() now sends unknown
+   route-shaped hashes to /404 rather than quietly staying put. */
+const KNOWN_HASHES = new Set(ROUTES.concat(
+  ['/spectrum', '/reserve', '/top', '/founder', '/specimen']));   // legacy aliases
 const ARTIFACT = resolve(ROOT, 'PULP-final.html');
 
 let chromium;
@@ -110,6 +123,17 @@ const PROBE = `(() => {
         .map(a => e.getAttribute(a)).filter(Boolean)
         .flatMap(v => v.split(/\\s+/)).filter(id => !document.getElementById(id))),
     noAlt: [...document.querySelectorAll('img')].filter(i => i.getAttribute('alt') === null).length,
+    /* Every anchor, classified. "Everything is linked and works" has to be
+       measured: a hash pointing at a route that does not exist, an href="#", or
+       a new-tab link without rel=noopener are all broken in ways that look
+       perfectly fine on screen. */
+    links: [...document.querySelectorAll('a')].map(a => ({
+      href: a.getAttribute('href') || '',
+      text: (a.textContent || '').trim().slice(0, 40),
+      target: a.getAttribute('target') || '',
+      rel: a.getAttribute('rel') || '',
+    })),
+    ids: [...document.querySelectorAll('[id]')].map(e => e.id),
   };
 })()`;
 
@@ -159,6 +183,35 @@ function judge(label, o, { minText = 400 } = {}) {
   if (o.headingSkips) bad.push(`${o.headingSkips} skipped heading level(s)`);
   if (o.danglingAria.length) bad.push('dangling aria refs: ' + [...new Set(o.danglingAria)].join(','));
   if (o.noAlt) bad.push(`${o.noAlt} img without alt`);
+  if (o.links) {
+    const pageIds = new Set(o.ids || []);
+    const broken = [];
+    for (const l of o.links) {
+      const where = `"${l.text || '(no text)'}" -> ${l.href || '(empty href)'}`;
+      if (!l.href || l.href === '#') { broken.push(`dead: ${where}`); continue; }
+      if (l.href.startsWith('#')) {
+        const hash = l.href.slice(1).split('?')[0].replace(/\/$/, '') || '/';
+        // a bare fragment (#main) is an in-page anchor: the target must exist
+        if (!hash.startsWith('/')) {
+          if (!pageIds.has(hash)) broken.push(`anchor with no target: ${where}`);
+        } else if (!KNOWN_HASHES.has(hash)) {
+          broken.push(`unknown route: ${where}`);
+        }
+        continue;
+      }
+      if (/^(mailto:|tel:)/.test(l.href)) continue;
+      if (/^https?:\/\//.test(l.href)) {
+        // reverse tabnabbing: a new tab can reach back through window.opener
+        if (l.target === '_blank' && !/noopener|noreferrer/.test(l.rel)) {
+          broken.push(`target=_blank without rel=noopener: ${where}`);
+        }
+        if (/\[[A-Z][A-Z ]+\]/.test(l.href)) broken.push(`unfilled placeholder in URL: ${where}`);
+        continue;
+      }
+      broken.push(`unrecognised href scheme: ${where}`);
+    }
+    if (broken.length) bad.push('links: ' + broken.join(' | '));
+  }
   if (bad.length) fail(`${label} → ${bad.join('  |  ')}`);
   return bad.length === 0;
 }
@@ -201,7 +254,7 @@ for (const [name, w, h] of VIEWPORTS) {
     await sweep(page, h, true);
     const o = await page.evaluate(PROBE);
     o.confirmedInvisible = await confirmInvisible(page);
-    const okd = judge(`${name} ${r}`, o, { minText: r === '/' ? 1500 : 400 });
+    const okd = judge(`${name} ${r}`, o, { minText: MIN_TEXT[r] ?? 400 });
     if (errs.length) fail(`${name} ${r} console/page errors: ${[...new Set(errs)].join(' ; ')}`);
     else if (okd) pass(`${name} ${r} text=${o.text} clean`);
     await ctx.close();
@@ -232,7 +285,7 @@ for (const [name, w, h] of VIEWPORTS) {
     await sweep(page, h, true);
     const o = await page.evaluate(PROBE);
     o.confirmedInvisible = await confirmInvisible(page);
-    if (!judge(`${name} nav→${r}`, o, { minText: r === '/' ? 1500 : 400 })) worst++;
+    if (!judge(`${name} nav→${r}`, o, { minText: MIN_TEXT[r] ?? 400 })) worst++;
   }
   // End on Home, where the hero lives. Ending on a route without a canvas made
   // the assertion below vacuous — it passed by measuring nothing.
@@ -293,12 +346,7 @@ if (existsSync(ARTIFACT)) {
     this check matched every href and flagged the WhatsApp and Instagram links as
     CSP violations, which they are not.
   */
-  const sub = [
-    ...html.matchAll(/\ssrc=["'](?:https?:)?\/\/[^"']+/gi),
-    ...html.matchAll(/<link\b[^>]*\shref=["'](?:https?:)?\/\/[^"']+/gi),
-    ...html.matchAll(/@import\s+(?:url\()?["']?(?:https?:)?\/\//gi),
-    ...html.matchAll(/url\(\s*["']?(?:https?:)?\/\/[^)]+/gi),
-  ].map((m) => m[0].trim().slice(0, 70));
+  const sub = findExternalSubresources(html).map((r) => r.slice(0, 70));
   if (sub.length) fail(`${sub.length} external SUBRESOURCE(S) — the Artifact CSP blocks these: ${sub.slice(0, 3).join(' | ')}`);
   else pass('no external subresources (outbound <a href> links are fine)');
 

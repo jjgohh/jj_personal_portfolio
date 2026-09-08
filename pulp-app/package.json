@@ -9,7 +9,8 @@
     "build": "vite build && vite build --config vite.ssr.config.js && node tools/prerender-dist.mjs",
     "preview": "vite preview",
     "build:artifact": "vite build --config vite.artifact.config.js && vite build --config vite.ssr.config.js && node tools/make-artifact.mjs",
-    "check": "node tools/check-site.mjs"
+    "check": "node tools/check-site.mjs",
+    "assets": "node tools/make-og.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

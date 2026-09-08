@@ -11,8 +11,19 @@ import Research from './components/Research.jsx';
 import SiteFooter from './components/SiteFooter.jsx';
 import ScrollFX from './components/ScrollFX.jsx';
 import { useLockBody, useArmReveals } from './lib.jsx';
-import { useReservation, BATCH_CAP } from './components/Reserve.jsx';
-import { ROUTES, useRoute, navigate, href } from './router.jsx';
+import { useReservation, BATCH_CAP, HoneyTrap } from './components/Reserve.jsx';
+import { ROUTES, DESCRIPTIONS, useRoute, navigate, href } from './router.jsx';
+
+/* Cold paths, so they are split out of the first-load bundle. Adding them eagerly
+   pushed first-load JS to 115.4KB against the 115KB ceiling in
+   tools/prerender-dist.mjs, and a visitor reading the home page should not be
+   downloading a bilingual privacy notice to get there. The single-file build sets
+   inlineDynamicImports, so these still resolve inside the one HTML file. */
+const Privacy = React.lazy(() =>
+  import('./pages/Legal.jsx').then((m) => ({ default: m.Privacy })));
+const Terms = React.lazy(() =>
+  import('./pages/Legal.jsx').then((m) => ({ default: m.Terms })));
+const NotFound = React.lazy(() => import('./pages/NotFound.jsx'));
 
 /* ONE CTA verb sitewide. The button, the modal, the confirmation and the
    eventual launch email all use this exact string. */
@@ -25,7 +36,7 @@ function ReserveModal({ open, onClose }) {
      email and set status straight to 'done' without ever contacting the
      integration point, so every reservation taken through the modal — the
      primary CTA everywhere on the site — was thrown away behind a checkmark. */
-  const { status, error, submit: send } = useReservation();
+  const { status, error, submit: send, trapRef, arm } = useReservation();
   useLockBody(open);
 
   useEffect(() => {
@@ -41,7 +52,10 @@ function ReserveModal({ open, onClose }) {
       if (!open) return;
       if (e.key === 'Escape') onClose();
       if (e.key === 'Tab') {
-        const f = modalRef.current.querySelectorAll('button, input, a[href]');
+        /* Excludes tabindex="-1", which is how the honeypot field hides from
+           keyboard users. Without it the trap could cycle focus INTO the trap. */
+        const f = modalRef.current.querySelectorAll(
+          'button, input:not([tabindex="-1"]), a[href]');
         if (!f.length) return;
         const a = f[0], b = f[f.length - 1];
         if (e.shiftKey && document.activeElement === a) { e.preventDefault(); b.focus(); }
@@ -79,10 +93,11 @@ function ReserveModal({ open, onClose }) {
         {status !== 'done' ? (
           <>
             <form className="wl-form" onSubmit={submit} noValidate>
+              <HoneyTrap id="modal-company" inputRef={trapRef} />
               <label className="sr-only" htmlFor="modal-email">Email address</label>
               <input id="modal-email" type="email" ref={emailRef} placeholder="you@email.com"
                 autoComplete="email" inputMode="email" aria-invalid={status === 'error'}
-                aria-describedby="modal-status" required />
+                aria-describedby="modal-status" onFocus={arm} onInput={arm} required />
               <button type="submit" disabled={status === 'busy'}>
                 {status === 'busy' ? 'Reserving…' : CTA}
               </button>
@@ -186,6 +201,14 @@ export default function App() {
       : `${ROUTES[route]} · PULP`;
   }, [route]);
 
+  /* Keep the description in step with the route. Runs on first paint too, unlike
+     the title above, because the prerendered <head> carries Home's description
+     and a visitor who opens a shared deep link would otherwise get Home's. */
+  useEffect(() => {
+    const tag = document.querySelector('meta[name="description"]');
+    if (tag && DESCRIPTIONS[route]) tag.setAttribute('content', DESCRIPTIONS[route]);
+  }, [route]);
+
   const page = () => {
     switch (route) {
       case '/product': return <Product onReserve={openModal} cta={CTA} />;
@@ -195,6 +218,12 @@ export default function App() {
       case '/research': return <><Research /><CtaBand onReserve={openModal} /></>;
       case '/story': return <><Founder /><CtaBand onReserve={openModal} /></>;
       case '/faq': return <><Faq /><CtaBand onReserve={openModal} /></>;
+      /* No CTA band on the legal pages or the 404. Asking for a reservation at
+         the bottom of a privacy notice undercuts the notice, and the 404 already
+         has its own primary action. */
+      case '/privacy': return <Privacy />;
+      case '/terms': return <Terms />;
+      case '/404': return <NotFound />;
       default: return <Home onReserve={openModal} cta={CTA} />;
     }
   };
@@ -228,7 +257,16 @@ export default function App() {
 
       <Nav route={route} onReserve={openModal} cta={CTA} />
 
-      <main id="main" ref={mainRef} tabIndex={-1}>{page()}</main>
+      {/* Only the lazy routes ever suspend, and they are whole pages, so the
+          fallback reserves the viewport rather than collapsing the layout. It is
+          announced politely because a route change already moved focus here. */}
+      <main id="main" ref={mainRef} tabIndex={-1}>
+        <React.Suspense fallback={
+          <div className="route-loading" role="status" aria-live="polite">Loading…</div>
+        }>
+          {page()}
+        </React.Suspense>
+      </main>
 
       <SiteFooter />
       <MobileCta onOpen={openModal} overlayOpen={modalOpen} route={route} />

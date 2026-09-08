@@ -49,6 +49,57 @@ export async function submitReservation(email) {
 const TIMEOUT_MS = 15000;
 
 /*
+  SPAM PROTECTION, deliberately without a third-party service.
+
+  reCAPTCHA / Turnstile / hCaptcha were all ruled out, and not for convenience:
+  each needs a script from another origin, which the Artifact CSP blocks outright
+  and which would make the single-file build stop working; each is also a tracker
+  loaded on a page whose privacy notice states plainly that nothing on the site
+  profiles the visitor. Adding one would make that notice false.
+
+  So two local signals instead:
+
+  1. HONEYPOT — a field positioned off-screen, aria-hidden, and removed from the
+     tab order. A human cannot see it, reach it by keyboard, or have a password
+     manager fill it (autoComplete="off", and the name is not a known field).
+     Anything that arrives with it filled is automated. Near-zero false
+     positives, which is why it is the only signal that rejects outright.
+
+  2. SUBMIT TIMING, measured from the first time a human touches the email field
+     — not from mount. Mount was the obvious choice and it was nearly useless:
+     React arms on first render, which on the 1.3MB single file happens before
+     the form is even queryable, so the window had usually elapsed before a bot
+     could have found it. Measured, only a 0ms submit was ever caught; 300ms
+     onwards sailed through.
+
+     From first focus or keystroke the signal is real, because it measures the
+     thing that actually differs: a person takes time to type, a script does not.
+     A submit with NO prior interaction at all is the strongest version of this,
+     since setting .value directly fires no events.
+
+     It never permanently blocks. A first offending submit arms the timer on the
+     way out, so the retry always passes — otherwise a password manager that
+     fills without firing events would wall the visitor out of reserving
+     entirely, which is a far worse outcome than one bot getting through on its
+     second try.
+
+  Neither is announced to the user, and a rejected bot is told the same thing as
+  a network failure, so nothing here teaches an attacker what tripped.
+*/
+const MIN_FILL_MS = 600;   // measured from first interaction, not mount
+
+export function HoneyTrap({ id, inputRef }) {
+  return (
+    <div className="trap" aria-hidden="true">
+      {/* labelled for the rare crawler that checks, never seen by a person */}
+      <label htmlFor={id}>Company</label>
+      <input id={id} ref={inputRef} type="text" name="company"
+        tabIndex={-1} autoComplete="off" defaultValue="" />
+    </div>
+  );
+}
+
+/*
   One submit path for every reservation surface. This exists because the modal —
   which is the primary CTA on the hero, the nav, the sticky mobile bar, the PDP
   and the CTA band on all six deep routes — used to validate the email and jump
@@ -60,10 +111,30 @@ export function useReservation() {
   const [status, setStatus] = useState('idle');  // idle | busy | error | done
   const [error, setError] = useState('');
   const [position, setPosition] = useState(null);
+  const trapRef = useRef(null);
+  // null until the visitor focuses or types in the email field
+  const armedAt = useRef(null);
+  const arm = () => { if (armedAt.current === null) armedAt.current = Date.now(); };
 
   const submit = async (email) => {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setError('Enter a valid email address, for example you@email.com.');
+      setStatus('error');
+      return false;
+    }
+    /* Honeypot: automated, so drop it and report the generic failure. Returning
+       a distinct message here would tell a bot exactly which field to leave
+       alone next time. */
+    if (trapRef.current && trapRef.current.value !== '') {
+      console.warn('[reservation] dropped: honeypot filled');
+      setError("We couldn't save your reservation. Please try again, or email hello@pulp.my.");
+      setStatus('error');
+      return false;
+    }
+    const firstTouch = armedAt.current;
+    arm();   // so a retry always gets through, even with no interaction events
+    if (firstTouch === null || Date.now() - firstTouch < MIN_FILL_MS) {
+      setError('That went through a little too fast. Tap reserve once more.');
       setStatus('error');
       return false;
     }
@@ -94,12 +165,12 @@ export function useReservation() {
     }
   };
 
-  return { status, error, position, submit };
+  return { status, error, position, submit, trapRef, arm };
 }
 
 export default function Reserve() {
   const inputRef = useRef(null);
-  const { status, error, position, submit: send } = useReservation();
+  const { status, error, position, submit: send, trapRef, arm } = useReservation();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -146,12 +217,15 @@ export default function Reserve() {
         {status !== 'done' ? (
           <>
             <form className="rsv-form" onSubmit={submit} noValidate>
+              {/* distinct id from the modal's trap: both forms mount on Home */}
+              <HoneyTrap id="rsv-company" inputRef={trapRef} />
               <div className="rsv-field">
                 <label htmlFor="rsv-email">Email address</label>
                 <input
                   id="rsv-email" ref={inputRef} type="email" name="email"
                   autoComplete="email" inputMode="email" placeholder="you@email.com"
                   aria-describedby="rsv-status" aria-invalid={status === 'error'}
+                  onFocus={arm} onInput={arm}
                   required
                 />
               </div>

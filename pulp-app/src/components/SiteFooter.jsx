@@ -97,6 +97,12 @@ export default function SiteFooter() {
         </p>
         <div className="foot-bottom">
           <span>© 2026 GOLDEN PULP SDN BHD · 金果有限公司 · ALL RIGHTS RESERVED</span>
+          {/* Legal links belong in the footer bottom rather than the Explore column:
+              they are obligations, not part of the product story. */}
+          <nav className="foot-legal" aria-label="Legal">
+            <a href="#/privacy">Privacy notice</a>
+            <a href="#/terms">Reservation terms</a>
+          </nav>
           <span>PRIVATE PREVIEW — NOT FOR SALE UNTIL NPRA NOTIFICATION IS COMPLETE</span>
         </div>
       </div>

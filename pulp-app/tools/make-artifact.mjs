@@ -11,6 +11,7 @@
   Run:  node tools/make-artifact.mjs [outDir]
 */
 import fs from 'node:fs';
+import { findExternalSubresources } from './external-refs.mjs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -60,16 +61,6 @@ if (!css.trim() || !js.trim()) {
   console.error('an inlined block was empty — is viteSingleFile still configured?');
   process.exit(1);
 }
-
-// Fail loudly if anything external survived: the Artifact CSP blocks every host,
-// and a phone opening the file offline would silently lose fonts.
-const external = [...html.matchAll(/(?:src|href)=["'](https?:\/\/[^"']+)["']/g)].map((m) => m[1]);
-if (external.length) {
-  console.error('external references found, which will break under CSP / offline:');
-  external.forEach((u) => console.error('  ' + u));
-  process.exit(1);
-}
-
 // A CLASSIC script, not type="module": browsers apply module/CORS rules to
 // file:// URLs and this file is opened straight off disk. The artifact build
 // emits IIFE for exactly this reason.
@@ -128,7 +119,7 @@ verifyOutput(fragPath, { fragment: true });
 verifyOutput(fullPath, { fragment: false });
 
 const kb = (s) => Math.round(s.length / 1024) + 'KB';
-console.log(`no external references  ✓`);
+console.log(`no external subresources  ✓`);
 console.log(`prerendered markup      ${Math.round(prerendered.length / 1024)}KB into #root`);
 console.log(`${fragPath}  ${kb(fragment)}`);
 console.log(`${fullPath}  ${kb(head + fragment)}`);
@@ -188,6 +179,13 @@ function verifyOutput(file, { fragment }) {
   }
   if (!out.trimEnd().endsWith(fragment ? '</script>' : '</html>')) {
     if (fragment) problems.push('fragment must end with its </script>');
+  }
+
+  /* The check that matters most, now run against the bytes on disk rather than
+     the build input. Anything listed here would be blocked by the Artifact CSP
+     and would be missing entirely on a phone with no network. */
+  for (const ref of findExternalSubresources(out)) {
+    problems.push(`external subresource would break under CSP / offline: ${ref}`);
   }
 
   if (problems.length) {

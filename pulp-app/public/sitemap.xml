@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Deliberately ONE url, and it needs explaining rather than expanding.
+
+  This site is hash-routed: every page is #/product, #/composition and so on.
+  A fragment is never sent to a server, so those are not separate URLs and a
+  crawler cannot be given them here. Listing them would be listing URLs that do
+  not exist. If the site ever moves to real paths (see the trade-off note in
+  src/router.jsx), this file grows to one <url> per route and not before.
+
+  Note also that public/robots.txt currently disallows everything, because PULP
+  cannot be advertised to the public before NPRA product notification and KKLIU
+  approval. While that is true this sitemap is intentionally inert, and it is not
+  referenced from robots.txt — announcing a sitemap while disallowing the whole
+  site is a contradiction that makes both look like mistakes.
+
+  AT LAUNCH: remove the Disallow from robots.txt, remove the noindex meta from
+  index.html, add `Sitemap: https://pulp.my/sitemap.xml` to robots.txt, and add a
+  <lastmod> below.
+
+  No <lastmod> element here on purpose: it is optional, and the placeholder text
+  this file would otherwise carry is not a valid xsd:date, which would make the
+  whole sitemap fail validation. An absent optional element beats an invalid one.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://pulp.my/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

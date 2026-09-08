@@ -7,10 +7,53 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # 22 because that is what the build and the check suite are actually tested on
+  # locally. Building on a Node version nobody has run the suite against is a
+  # risk taken for no benefit.
+  NODE_VERSION = "22"
 
 # SPA: serve index.html for any path so client routing / deep links work.
+# Routing is hash-based, so in practice every real request is for "/" and this
+# rewrite mostly catches mistyped paths — which is why it must be a 200 rewrite
+# and not a redirect: the client router then resolves the unknown hash to its
+# own 404 page rather than the host's default one.
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# ── SECURITY HEADERS ────────────────────────────────────────────────────────
+# Netlify terminates TLS and serves HTTPS with an automatic certificate; HSTS is
+# what stops a first-visit downgrade over http:// from being possible at all.
+# One year, subdomains included. Do NOT add `preload` until pulp.my is settled on
+# HTTPS permanently: preload lists are slow and awkward to leave.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # This site takes an email address and nothing else. Everything a browser
+    # could otherwise grant a page is switched off, so a future script cannot
+    # quietly start asking. Keep in step with the privacy notice, which promises
+    # no tracking and no profiling.
+    Permissions-Policy = "accelerometer=(), ambient-light-sensor=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=()"
+
+# Hashed assets are immutable, so they can be cached hard. index.html must not
+# be, or a visitor keeps an old shell that references deleted chunk filenames.
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
