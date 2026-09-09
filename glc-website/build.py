@@ -205,6 +205,8 @@ PRIOR_NOTE = ("Delivered by our directors before Global Land Consortium was "
               "incorporated in 2015.")
 
 # ── shell ────────────────────────────────────────────────────────────────
+MARK_SVG = ('<svg viewBox="0 0 58 49" aria-hidden="true"><rect x="0" y="38" width="58" height="11" fill="#00A0E0"/><rect x="8" y="0" width="42" height="11" fill="currentColor"/><rect x="8" y="0" width="11" height="38" fill="currentColor"/></svg>')
+
 WA_ICON = ('<svg class="wa-i" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 '
            '2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 '
            '1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68'
@@ -251,8 +253,8 @@ def page(path, title, desc, body, nav_key="", jsonld=None, og_img="og.jpg"):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preload" href="/assets/fonts/archivo-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/archivo-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 {ld}
 </head>
@@ -260,7 +262,8 @@ def page(path, title, desc, body, nav_key="", jsonld=None, og_img="og.jpg"):
 <a class="skip" href="#main">Skip to content</a>
 <header class="hdr">
   <div class="wrap hdr-in">
-    <a class="brand" href="/"><b>Global Land Consortium</b><span>Sdn Bhd · {CRN}</span></a>
+    <a class="brand" href="/">{MARK_SVG}<span class="brand-t">
+      <b>Global Land Consortium</b><span>Sdn Bhd · {CRN}</span></span></a>
     <nav aria-label="Main">{navhtml}</nav>
     <div class="hdr-cta">
       <a class="btn-2" href="tel:{TEL}">{TEL_H}</a>
@@ -989,12 +992,20 @@ def assets():
     if missing:
         sys.exit(f"BUILD FAILED — missing photographs in src/photos: {', '.join(missing)}")
 
-    (SITE / "assets" / "favicon.svg").write_text(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
-        '<rect width="64" height="64" fill="#14212F"/>'
-        '<rect x="8" y="40" width="48" height="5" fill="#00A0E0"/>'
-        '<path d="M14 36V20h5v11h9v5zM30 36V20h5v16zM38 36V20h5l6 9v-9h5v16h-5l-6-9v9z" '
-        'fill="#EDEFF1"/></svg>')
+    brand = ROOT / "src" / "brand"
+    shutil.copy(brand / "glc-badge.svg", SITE / "assets" / "favicon.svg")
+    if (brand / "glc-icon-180.png").exists():
+        shutil.copy(brand / "glc-icon-180.png", SITE / "assets" / "apple-touch-icon.png")
+    # the whole brand suite is downloadable from the site
+    bdst = SITE / "assets" / "brand"
+    bdst.mkdir(parents=True, exist_ok=True)
+    for f in sorted(brand.glob("glc-*")):
+        shutil.copy(f, bdst / f.name)
+
+    fdst = SITE / "assets" / "fonts"
+    fdst.mkdir(parents=True, exist_ok=True)
+    for f in sorted((ROOT / "src" / "fonts").glob("*.woff2")):
+        shutil.copy(f, fdst / f.name)
 
     (SITE / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
@@ -1049,11 +1060,7 @@ def social_images():
     d.text((56, H - 50), "CIDB G6  ·  B / CE / ME", font=font(25), fill=(0, 160, 224))
     im.save(img_dst / "og.jpg", "JPEG", quality=84, optimize=True, progressive=True)
 
-    ic = Image.new("RGB", (180, 180), (20, 33, 47))
-    d = ImageDraw.Draw(ic)
-    d.rectangle([22, 118, 158, 132], fill=(0, 160, 224))
-    d.text((26, 52), "GLC", font=font(52), fill=(237, 239, 241))
-    ic.save(SITE / "assets" / "apple-touch-icon.png", "PNG", optimize=True)
+    # apple-touch-icon comes from the brand suite, not from here.
 
 # ── privacy and accuracy gate ────────────────────────────────────────────
 PRIVATE_NAMES = [
