@@ -1,0 +1,2118 @@
+{
+  "_meta": {
+    "source": "GLC Company Profile PDF (65 pages), extracted 2026-09-09. Field 'title_original' has obvious spelling errors corrected; 'title_original_as_printed' is verbatim. 'location_precise_source' and 'client_as_printed' are INTERNAL and must never be rendered on the public site.",
+    "attribution_rule": "attributed_to='company' only where start >= 2015-02 (incorporation 24 Feb 2015). Earlier starts are 'directors_prior_experience' pending confirmation of the contracting entity.",
+    "publish_defaults": "client_publish=false and value_publish=false on every record until the family decides individually (brief section 11)."
+  },
+  "stats": {
+    "as_of": "2026-09-09",
+    "incorporation": "2015-02-24",
+    "current": {
+      "count": 3,
+      "total": 10285678.66
+    },
+    "completed_table_22_as_printed": {
+      "count": 22,
+      "total": 66650405.0
+    },
+    "completed_table_22_using_p42_value_for_C17": 66649152.0,
+    "completed_including_2_detail_only_pages": {
+      "count": 24,
+      "total": 68673583.0
+    },
+    "completed_table_pre_incorporation_rows": {
+      "ids": [
+        "C1",
+        "C2",
+        "C3",
+        "C8"
+      ],
+      "count": 4,
+      "total": 7364849.0
+    },
+    "completed_table_company_attributable": {
+      "count": 18,
+      "total": 59285556.0
+    },
+    "completed_all_company_attributable": {
+      "count": 20,
+      "total": 61308734.0
+    },
+    "reference_projects_2002_2014": {
+      "count": 20,
+      "total": 33341462.0
+    },
+    "directors_prior_experience_total": {
+      "count": 24,
+      "total": 40706311.0
+    },
+    "everything_in_profile": {
+      "count": 47,
+      "total": 112300723.66
+    },
+    "years_completed_table": [
+      "2012",
+      "2024"
+    ],
+    "years_reference": [
+      "2002",
+      "2014"
+    ],
+    "sector_mix_company_completed": {
+      "retail": 1,
+      "commercial": 3,
+      "industrial": 2,
+      "residential": 10,
+      "institutional": 3,
+      "religious": 1
+    },
+    "scope_mix_company_completed": {
+      "fit-out": 5,
+      "renovation & A&A": 6,
+      "main contract": 11,
+      "demolition & rebuild": 3,
+      "steel structure & roofing": 1,
+      "RC structure": 1,
+      "earthworks": 1
+    },
+    "state_mix_all": {
+      "Selangor": 30,
+      "Johor": 1,
+      "Pahang": 1,
+      "Kuala Lumpur": 11,
+      "Negeri Sembilan": 2,
+      "Perak": 1,
+      "Pulau Pinang": 1
+    },
+    "client_type_all": {
+      "corporate": 16,
+      "individual": 28,
+      "institutional": 1,
+      "association": 2
+    },
+    "records_without_photos": [
+      "P3",
+      "C14",
+      "C20",
+      "C21"
+    ]
+  },
+  "projects": [
+    {
+      "id": "P1",
+      "slug": "petaling-jaya-single-storey-warehouse-structure",
+      "title_en": "Single-storey warehouse, Jalan Kilang, Petaling Jaya (design and construct; structural sub-contract)",
+      "title_original": "DESIGN CONSTRUCT PROPOSED SINGLE STOREY WAREHOUSE AT LOT 95, HM 5613, JALAN KILANG 51/205, 46050 PETALING JAYA, SELANGOR DARUL EHSAN FOR MESSRS RENNES PROPERTIES SDN BHD – SUB CONTRACT STRUCTURE WORKS",
+      "title_original_as_printed": "DESIGN CONSTRUCT PROPOSED SINGLE STOREY WAREHOUSE AT LOT 95, HM 5613, JALAN KILANG 51/205, 46050 PETALING JAYA, SELANGOR DARUL EHSAN FOR MESSRS RENNES PROPERTIES SDN BHD – SUB CONTRACT STRUCTURE WORKS",
+      "sector": "industrial",
+      "scope": [
+        "RC structure",
+        "steel structure & roofing"
+      ],
+      "location": "Section 51, Petaling Jaya, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 95, HM 5613, Jalan Kilang 51/205, 46050 Petaling Jaya",
+      "client": "CK Building Solutions Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "CK BUILDING SOLUTIONS SDN BHD (p.13) / SORENTO SDN BHD (p.20)",
+      "client_publish": false,
+      "end_client_or_developer": "Messrs Rennes Properties Sdn Bhd",
+      "contract_value_myr": 7139227.26,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2025-10",
+      "completion": "2026-08",
+      "status": "current",
+      "is_subcontract": true,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        13,
+        20
+      ],
+      "photo_pages": [
+        20
+      ],
+      "discrepancies": [
+        "Client: table p.13 says CK Building Solutions Sdn Bhd; detail page p.20 says Sorento Sdn Bhd (brief §10 flags this).",
+        "Detail page p.20 is headed 'CURRENT PROJECTS RESINDENTIAL / RESIDENTIAL PROJECT' but the work is an industrial warehouse.",
+        "Scope: 'steel structure & roofing' is an inference from 'single storey warehouse ... structure works' - the profile only says 'SUB CONTRACT STRUCTURE WORKS'."
+      ],
+      "todos": [
+        "TODO(verify): which company is the contracting client - CK Building Solutions Sdn Bhd or Sorento Sdn Bhd?",
+        "TODO(verify): scheduled completion August 2026 has passed (today 2026-09-09). Is the project complete, extended, or ongoing?",
+        "TODO(verify): does 'structure works' include the steel roof structure or RC only?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "P2",
+      "slug": "skudai-three-storey-factory-warehouse-renovation",
+      "title_en": "Three-storey factory warehouse renovation, Skudai, Johor Bahru",
+      "title_original": "PROPOSED 3 STOREY FACTORY WAREHOUSE RENOVATION WORKS AT NO.12, JALAN KEMPAS LAMA 1, SKUDAI, JOHOR BAHRU",
+      "title_original_as_printed": "PROPOSED 3 STOREY FACTORY WAREHOUSE RENOVATION WORKS AT NO.12, JALAN KEMPAS LAMA 1, SKUDAI, JOHOR BAHRU",
+      "sector": "industrial",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Skudai, Johor Bahru, Johor",
+      "state": "Johor",
+      "location_precise_source": "No.12, Jalan Kempas Lama 1, Skudai, Johor Bahru",
+      "client": "Sorento Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "SORENTO SDN BHD (p.13 and p.19)",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1125000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2025-11",
+      "completion": "2026-04",
+      "status": "current",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        13,
+        19
+      ],
+      "photo_pages": [
+        19
+      ],
+      "discrepancies": [
+        "Detail page p.19 is headed 'CURRENT PROJECTS RESINDENTIAL / RESIDENTIAL PROJECT' but the work is a factory warehouse renovation."
+      ],
+      "todos": [
+        "TODO(verify): scheduled completion April 2026 has passed (today 2026-09-09). Completed? If so move to completed with actual completion month.",
+        "TODO(verify): is Sorento Sdn Bhd the building owner or a main contractor (i.e. is this a sub-contract)?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "P3",
+      "slug": "usj-subang-jaya-demolish-rebuild-two-storey-house",
+      "title_en": "Demolish and rebuild a two-storey detached house, USJ, Subang Jaya",
+      "title_original": "CADANGAN MEROBOH DAN MEMBINA SEMULA 1 UNIT RUMAH SESEBUAH 2 TINGKAT SEDIA ADA DI ATAS LOT 28622 (NO.20), JALAN USJ 5/3B, SUBANG JAYA, MUKIM DAMANSARA, DAERAH PETALING, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEROBOH DAN MEMBINA SEMULA 1 UNIT RUMAH SESEBUAH 2 TINGKAT SEDIA ADA DI ATAS LOT 28622 (NO.20), JALAN USJ 5/3B, SUBANG JAYA, MUKIM DAMANSARA, DAERAH PETALING, SELANGOR DARUL EHSAN.",
+      "sector": "residential",
+      "scope": [
+        "demolition & rebuild",
+        "main contract"
+      ],
+      "location": "USJ, Subang Jaya, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 28622 (No.20), Jalan USJ 5/3B, Subang Jaya",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "WILLIAM ONG ENG SAN",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 2021451.4,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2026-05",
+      "completion": "2027-07",
+      "status": "current",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        13
+      ],
+      "photo_pages": [],
+      "discrepancies": [],
+      "todos": [
+        "TODO(verify): no photographs in the profile - site progress photos needed if this project is to be shown.",
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C1",
+      "slug": "kapar-klang-single-storey-warehouse-extension",
+      "title_en": "Single-storey warehouse extension, Kapar, Klang",
+      "title_original": "CADANGAN TAMBAHAN SEBUAH GUDANG 1 DAN SEBUAH GUDANG (BAHAN PEMBINAAN) SATU (1) TINGKAT SERTA SEBUAH PENCAWANG ELEKTRIK SEDIA ADA DI ATAS LOT 5083 (KU), MUKIM KAPAR, DAERAH KLANG, SELANGOR",
+      "title_original_as_printed": "CADANGAN TAMBAHAN SEBUAH GUDANG 1 DAN SEBUAH GUDANG (BAHAN PEMBINAAN) SATU (1) TINGKAT SERTA SEBUAH PENCAWANG LEKTRIK SEDIA ADA DI ATAS LOT 5083 (KU), MUKIM KAPAR, DAERAH KLANG, SELANGOR",
+      "sector": "industrial",
+      "scope": [
+        "main contract",
+        "renovation & A&A"
+      ],
+      "location": "Kapar, Klang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 5083 (KU), Mukim Kapar, Daerah Klang",
+      "client": "PSM Home Centre Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "PSM HOME CENTRE SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1350000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2012-11",
+      "completion": "2013-03",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Started Nov 2012 (or Nov 2011 per p.32), before incorporation on 24 Feb 2015.",
+      "source_pages": [
+        14,
+        32
+      ],
+      "photo_pages": [
+        32
+      ],
+      "discrepancies": [
+        "Dates: table p.14 says NOV 2012 - MARCH 2013; detail page p.32 says NOV 2011 - MAC 2012. One year apart.",
+        "Title: p.32 detail text is longer ('...KEPADA CADANGAN MEMBINA SEBUAH PEJABAT (RUANG PAMERAN) URUSAN 4 TINGKAT...') than the table title on p.14.",
+        "Listed under the company's 'completed projects' but pre-dates incorporation (Feb 2015)."
+      ],
+      "todos": [
+        "TODO(verify): correct start/completion year (2011-12 or 2012-13).",
+        "TODO(verify): which entity held the contract (directors' previous firm?).",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C2",
+      "slug": "kuantan-club-house-rc-structure-subcontract",
+      "title_en": "Club house RC structure sub-contract, Global Heritage Southern Precinct, Kuantan",
+      "title_original": "PROPOSED CONSTRUCTION OF GLOBAL HERITAGE SOUTHERN PRECINCT, CLUB HOUSE, MUKIM OF ULU LEPAR, DAERAH KUANTAN, PAHANG DARUL MAKMUR - SUB-CONTRACT FOR R.C STRUCTURE WORKS",
+      "title_original_as_printed": "PROPOSED CONSTRUCTION OF GLOBAL HERITAGE SOUTHERN PRECINT, CLUB HOUSE, MUKIM OF ULU LEPAR, DAERAH KUANTAN, PAHANG DARUL MAKMUR - SUB-CONTRACT FOR R.C STRUCTION WORKS.",
+      "sector": "commercial",
+      "scope": [
+        "RC structure"
+      ],
+      "location": "Gambang, Kuantan, Pahang",
+      "state": "Pahang",
+      "location_precise_source": "Mukim Ulu Lepar, Daerah Kuantan (detail page: 'Gambang Resort, Pahang')",
+      "client": "Sentoria Bina Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "SENTORIA BINA SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 949500.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2014-07",
+      "completion": "2015-03",
+      "status": "completed",
+      "is_subcontract": true,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Started Jul 2014, before incorporation; completed Mar 2015, one month after.",
+      "source_pages": [
+        14,
+        35
+      ],
+      "photo_pages": [
+        35
+      ],
+      "discrepancies": [
+        "Started before incorporation (Jul 2014) but completed after (Mar 2015)."
+      ],
+      "todos": [
+        "TODO(verify): was this contract held by Global Land Consortium Sdn Bhd (novated?) or by a predecessor entity?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C3",
+      "slug": "rawang-six-storey-building-alteration",
+      "title_en": "Addition and alteration to a six-storey building, Jalan Welman, Rawang",
+      "title_original": "CADANGAN TAMBAHAN DAN PERUBAHAN BANGUNAN 6 TINGKAT YANG SEDIADA DI ATAS LOT 33, 34 DAN 35, JALAN WELMAN, MUKIM RAWANG, DAERAH GOMBAK, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN PERUBAHAN BANGUNAN 6 TINGKAT YANG SEDIADA DI ATAS LOT 33,34 DAN 35, JALAN WELMAN, MUKIM RAWANG, DAERAH GOMBAK, SELANGOR DARUL EHSAN",
+      "sector": "commercial",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Rawang, Gombak, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 33, 34 & 35, Jalan Welman, Mukim Rawang",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "YEE KIM YAP / MR. YEE KIM YAP",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 753849.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2014-09",
+      "completion": "2015-02",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Started Sep 2014, before incorporation; completed Feb 2015 (same month as incorporation).",
+      "source_pages": [
+        14,
+        33
+      ],
+      "photo_pages": [
+        33
+      ],
+      "discrepancies": [
+        "Started before incorporation."
+      ],
+      "todos": [
+        "TODO(verify): contracting entity.",
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C4",
+      "slug": "shinju-pearls-retail-outlets-fit-out",
+      "title_en": "Retail outlet renovation and fit-out programme across six shopping malls",
+      "title_original": "RENOVATION AND FIT OUT WORKS FOR SHINJU PEARLS OUTLET AT MID VALLEY MEGAMALL, KL; PAVILION KUALA LUMPUR; BANGSAR SHOPPING CENTRE; BANGSAR VILLAGE; GATEWAY @ KLIA2; PARADIGM MALL",
+      "title_original_as_printed": "RENOVATION AND FIT OUT WORKS FOR SHINJU PEARLS OUTLET AT - MIDVALLEY MEGAMAL, KL - PAVILION KUALA LUMPUR - BANGSAR SHOPPING CENTER - BANGSAR VILLEGE - GATEWAY @ KLIA2 - PARADIGM MALL",
+      "sector": "retail",
+      "scope": [
+        "fit-out",
+        "renovation & A&A"
+      ],
+      "location": "Kuala Lumpur, Selangor and Sepang (six malls)",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "Mid Valley Megamall; Pavilion KL; Bangsar Shopping Centre; Bangsar Village; Gateway@KLIA2; Paradigm Mall",
+      "client": "Shinju Pearls (M) Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "SHINJU PEARLS SDN BHD (p.14) / SHINJU PEARL (M) SDN BHD (p.44)",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 3750000.0,
+      "value_publish": false,
+      "value_note": "p.44 shows '~ RM 3,750,000.00' (approximate, programme total across outlets)",
+      "start": "2015",
+      "completion": "2018",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        14,
+        44
+      ],
+      "photo_pages": [
+        44
+      ],
+      "discrepancies": [
+        "Client name: 'SHINJU PEARLS SDN BHD' (p.14) vs 'SHINJU PEARL (M) SDN BHD' (p.44). Exact legal name needed.",
+        "Value is marked approximate ('~') on p.44; no per-outlet breakdown or per-outlet dates.",
+        "Dates given as years only (2015-2018)."
+      ],
+      "todos": [
+        "TODO(verify): exact legal name of the client.",
+        "TODO(verify): start/end month, and whether the 6 outlets were separate contracts.",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C5",
+      "slug": "mantin-supermarket-construction",
+      "title_en": "One-and-a-half-storey supermarket, Pekan Mantin, Negeri Sembilan",
+      "title_original": "CADANGAN MEMBINA DAN MENYIAPKAN 1 1/2 TINGKAT PASARAYA DI ATAS LOT 172 & 173, PEKAN MANTIN, NEGERI SEMBILAN",
+      "title_original_as_printed": "CADANGAN MEMBINA DAN MENYIAPKAN 1 1/2 TINGKAT PASARAYA DI ATAS LOT 172 & 173, PEKAN MANTIN, NEGERI SEMBILAN",
+      "sector": "commercial",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Mantin, Negeri Sembilan",
+      "state": "Negeri Sembilan",
+      "location_precise_source": "Lot 172 & 173, Pekan Mantin",
+      "client": "Yip Fook Weng Construction Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "YIP FOOK WENG CONST. SB",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 8120000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2015-10",
+      "completion": "2016-11",
+      "status": "completed",
+      "is_subcontract": null,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        14,
+        36
+      ],
+      "photo_pages": [
+        36
+      ],
+      "discrepancies": [
+        "Detail page p.36 is headed 'COMMERCIAL WARE HOUSE' but the project is a supermarket (pasaraya)."
+      ],
+      "todos": [
+        "TODO(verify): Yip Fook Weng Construction Sdn Bhd is itself a construction company - was GLC the main contractor or a sub-contractor here?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C6",
+      "slug": "kuang-single-storey-warehouse",
+      "title_en": "Single-storey warehouse, Pekan Kuang, Rawang",
+      "title_original": "CADANGAN MEMBINA DAN MENYIAPKAN 1 TINGKAT GUDANG DI ATAS LOT 623, PEKAN KUANG, MUKIM RAWANG, SELANGOR",
+      "title_original_as_printed": "CADANGAN MEMBINA DAN MENYIAPKAN 1 TINGKAT GUDANG DI ATAS LOT 623, PEKAN KUANG, MUKIM RAWANG, SELANGOR",
+      "sector": "industrial",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Kuang, Rawang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 623, Pekan Kuang, Mukim Rawang",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR ONG TAI SOON (p.14) / MR ANG TAI SOON (p.37)",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1650000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2016-10",
+      "completion": "2017-02",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        14,
+        37
+      ],
+      "photo_pages": [
+        37
+      ],
+      "discrepancies": [
+        "Client name spelled ONG (p.14) vs ANG (p.37).",
+        "Detail page p.37 is headed 'CURRENT PROJECTS RESIDENTIAL / SCHOOL PROJECT' but the project is a completed warehouse."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C7",
+      "slug": "puncak-templer-three-and-half-storey-bungalow",
+      "title_en": "Three-and-a-half-storey bungalow, Puncak Templer Heights, Selayang",
+      "title_original": "CADANGAN MEMBINA 1 UNIT BANGLO 3 1/2 TINGKAT DI ATAS PT 4530, JALAN 3/14A PUNCAK TEMPLER HEIGHTS, MUKIM BATU, DAERAH GOMBAK, MAJLIS PERBANDARAN SELAYANG, SELANGOR D. E.",
+      "title_original_as_printed": "CADANGAN MEMBINA 1 UNIT BANGLO 3 1/2 TINGKAT DI ATAS PT 4530, JALAN 3/14A PUNCAK TEMPLER HEIGHTS, MUKIM BATU, DEARAH GOMBAK, MAJLIS PERBANDARAN SELAYANG, SELANGOR D. E.",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Puncak Templer, Selayang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "PT 4530, Jalan 3/14A Puncak Templer Heights",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "LIM TENG WAI",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 4871000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2016-01",
+      "completion": "2017-01",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        14,
+        23
+      ],
+      "photo_pages": [
+        23
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C8",
+      "slug": "sungai-buloh-warehouse-extension",
+      "title_en": "Single-storey warehouse extension, Kampung Desa Aman, Sungai Buloh",
+      "title_original": "CADANGAN TAMBAHAN SEBUAH GUDANG SATU TINGKAT DI ATAS LOT 9603, JALAN D/A, KAMPUNG DESA AMAN, 47000 SUNGAI BULOH, SELANGOR",
+      "title_original_as_printed": "CADANGAN TAMBAHAN SEBUAH GUDANG SATU TINGKAT DI ATAS LOT 9603, JALAN D/A, KAMPUNG DESA AMAN, 47000 SUNGAI BULOH, SELANGOR",
+      "sector": "industrial",
+      "scope": [
+        "main contract",
+        "renovation & A&A"
+      ],
+      "location": "Sungai Buloh, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 9603, Jalan D/A, Kampung Desa Aman, 47000 Sungai Buloh",
+      "client": "Excel Multimedia Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "EXCEL MULTIMEDIA SB",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 4311500.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2015-01",
+      "completion": "2015-09",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Started Jan 2015, one month before incorporation (24 Feb 2015); completed Sep 2015.",
+      "source_pages": [
+        14,
+        34
+      ],
+      "photo_pages": [
+        34
+      ],
+      "discrepancies": [
+        "Started before incorporation; detail page p.34 headed 'COMMERCIAL BUILDING' but the work is a warehouse."
+      ],
+      "todos": [
+        "TODO(verify): contracting entity - if awarded to GLC after incorporation, attribute to company.",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C9",
+      "slug": "shah-alam-two-terrace-houses-renovation",
+      "title_en": "Renovation of two double-storey terrace houses including cabinetry, Shah Alam",
+      "title_original": "CADANGAN MENGUBAHSUAI DUA BUAH RUMAH TERES DUA TINGKAT SEDIADA TERMASUK CABINET DI ATAS LOT NO.12 & 14, JALAN TEBING TIGA 8/8C, SHAH ALAM, SELANGOR DARUL EHSAN, MALAYSIA",
+      "title_original_as_printed": "CADANGAN MENGUBAHSUAI DUA BUAH RUMAH TERES DUA TINGKAT SEDIADA TERMASUK CABINET DI ATAS LOT NO.12 & 14 , JALAN TEBING TIGA 8/8C , SHAH ALAM , SELANGOR DARUL EHSAN , MALAYSIA For MR & MRS AZAHAR SHAH BIN ABDUL LATIFF",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A",
+        "fit-out"
+      ],
+      "location": "Seksyen 8, Shah Alam, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot No.12 & 14, Jalan Tebing Tiga 8/8C, Shah Alam",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "EN AZAHAR SHAH BIN ABDUL LATIF (p.15) / EN. AZAHAR SHAH BIN ABDUL LATIFF (p.22)",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 865350.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2016-03",
+      "completion": "2017-03",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        15,
+        22
+      ],
+      "photo_pages": [
+        22
+      ],
+      "discrepancies": [
+        "Detail page p.22 headed 'RESIDENTIAL BUNGALOW' but the project is a two-terrace-house renovation.",
+        "Table 'YEAR' column says 2017 although start is Mar 2016.",
+        "Client surname spelled LATIF vs LATIFF."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C10",
+      "slug": "sjkc-kuang-school-block",
+      "title_en": "Four-storey school block with 18 classrooms and canteen, SJK(C) Kuang, Rawang",
+      "title_original": "CADANGAN MENAIK TARAF DAN TAMBAHAN: SATU BLOK BANGUNAN SEKOLAH 4 TINGKAT YANG MENGANDUNGI 18 BILIK DARJAH, KANTIN DAN LAIN-LAIN KEMUDAHAN SERTA KEPERLUAN KEPADA BANGUNAN SEKOLAH JENIS KEBANGSAAN (C) KUANG YANG SEDIA ADA DI ATAS LOT-LOT 5, 23 & 1010, MUKIM RAWANG, DAERAH GOMBAK, MAJLIS PERBANDARAN SELAYANG",
+      "title_original_as_printed": "CADANGAN MENAIK TARAF DAN TAMBAHAN : SATU BLOK BANGUNAN SEKOLAH 4 TINGKAT YANG MENGANDUNGI 18 BILIK DARJAH, KANTIN DAN LAIN-LAIN KEMUDAHAN SERTA KEPERLUAN KEPADA BANGUNAN SEKOLAH JENIS KEBANGSAAN ( C ) KUANG YANG SEDIAADA DI ATAS LOT-LOT 5, 23 & 1010, MUKIM RAWANG, DAERAH GOMBAK, MAJLIS PERBANDARAN SELAYANG",
+      "sector": "institutional",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Kuang, Rawang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 5, 23 & 1010, Mukim Rawang",
+      "client": "SJK(C) Kuang",
+      "client_type": "institutional",
+      "client_as_printed": "STJKC KUANG (p.15) / SRJKC KUANG (p.38)",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 2870000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2017-02",
+      "completion": "2018-02",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        15,
+        38
+      ],
+      "photo_pages": [
+        38
+      ],
+      "discrepancies": [
+        "Client abbreviation: 'STJKC' (p.15) vs 'SRJKC' (p.38); standard form is SJK(C) Kuang.",
+        "Detail text on p.38 ('membina dan menyiapkan sebuah bangunan 4 tingkat dan sebuah kanteen 1 tingkat') differs from the table title on p.15 (upgrade and addition of a 4-storey block with 18 classrooms, canteen etc.).",
+        "Detail page p.38 headed 'CURRENT PROJECTS RESIDENTIAL / SCHOOL PROJECT' - project is completed and institutional."
+      ],
+      "todos": [
+        "TODO(verify): the school (or its board of governors / PIBG) as the contracting party - name to publish and permission.",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C11",
+      "slug": "bangsar-telawi-house-extension-fit-out",
+      "title_en": "Extension, alteration and fit-out of a house, Jalan Telawi, Bangsar",
+      "title_original": "PROPOSED EXTENSION & ALTERATION AND FIT OUT FOR HOUSE NO 8, JALAN TELAWI 9, BANGSAR BARU, 59100 KUALA LUMPUR",
+      "title_original_as_printed": "PROPOSED EXTENSION & ALTERATION AND FIT OUT FOR HOUSE NO 8, JALAN TELAWI 9, BANGSAR BARU, 59100 KUALA LUMPUR FOR MR. TAN HUI CHOON & MS. APREL LIM",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A",
+        "fit-out"
+      ],
+      "location": "Bangsar Baru, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "House No 8, Jalan Telawi 9, Bangsar Baru, 59100 KL",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. TAN HUI CHOON (& MS. APREL LIM)",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1790000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2017-10",
+      "completion": "2018-09",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        15,
+        25
+      ],
+      "photo_pages": [
+        25
+      ],
+      "discrepancies": [
+        "Detail page p.25 headed 'CURRENT PROJECTS RESINDENTIAL' - project completed 2018."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C12",
+      "slug": "straits-international-school-rawang-interior-works",
+      "title_en": "Interior builder works, Straits International School campus, Rawang",
+      "title_original": "PROPOSED RENOVATION FOR STRAITS INTERNATIONAL SCHOOL CAMPUS IN RAWANG – INTERIOR BUILDER WORKS",
+      "title_original_as_printed": "PROPOSED RENOVATION FOR STRAIT INTERNATIONAL SCHOOL CAMPUS IN RAWANG – INTERIOR BUILDER WORKS",
+      "sector": "institutional",
+      "scope": [
+        "fit-out",
+        "renovation & A&A"
+      ],
+      "location": "Taman Sari, Rawang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Straits International School campus, Taman Sari, Rawang",
+      "client": "KK Straits International Education Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "KK STRAITS INTERNATIONAL EDUCATION S/B",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 4800000.0,
+      "value_publish": false,
+      "value_note": "p.39 prints 'RM 4,800,00.00' (typo); table p.15 has 4,800,000.00",
+      "start": "2018-06",
+      "completion": "2018-09",
+      "status": "completed",
+      "is_subcontract": null,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        15,
+        39
+      ],
+      "photo_pages": [
+        39
+      ],
+      "discrepancies": [
+        "'STRAIT' vs 'STRAITS' International School.",
+        "Value typo on p.39 ('4,800,00.00').",
+        "Detail page p.39 headed 'CURRENT PROJECTS COMMERCIAL' - project completed 2018.",
+        "A RM4.8m interior works package completed in ~4 months (Jun-Sep 2018) - plausible for a school opening deadline but worth confirming."
+      ],
+      "todos": [
+        "TODO(verify): was GLC the main contractor for the interior package or a sub-contractor to a main contractor?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C13",
+      "slug": "tanjung-malim-business-centre",
+      "title_en": "Three-storey business centre, Jalan Loke Yew, Tanjung Malim",
+      "title_original": "CADANGAN MEMBINA SEBUAH PUSAT PERNIAGAAN 3 TINGKAT KEPADA 1 TINGKAT DI ATAS LOT 489, JALAN LOKE YEW, BANDAR TANJONG MALIM, PERAK",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH PUSAT PERNIAGAAN 3 TINGKAT KEPADA 1 TINGKAT DI ATAS LOT 489, JALAN LOKE YEW, BANDAR TG MALIM",
+      "sector": "commercial",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Tanjung Malim, Perak",
+      "state": "Perak",
+      "location_precise_source": "Lot 489, Jalan Loke Yew, Bandar Tanjong Malim",
+      "client": "Yip Fook Weng Construction Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "YIP FOOK WENG CONSTRUSTION S/B",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 8850000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2018-10",
+      "completion": "2020-02",
+      "status": "completed",
+      "is_subcontract": null,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        15,
+        41
+      ],
+      "photo_pages": [
+        41
+      ],
+      "discrepancies": [
+        "Completion: table p.15 says FEB 2020; detail page p.41 says 'FEB 2020 – EXTENDED TO MARCH 2021'.",
+        "Detail page p.41 headed 'CURRENT PROJECTS COMMERCIAL' - project completed.",
+        "'KEPADA 1 TINGKAT' in the title is unclear (3-storey business centre 'to 1 storey'?) - likely an A&A / conversion; scope needs confirming."
+      ],
+      "todos": [
+        "TODO(verify): actual completion month (Feb 2020 or Mar 2021).",
+        "TODO(verify): main contract or sub-contract to Yip Fook Weng Construction?",
+        "TODO(verify): what 'kepada 1 tingkat' means here.",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C14",
+      "slug": "penang-tanjung-pinang-school-hoarding-signboard",
+      "title_en": "Hoarding and project signboard works for a proposed private school, Tanjung Pinang, Penang",
+      "title_original": "PERMOHONAN PELAN PERMIT HOARDING DAN PAPAN TANDA PROJEK BAGI CADANGAN MENDIRIKAN 1 BLOK BANGUNAN SEKOLAH RENDAH, MENENGAH, & ASRAMA SWASTA 8 TINGKAT DI JALAN SERI TANJUNG PINANG, DI ATAS LOT, BANDAR TANJUNG PINANG, SEKSYEN 1, DAERAH TIMUR LAUT, PULAU PINANG, UNTUK TETUAN PC STRAITS INTERNATIONAL EDUCATION S/B",
+      "title_original_as_printed": "PERMOHONAN PELAN PERMIT HOARDING DAN PAPAN TANDA PROJEK BAGI CADANGAN MENDIRIKAN 1 BLOK BANGUNAN SEKOLAH RENDAH, MENENGAH, & ASRAMA SWASTA 8 TINGKAT DI JALAN SERI TANJUNG PINANG, DI ATAS LOT, BANDAR TANJUNG PINANG, SEKSEN 1, DAERAH TIMUR LAUT, PULAU PINANG, UNTUK TETUAN PC STRAITS INTERNATIONAL EDUCATION S/B",
+      "sector": "institutional",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Tanjung Pinang, Penang",
+      "state": "Pulau Pinang",
+      "location_precise_source": "Jalan Seri Tanjung Pinang, Bandar Tanjung Pinang, Seksyen 1, Daerah Timur Laut",
+      "client": "PC Straits International Education Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "PC STRAITS INTERNATIONAL EDUCATION SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 238206.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2019-03",
+      "completion": "2019-05",
+      "status": "completed",
+      "is_subcontract": null,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        15
+      ],
+      "photo_pages": [],
+      "discrepancies": [
+        "This is a hoarding and signboard permit/works package only, not the construction of the school - it must not be described as a school building project."
+      ],
+      "todos": [
+        "TODO(verify): scope - hoarding and signboard erection only?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C15",
+      "slug": "kota-damansara-two-storey-house-with-pool",
+      "title_en": "Two-storey detached house with swimming pool, Kota Damansara",
+      "title_original": "CADANGAN MEMBINA SEBUAH RUMAH SESEBUAH 2 TINGKAT BERSERTA SEBUAH KOLAM RENANG DI ATAS LOT 51197, JALAN RIMBA RIANG 9/12, SEKSYEN 9, KOTA DAMANSARA, PEKAN BARU SUNGAI BULOH, DAERAH PETALING, SELANGOR",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH RUMAH SESEBUAH 2 TINGKAT BERSERTA SEBUAH KOLAM RENANG DI ATAS LOT 51197, JALAN RIMBA RIANG 9/12, SEKSYEN 9, KOTA DAMANSARA, PEKAN BARU SUNGAI BULOH, DAERAH PETALING, SELANGOR",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Kota Damansara, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 51197, Jalan Rimba Riang 9/12, Seksyen 9, Kota Damansara",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "DATUK WAN AZHAR",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 3930000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2019-07",
+      "completion": "2021-01",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        15,
+        26
+      ],
+      "photo_pages": [
+        26
+      ],
+      "discrepancies": [
+        "Detail page p.26 headed 'CURRENT PROJECTS RESINDENTIAL' - completed 2021."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C16",
+      "slug": "klang-bukit-kuda-demolish-rebuild-three-storey-bungalow",
+      "title_en": "Demolish a two-storey house and rebuild a three-storey bungalow, Taman Bukit Kuda, Klang",
+      "title_original": "CADANGAN MEROBOH RUMAH SESEBUAH 2 TINGKAT SEDIADA DAN MEMBINA SEMULA SEBUAH RUMAH BANGLO 3 TINGKAT DI ATAS LOT PT 4242 (LOT ASAL LOT 15321 & LOT 15322), JALAN SOLOK PASI, OFF JALAN BATU TIGA LAMA, TAMAN BUKIT KUDA, KLANG, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEROBOH RUMAH SESEBUIAH 2 TINGKAT SEDIADA DAN MEMBINA SEMULA SEBUAH RUMAH BANGLO 3 TINGKAT DI ATAS LOT PT 4242 ( LOT ASAL-LOT 15321 & LOT 15322), JALAN SOLOK PASI, OFF JALAN BATU TIGA LAMA, TAMAN BUKIT KUDA, KLANG, SELANGOR DARUL EHSAN",
+      "sector": "residential",
+      "scope": [
+        "demolition & rebuild",
+        "main contract"
+      ],
+      "location": "Bukit Kuda, Klang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot PT 4242, Jalan Solok Pasi, off Jalan Batu Tiga Lama, Taman Bukit Kuda",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. LOO CHAI LAI",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 3107000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2019-12",
+      "completion": "2021-02",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        16,
+        27
+      ],
+      "photo_pages": [
+        27
+      ],
+      "discrepancies": [
+        "'SESEBUIAH' typo for 'SESEBUAH'."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C17",
+      "slug": "bukit-raja-klang-factory-steel-structure-roofing",
+      "title_en": "Factory with single-storey warehouse and four-storey office, Bandar Bukit Raja, Klang (steel structure and roofing works)",
+      "title_original": "CADANGAN MEMBINA SEBUAH KILANG YANG MENGANDUNGI SATU UNIT GUDANG 1 TINGKAT BERSERTA PEJABAT 4 TINGKAT DI ATAS LOT 98086 (PT 69179), JALAN ASTANA 2, BANDAR BUKIT RAJA, MUKIM KAPAR, KLANG, SELANGOR UNTUK TETUAN FANTASTIC HECTARES SDN BHD",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH KILANG YANG MENGANDUNGI SATU UNIT GUDANG 1 TINGKAT BERSERTA PEJABAT 4 TINGKAT DI ATAS LOT98086 (PT 69179), JALAN ASTANA 2, BANDAR BUKIT RAJA, MUKIM KAPAR, KLANG, SELANGOR UTK TETUAN FANTASTIC HECTARES SDN BHD",
+      "sector": "industrial",
+      "scope": [
+        "steel structure & roofing"
+      ],
+      "location": "Bandar Bukit Raja, Klang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 98086 (PT 69179), Jalan Astana 2, Bandar Bukit Raja",
+      "client": "Fantastic Hectares Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "FANSTATIC HECTARES SB (p.16) / FANSTATIC HECTARES SDN BHD (p.42) / FANTASTIC HECTARES SDN BHD (in title)",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 3521253.0,
+      "value_publish": false,
+      "value_note": "table p.16: 3,521,253.00; detail p.42: RM 3,520,000.00 (STEEL STRUCTURE & ROOFING WORKS ONLY)",
+      "start": "2019-10",
+      "completion": "2020-01",
+      "status": "completed",
+      "is_subcontract": true,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        16,
+        42
+      ],
+      "photo_pages": [
+        42
+      ],
+      "discrepancies": [
+        "Contract value: 3,521,253.00 (p.16) vs 3,520,000.00 (p.42).",
+        "Scope: p.42 says steel structure & roofing works only - the table title reads like the whole factory. Website must describe the delivered scope only.",
+        "'FANSTATIC' vs 'FANTASTIC' Hectares.",
+        "Detail page p.42 headed 'CURRENT PROJECTS COMMERCIAL' - completed Jan 2020."
+      ],
+      "todos": [
+        "TODO(verify): exact value (3,521,253.00 or 3,520,000.00).",
+        "TODO(verify): who was the main contractor (if this was a sub-contract)?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C18",
+      "slug": "rawang-three-storey-semi-detached-alteration",
+      "title_en": "Addition and alteration to a three-storey semi-detached house, Taman Residensi Rawang",
+      "title_original": "CADANGAN TAMBAHAN DAN PINDAAN KE ATAS SATU RUMAH BERKEMBAR 3 TINGKAT YANG SEDIA ADA DI ATAS PT 33976, NO.1, JALAN RGP 3, TAMAN RESIDENSI RAWANG, MUKIM RAWANG, SELANGOR D.E",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN PINDAAN KE ATAS SATU RUMAH BERKEMBAR 3 TINGKAT YANG SEDIA ADA DI ATAS PT 33976, NO.1, JALAN RGP 3, TAMAN RESIDENSI RAWANG, MUKIM RAWANG, SELANGOR D.E",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Rawang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "PT 33976, No.1, Jalan RGP 3, Taman Residensi Rawang",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "PARVIN SINGH",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 895000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2021-12",
+      "completion": "2022-06",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        16,
+        28
+      ],
+      "photo_pages": [
+        28
+      ],
+      "discrepancies": [
+        "Detail page p.28 headed 'CURRENT PROJECTS RESINDENTIAL' - completed 2022."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C19",
+      "slug": "taman-duta-bungalow-retaining-wall",
+      "title_en": "Retaining wall for a two-storey bungalow with sub-basement and guard house, Taman Duta, Kuala Lumpur",
+      "title_original": "CADANGAN MEMBINA RETAINING WALL UNTUK SEBUAH RUMAH BANGLO 2 TINGKAT BERSERTA 1 TINGKAT SUB-BESMEN DAN 1 UNIT PONDOK PENGAWAL KESELAMATAN DI ATAS LOT 37705, LORONG DUTA 1, TAMAN DUTA, MUKIM KUALA LUMPUR",
+      "title_original_as_printed": "CADANGAN MEMBINA RETAINING WALL UNTUK SEBUAH RUMAH BANGLO 2 TINGKAT BERSERTA 1 TINGKAT SUB-BESMEN DAN 1 UNIT PONDOK PENGAWAL KESELAMATAN DI ATAS LOT 37705, LORONG DUTA 1, TAMAN DUTA, MUKIM KUALA LUMPUR UNTUK TETUAN EN. NURJESMI BIN MOHD NASHIR DAN PUAN NOR AZRINI BT AZLAN",
+      "sector": "residential",
+      "scope": [
+        "RC structure",
+        "earthworks"
+      ],
+      "location": "Taman Duta, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "Lot 37705, Lorong Duta 1, Taman Duta",
+      "client": "Taleng Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "TALENG SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": "Private homeowners (named in the planning title - must not be published)",
+      "contract_value_myr": 1232000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2021-11",
+      "completion": "2022-06",
+      "status": "completed",
+      "is_subcontract": true,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        16,
+        29
+      ],
+      "photo_pages": [
+        29
+      ],
+      "discrepancies": [
+        "Scope: table p.16 title is 'CADANGAN MEMBINA RETAINING WALL UNTUK SEBUAH RUMAH BANGLO...' (retaining wall only); detail page p.29 drops 'RETAINING WALL UNTUK' and reads as if the whole bungalow was built.",
+        "Detail page p.29 headed 'CURRENT PROJECTS RESINDENTIAL' - completed 2022.",
+        "The planning title names the two homeowners - strip from any published title_original."
+      ],
+      "todos": [
+        "TODO(verify): was the scope the retaining wall only, or the bungalow as well?",
+        "TODO(verify): Taleng Sdn Bhd - main contractor or owner's company?",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C20",
+      "slug": "petaling-jaya-section-6-demolish-rebuild-two-storey-house",
+      "title_en": "Demolish a single-storey house and rebuild a two-storey detached house, Section 6, Petaling Jaya",
+      "title_original": "CADANGAN MEROBOH RUMAH SESEBUAH 1 TINGKAT SEDIADA DAN MEMBINA SEMULA RUMAH SESEBUAH 2 TINGKAT DI ATAS LOT 264, MUKIM BANDAR PETALING JAYA, DAERAH PETALING, NO.2, JALAN 6/16, SEKSYEN 6, PETALING JAYA, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEROBOH RUMAH SESEBUAH 1 TINGKAT SEDIADA DAN MEMBINA SEMULA RUMAH SESEBUAH 2 TINGKAT DI ATAS LOT 264, MUKIM BANDAR PETALING JAYA, DAERAH PETALING, NO.2, JALAN 6/16, SEKSYEN 6, PETALING JAYA, SELANGOR DARUL EHSAN",
+      "sector": "residential",
+      "scope": [
+        "demolition & rebuild",
+        "main contract"
+      ],
+      "location": "Section 6, Petaling Jaya, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 264, No.2, Jalan 6/16, Seksyen 6, Petaling Jaya",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "NG CHI SEONG",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 3263000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2023-04",
+      "completion": "2024-06",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        16
+      ],
+      "photo_pages": [],
+      "discrepancies": [],
+      "todos": [
+        "TODO(verify): no detail page or photos in the profile for this project.",
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C21",
+      "slug": "balakong-single-storey-office-building",
+      "title_en": "Single-storey office building, Persiaran Nittsu, Balakong",
+      "title_original": "CADANGAN MEMBINA SEBUAH PEJABAT URUSAN 1 TINGKAT DI ATAS LOT 34534, PERSIARAN NITTSU, OFF JALAN BALAKONG, MUKIM PEKAN CHERAS, DAERAH HULU LANGAT, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH PEJABAT URUSAN 1 TINGKAT DI ATAS LOT 34534, PERSIARAN NITTSU, OFF JALAN BALAKONG, MUKIM PEKAN CHERAS, DAREAH HULU LANGAT, SELANGOR DARUL EHSAN",
+      "sector": "commercial",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Balakong, Hulu Langat, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 34534, Persiaran Nittsu, off Jalan Balakong",
+      "client": "NX Transport Services (M) Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "NX TRANSPORT SERVICES (M) SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 3630000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2023-07",
+      "completion": "2024-03",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        16
+      ],
+      "photo_pages": [],
+      "discrepancies": [],
+      "todos": [
+        "TODO(verify): no detail page or photos in the profile for this project - a recent corporate job worth photographing.",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C22",
+      "slug": "kota-damansara-three-storey-bungalow",
+      "title_en": "Three-storey bungalow, Kota Damansara",
+      "title_original": "CADANGAN MEMBINA RUMAH BANGLO 3 TINGKAT DI ATAS LOT 51123 (NO 14), JALAN RIMBA RIANG 9/11, SEKSYEN 9, KOTA DAMANSARA, MUKIM PEKAN BARU SUNGAI BULOH, DAERAH PETALING, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEMBINA RUMAH BANGLO 3 TINGKAT DI ATAS LOT 51123(NO 14), JALAN RIMBA RIANG 9/11, SEKSYEN 9, KOTA DAMANSARA, MUKIM PEKAN BARU SUNGAI BULOH, DAERAH PETALING, SELANGOR DARUL EHSAN",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Kota Damansara, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 51123 (No 14), Jalan Rimba Riang 9/11, Seksyen 9, Kota Damansara",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MOHD REDZUAN BIN ISMAIL",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1902747.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2022-12",
+      "completion": "2024-02",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        17,
+        30
+      ],
+      "photo_pages": [
+        30
+      ],
+      "discrepancies": [
+        "Table p.17 notes '- EXTENSION' against the completion date (time extension granted).",
+        "Detail page p.30 headed 'CURRENT PROJECTS RESINDENTIAL' - completed Feb 2024."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C23",
+      "slug": "bangsar-lucky-garden-terrace-rebuild",
+      "title_en": "Demolish and rebuild a two-storey terrace house including cabinetry, Lucky Garden, Bangsar",
+      "title_original": "CADANGAN MEROBOH DAN MEMBINA SEBUAH RUMAH TERES 2 TINGKAT TERMASUK KERJA-KERJA KABINET DI NO.66, JALAN CENDERAI 1, LUCKY GARDEN, BANGSAR, 59100 KUALA LUMPUR",
+      "title_original_as_printed": "CADANGAN MEROBOH DAN MEMBINA SEBUAH RUMAH TERES 2 TINGKAT TERMASUK KERJA KERJA KABINET DI No.66, JALAN CENDERAI 1, LUCKY GARDEN, BANGSAR, 59100 KUALA LUMPUR",
+      "sector": "residential",
+      "scope": [
+        "demolition & rebuild",
+        "fit-out"
+      ],
+      "location": "Lucky Garden, Bangsar, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "No.66, Jalan Cenderai 1, Lucky Garden, Bangsar",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "Mr NARENDRA KUMAR AL G RENGASAMY",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 628760.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2016-06",
+      "completion": "2017-04",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        24
+      ],
+      "photo_pages": [
+        24
+      ],
+      "discrepancies": [
+        "NOT listed in the 'List of Completed Projects' table (p.14-17); appears only as a detail page (p.24). Brief's count of 22 excludes it.",
+        "Detail page p.24 headed 'RESIDENTIAL BUNGALOW' but the project is a terrace house."
+      ],
+      "todos": [
+        "TODO(verify): confirm this project and its omission from the table.",
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "C24",
+      "slug": "rawang-chinese-temple-addition-alteration",
+      "title_en": "Addition and alteration to an existing Chinese temple, Bandar Baru Rawang",
+      "title_original": "CADANGAN TAMBAHAN DAN PINDAAN KEPADA SEBUAH TOKONG CINA SEDIA ADA DI ATAS LOT 7 & PETAK A, SEKSYEN 14, BANDAR BARU RAWANG, SELANGOR D. E",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN PINDAAN KEPADA SEBUAH TOKONG CINA SEDIA ADA DI ATAS LOT 7 & PETAK A, SEKSYEN 14, BANDAR BARU RAWANG, SELANGOR D. E",
+      "sector": "religious",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Bandar Baru Rawang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 7 & Petak A, Seksyen 14, Bandar Baru Rawang",
+      "client": "Persatuan Penganut Dewa Kam Ying Teng",
+      "client_type": "association",
+      "client_as_printed": "PERSATUAN PENDANUT DEWA KAM YING TENG",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1394418.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2015-04",
+      "completion": "2016-06",
+      "status": "completed",
+      "is_subcontract": false,
+      "attributed_to": "company",
+      "attribution_note": null,
+      "source_pages": [
+        40
+      ],
+      "photo_pages": [
+        40
+      ],
+      "discrepancies": [
+        "NOT listed in the 'List of Completed Projects' table (p.14-17); appears only as a detail page (p.40). Brief's count of 22 excludes it.",
+        "'PENDANUT' is presumably 'PENGANUT' (devotees' association)."
+      ],
+      "todos": [
+        "TODO(verify): confirm this project, the association's exact name, and its omission from the table.",
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R1",
+      "slug": "ulu-yam-serendah-59-link-houses",
+      "title_en": "59 double-storey link houses, Ulu Yam and Serendah (sub-contract)",
+      "title_original": "MEMBINA DAN MENYIAPKAN 59 UNIT RUMAH LINK 2 TINGKAT DI SEKSYEN 2A, ANTARA GAPI, MUKIM ULU YAM DAN SERENDAH, DAERAH HULU SELANGOR, SELANGOR DARUL EHSAN. (SUB-CONTRACT)",
+      "title_original_as_printed": "MEMBINA DAN MENYIAPKAN 59 UNIT RUMAH LINK 2 TINGKAT DI SEKSYEN 2A, ANTARA GAPI, MUKIM ULU YAM DAN SERENDAH, DAERAH HULU SELANGOR, SELANGOR DARUL EHSAN. (SUB-CONTRACT)",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Ulu Yam and Serendah, Hulu Selangor, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Seksyen 2A, Antara Gapi",
+      "client": "Yeow Yoon Construction Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "YEOW YOON CONSTRUCTION SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 6236200.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2002-05",
+      "completion": "2003-03",
+      "status": "reference",
+      "is_subcontract": true,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        46
+      ],
+      "photo_pages": [
+        46
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R2",
+      "slug": "country-heights-two-storey-bungalow",
+      "title_en": "Two-storey bungalow, Bandar Country Heights, Hulu Langat",
+      "title_original": "CADANGAN MEMBINA SEBUAH BANGLO DUA TINGKAT DI NO.P.T. 45438, BANDAR COUNTRY HEIGHT, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN, MALAYSIA.",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH BANGLO DUA TINGKAT DI NO.P.T. 45438, BANDAR COUNTRY HEIGHT, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN, MALAYSIA.",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Country Heights, Kajang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "PT 45438, Bandar Country Heights",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "DR. LEONG KWOK CHI",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 868000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2004-04",
+      "completion": "2004-12",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        47
+      ],
+      "photo_pages": [
+        47
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R3",
+      "slug": "college-heights-pajam-five-bungalows",
+      "title_en": "Five bungalows, College Heights, Pajam, Negeri Sembilan",
+      "title_original": "CONSTRUCTION AND COMPLETION OF 5 UNITS BUNGALOW ON LOT 1323, 1324, 1325, 1326 & 1327 AT COLLEGE HEIGHTS PAJAM, NEGERI SEMBILAN.",
+      "title_original_as_printed": "CONSTRUCTION AND COMPLETION OF 5 UNITS BUNGALOW ON LOT 1323, 1324, 1325, 1326 & 1327 AT COLLEGE HEIGHTS PAJAM, NEGERI SEMBILAN.",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "College Heights, Pajam, Negeri Sembilan",
+      "state": "Negeri Sembilan",
+      "location_precise_source": "Lot 1323-1327, College Heights Pajam",
+      "client": "Country Heights Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "COUNTRY HEIGHTS SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 4344020.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2005-06",
+      "completion": "2006-12",
+      "status": "reference",
+      "is_subcontract": null,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        48
+      ],
+      "photo_pages": [
+        48
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R4",
+      "slug": "bandar-mahkota-cheras-two-storey-bungalow-2006",
+      "title_en": "Two-storey bungalow, Bandar Mahkota Cheras",
+      "title_original": "CADANGAN MEMBINA SEBUAH BANGLO DUA TINGKAT DI ATAS LOT NO. BL-0359, JALAN SHAH BANDAR 24/6, SEKSYEN 6, BANDAR MAHKOTA CHERAS, MUKIM CHERAS, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH BANGLO DUA TINGKAT DI ATAS LOT NO. BL-0359, JALAN SHAH BANDAR 24/6, SEKSYEN 6, BANDAR MAHKOTA CHERAS, MUKIM CHERAS, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Bandar Mahkota Cheras, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot BL-0359, Jalan Shah Bandar 24/6, Seksyen 6",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. FOONG CHIN HING",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 685000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2006-03",
+      "completion": "2007-01",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        49
+      ],
+      "photo_pages": [
+        49
+      ],
+      "discrepancies": [
+        "'SELANOR' typo for 'SELANGOR' in source."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R5",
+      "slug": "taman-midah-cheras-terrace-extension",
+      "title_en": "Addition and renovation of a two-storey terrace house, Taman Midah, Cheras",
+      "title_original": "CADANGAN TAMBAHAN DAN UBAHSUAI SEBUAH TERES 2 TINGKAT YANG SEDIA ADA DI ATAS NO. 18 (LOT 18939), JALAN MIDAH 4, TAMAN MIDAH, CHERAS, MUKIM KUALA LUMPUR, WILAYAH PERSEKUTUAN KUALA LUMPUR.",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN UBAHSUAI SEBUAH TERES 2 TINGKAT YANG SEDIA ADA DI ATAS NO. 18 (LOT 18939), JALAN MIDAH 4, TAMAN MIDAH, CHERAS, MUKIM KUALA LUMPUR, WILAYAH PERSEKUTUAN KUALA LUMPUR.",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Taman Midah, Cheras, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "No.18 (Lot 18939), Jalan Midah 4",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. LING KEAN WEE",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 445000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2006-10",
+      "completion": "2007-06",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        50
+      ],
+      "photo_pages": [
+        50
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R6",
+      "slug": "bandar-mahkota-two-and-half-storey-bungalow",
+      "title_en": "Two-and-a-half-storey bungalow on a double lot, Bandar Mahkota Cheras",
+      "title_original": "CADANGAN MEMBINA SEBUAH BANGLO 2 1/2 TINGKAT DI ATAS LOT PT. 34864 (PLOT BL-0408) DAN PT. 34865 (PLOT BL-0409), JALAN SHAH BANDAR 38/6, SEKSYEN 6, BANDAR MAHKOTA, SELANGOR DARUL EHSAN, MALAYSIA.",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH BANGLO 2 1/2 TINGKAT DI ATAS LOT PT. 34864 (PLOT BL-0408) DAN PT. 34865 (PLOT BL-0409), JALAN SHAH BANDAR 38/6, SEKSYEN 6, BANDAR MAHKOTA, SELANGOR DARUL EHSAN, MALAYSIA.",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Bandar Mahkota Cheras, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "PT 34864 & 34865, Jalan Shah Bandar 38/6, Seksyen 6",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. YAP KAH KEONG",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 2923000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2006-09",
+      "completion": "2007-12",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        51
+      ],
+      "photo_pages": [
+        51
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R7",
+      "slug": "setapak-two-storey-bungalow-2007",
+      "title_en": "Two-storey bungalow, Jalan Ayer Leleh, Setapak",
+      "title_original": "CADANGAN MEMBINA SEBUAH BANGLO 2 TINGKAT DI ATAS LOT 17686, JALAN AYER LELEH, DAERAH KUALA LUMPUR, MUKIM SETAPAK, WILAYAH PERSEKUTUAN KUALA LUMPUR",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH BANGLO 2 TINGKAT DI ATAS LOT 17686, JALAN AYER LELEH, DAERAH KUALA LUMPUR, MUKIM SETAPAK, WILAYAH PERSEKUTUAN KUALA LUMPUR",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Setapak, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "Lot 17686, Jalan Ayer Leleh",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. CHAIM HAN TWEE",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1297000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2007-04",
+      "completion": "2008-04",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        52
+      ],
+      "photo_pages": [
+        52
+      ],
+      "discrepancies": [
+        "Client spelled 'CHAIM' here and 'CHIAM' on p.65 - likely the same person."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R8",
+      "slug": "bandar-mahkota-cheras-two-and-half-storey-bungalow-2007",
+      "title_en": "Two-and-a-half-storey bungalow, Bandar Mahkota Cheras",
+      "title_original": "CADANGAN MEMBINA SEBUAH BANGLO 2 1/2 TINGKAT DI ATAS SEBAHAGIAN LOT 1504 DAN 1505, NO: 2A, JALAN SHAH BANDAR 2/6, SEKSYEN 6 CHERAS, BANDAR MAHKOTA CHERAS, BATU 9 CHERAS, MUKIM CHERAS, DAERAH ULU LANGAT, SELANGOR",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH BANGLO 2 1/2 TINGKAT DI ATAS SEBAHAGIAN LOT 1504 DAN 1505, NO: 2A, JALAN SHAH BANDAR 2/6, SEKSYEN 6 CHERAS, BANDAR MAHKOTA CHERAS, BATU 9 CHERAS, MUKIM CHERAS, DAERAH ULU LANGAT, SELANGOR",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Bandar Mahkota Cheras, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Part of Lot 1504 & 1505, No 2A, Jalan Shah Bandar 2/6",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. DANIEL ARULANANTHAN NATHAN",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 961000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2007-09",
+      "completion": "2009-01",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        53
+      ],
+      "photo_pages": [
+        53
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R9",
+      "slug": "kemensah-two-storey-bungalow",
+      "title_en": "Two-storey bungalow, Kemensah, Ulu Klang",
+      "title_original": "CADANGAN MEMBINA SEBUAH BANGLO 2 TINGKAT DI ATAS SEBAHAGIAN LOT 14218, JALAN 18, KEMENSAH, ULU KLANG, KUALA LUMPUR",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH BANGLO 2 TINGKAT DI ATAS SEBAHAGIAN LOT 14218, JALAN 18, KEMENSAH, ULU KLANG, KUALA LUMPUR",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Kemensah, Ulu Klang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Part of Lot 14218, Jalan 18, Kemensah",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. CHAN FUNG LIN & MS. LOO KAH BOON",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1356000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2008-06",
+      "completion": "2009-03",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        54
+      ],
+      "photo_pages": [
+        54
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R10",
+      "slug": "titiwangsa-three-storey-bungalow",
+      "title_en": "Three-storey bungalow, Titiwangsa, Kuala Lumpur",
+      "title_original": "CADANGAN MENDIRIKAN SEBUAH BANGLO 3 TINGKAT DI ATAS LOT 54, JALAN TITIWANGSA (JALAN SEAVOY) TITIWANGSA, DALAM BANDARAYA KUALA LUMPUR",
+      "title_original_as_printed": "CADANGAN MENDIRIKAN SEBUAH BANGLO 3 TINGKAT DI ATAS LOT 54, JALAN TITIWANGSA (JALAN SEAVOY) TITIWANGSA, DALAM BANDARAYA KUALA LUMPUR",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Titiwangsa, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "Lot 54, Jalan Titiwangsa (Jalan Seavoy)",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. YONG CHO JOONG",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 2830000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2008-03",
+      "completion": "2010-04",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        55
+      ],
+      "photo_pages": [
+        55
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R11",
+      "slug": "semenyih-two-storey-house-alteration",
+      "title_en": "Addition and alteration to a two-storey detached house, Taman Bukit Semenyih",
+      "title_original": "CADANGAN TAMBAHAN DAN PERUBAHAN PADA RUMAH SESEBUAH 2 TINGKAT YANG SEDIA ADA DI ATAS LOT 27110, NO.9, JALAN BUKIT SEMENYIH FASA 3/2, SURIA GRANDE, TAMAN BUKIT SEMENYIH, MUKIM SEMENYIH, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN, MALAYSIA.",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN PERUBAHAN PADA RUMAH SESEBUAH 2 TINGKAT YANG SEDIA ADA DI ATAS LOT 27110, NO.9, JALAN BUKIT SEMENYIH FASA 3/2, SURIA GRANDE, TAMAN BUKIT SEMENYIH, MUKIM SEMENYIH, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN, MALAYSIA.",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Semenyih, Hulu Langat, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 27110, No.9, Jalan Bukit Semenyih Fasa 3/2, Suria Grande",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. CHEN SOON MIN",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 605000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2011-01",
+      "completion": "2011-07",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        56
+      ],
+      "photo_pages": [
+        56
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R12",
+      "slug": "kuala-ampang-single-storey-bungalow-rebuild",
+      "title_en": "Demolish and rebuild a single-storey bungalow, Kuala Ampang, Ulu Kelang",
+      "title_original": "CADANGAN MEROBOH, MEMBINA DAN MENYIAPKAN SEBUAH BANGUNAN SATU TINGKAT BUNGALOW DI ATAS LOT PT 10908, NO.4, LORONG AWAN 4, KUALA AMPANG, MUKIM ULU KELANG, DAERAH GOMBAK, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEROBOH, MEMBINA DAN MENYIAPKAN SEBUAH BANGUNAN SATU TINGKAT BUNGALOW DI ATAS LOT PT 10908, NO.4, LORONG AWAN 4, KUALA AMPANG, MUKIM ULU KELANG, DAERAH GOMBAK, SELANGOR DARUL EHSAN",
+      "sector": "residential",
+      "scope": [
+        "demolition & rebuild"
+      ],
+      "location": "Kuala Ampang, Ulu Kelang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot PT 10908, No.4, Lorong Awan 4",
+      "client": "Manjamas Timur Eng Sdn Bhd",
+      "client_type": "corporate",
+      "client_as_printed": "MANJAMAS TIMUR ENG SDN BHD",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 365000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2011-08",
+      "completion": "2011-12",
+      "status": "reference",
+      "is_subcontract": null,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        57
+      ],
+      "photo_pages": [
+        57
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R13",
+      "slug": "rawang-three-storey-residence-taoist-association",
+      "title_en": "Three-storey residence for a Taoist association, Kampung Dato' Lee Kim Sai, Rawang",
+      "title_original": "CADANGAN MEMBINA SEBUAH RUMAH KEDIAMAN 3 TINGKAT DI ATAS LOT 39 (PT 5029), JALAN LKS 10, KAMPUNG DATO' LEE KIM SAI, MUKIM RAWANG, DAERAH GOMBAK, MAJLIS PERBANDARAN SELAYANG, MALAYSIA.",
+      "title_original_as_printed": "CADANGAN MEMBINA SEBUAH RUMAH KEDIAMAN 3 TINGKAT DI ATAS LOT 39 (PT 5029), JALAN LKS 10, KAMPUNG DATO' LEE KIM SAI, MUKIM RAWANG, DAERAH GOMBAK, MAJLIS PERBANDARAN SELAYANG, MALAYSIA.",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Rawang, Gombak, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 39 (PT 5029), Jalan LKS 10, Kampung Dato' Lee Kim Sai",
+      "client": "Persatuan Ajaran Taosim Rawang",
+      "client_type": "association",
+      "client_as_printed": "PERSATUAN AJARAN TAOSIM RAWANG",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 695000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2011-11",
+      "completion": "2012-05",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        58
+      ],
+      "photo_pages": [
+        58
+      ],
+      "discrepancies": [
+        "'TAOSIM' presumably 'TAOISM'; confirm the association's registered name."
+      ],
+      "todos": [
+        "Permission: corporate/institutional client - name only after written permission (see content/templates/client-permission-request.md).",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R14",
+      "slug": "kajang-impian-gemilang-bungalow",
+      "title_en": "Bungalow, Jalan Impian Gemilang, Kajang",
+      "title_original": "PROPOSED CONSTRUCTION OF BUNGALOW AT 15, JALAN IMPIAN GEMILANG, ON LOT 27667 KAJANG SELANGOR MALAYSIA MUKIM SEMENYIH, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "PROPOSED CONSTRUCTION OF BUNGALOW AT 15, JALAN IMPIAN GEMILANG, ON LOT 27667 KAJANG SELANGOR MALAYSIA MUKIM SEMENYIH, DAERAH ULU LANGAT, SELANGOR DARUL EHSAN",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Kajang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "15, Jalan Impian Gemilang, Lot 27667",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR. LEE KEOK KHOON",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 2801319.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2010-10",
+      "completion": "2012-03",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        59
+      ],
+      "photo_pages": [
+        59
+      ],
+      "discrepancies": [
+        "'BUNGLAOW' typo in source."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R15",
+      "slug": "jalan-pahang-bungalow-alteration-2012",
+      "title_en": "Addition and alteration to a two-storey bungalow, off Jalan Pahang, Kuala Lumpur",
+      "title_original": "CADANGAN TAMBAHAN DAN PERUBAHAN PADA SEBUAH RUMAH BANGLO 2 TINGKAT YANG SEDIADA DI ATAS LOT 16664 JALAN AYER MOLEK OFF JALAN PAHANG, KUALA LUMPUR",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN PERUBAHAN PADA SEBUAH RUMAH BANGLO 2 TINGKAT YANG SEDIADA DI ATAS LOT 16664 JALAN AYER MOLEK OFF JALAN PAHANG, KUALA LUMPUR",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Jalan Pahang, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "Lot 16664, Jalan Ayer Molek",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "YONG CHO JOONG",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 882500.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2012-12",
+      "completion": "2013-08",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        60
+      ],
+      "photo_pages": [
+        60
+      ],
+      "discrepancies": [
+        "Same client name as p.55 (repeat client)."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R16",
+      "slug": "rawang-kampung-melayu-two-storey-bungalow",
+      "title_en": "Two-storey bungalow, Kampung Melayu Batu 16, Rawang",
+      "title_original": "CADANGAN MEMBINA SATU UNIT RUMAH BANGLO 2 TINGKAT DI ATAS LOT 5745, NO. 217, JALAN AMAN, KAMPUNG MELAYU BATU 16, MUKIM RAWANG, SELANGOR DARUL EHSAN",
+      "title_original_as_printed": "CADANGAN MEMBINA SATU UNIT RUMAH BANGLO 2 TINGKAT DI ATAS LOT 5745, NO. 217, JALAN AMAN, KAMPUNG MELAYU BATU 16, MUKIM RAWANG, SELANGOR DARUL EHSAN",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Rawang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot 5745, No.217, Jalan Aman, Kampung Melayu Batu 16",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "NORSIHA BINTI TAJUDDIN",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 645000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2012-09",
+      "completion": "2013-07",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        61
+      ],
+      "photo_pages": [
+        61
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R17",
+      "slug": "jalan-pahang-bungalow-alteration-2013",
+      "title_en": "Addition and alteration to a two-storey bungalow, Jalan Ayer Molek 1, off Jalan Pahang",
+      "title_original": "CADANGAN TAMBAHAN DAN PERUBAHAN KEPADA SEBUAH RUMAH BANGLO 2 TINGKAT YANG SEDIADA DI ATAS NO.4, JALAN AYER MOLEK 1, OFF JALAN PAHANG, KUALA LUMPUR",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN PERUBAHAN KEPADA SEBUAH RUMAH BANGLO 2 TINGKAT YANG SEDIADA DI ATAS NO.4, JALAN AYER MOLEK 1, OFF JALAN PAHANG, KUALA LUMPUR",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Jalan Pahang, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "No.4, Jalan Ayer Molek 1",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MS THONG LAY YING",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 689600.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2013-05",
+      "completion": "2013-11",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        62
+      ],
+      "photo_pages": [
+        62
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R18",
+      "slug": "rawang-kampung-kenanga-three-storey-bungalow-basement",
+      "title_en": "Three-storey bungalow with basement, Kampung Kenanga Tambahan, Rawang",
+      "title_original": "CADANGAN MEMBINA SATU UNIT RUMAH BANGLO 3 TINGKAT SERTA TINGKAT BAWAH TANAH DI ATAS LOT P.T.35, OFF JALAN CEMPAKA, KAMPUNG KENANGA TAMBAHAN, MUKIM RAWANG, DAERAH GOMBAK, MAJLIS PERBANDARAN SELAYANG",
+      "title_original_as_printed": "CADANGAN MEMBINA SATU UNIT RUMAH BANGLO 3 TINGKAT SERTA TINGKAT BAWAH TANAH DI ATAS LOT P.T.35, OFF JALAN CEMPAKA, KAMPUNG KENANGA TAMBAHAN, MUKIM RAWANG, DAERAH GOMBAK, MAJLIS PERBANDARAN SELAYANG",
+      "sector": "residential",
+      "scope": [
+        "main contract"
+      ],
+      "location": "Rawang, Selangor",
+      "state": "Selangor",
+      "location_precise_source": "Lot PT 35, off Jalan Cempaka, Kampung Kenanga Tambahan",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MS TAN BEE LAY",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 2865000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2013-02",
+      "completion": "2014-01",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        63
+      ],
+      "photo_pages": [
+        63
+      ],
+      "discrepancies": [],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R19",
+      "slug": "taman-yarl-bungalow",
+      "title_en": "Bungalow project, Taman Yarl, Kuala Lumpur (scope unverified)",
+      "title_original": null,
+      "title_original_as_printed": null,
+      "sector": "residential",
+      "scope": [],
+      "location": "Taman Yarl, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": null,
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR CHIN YUEN CHYAN",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 1147823.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2013-08",
+      "completion": "2014-06",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        64
+      ],
+      "photo_pages": [
+        64
+      ],
+      "discrepancies": [
+        "Detail text on p.64 is copy-pasted from the Kajang bungalow on p.59 (15, Jalan Impian Gemilang, Lot 27667) - it does not match the Taman Yarl location or the client. Real scope unknown."
+      ],
+      "todos": [
+        "TODO(verify): actual scope and planning title for the Taman Yarl project.",
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    },
+    {
+      "id": "R20",
+      "slug": "setapak-taman-bunga-raya-terrace-extension",
+      "title_en": "Extension of a single-storey terrace house to two storeys, Taman Bunga Raya, Setapak",
+      "title_original": "CADANGAN TAMBAHAN DAN PERUBAHAN PADA SEBUAH RUMAH TERES SATU TINGKAT YANG SEDIA ADA KEPADA 2 TINGKAT DI ATAS LOT 16, JALAN MALINJA 3, TAMAN BUNGA RAYA, 53000 KUALA LUMPUR.",
+      "title_original_as_printed": "CADANGAN TAMBAHAN DAN PERUBAHAN PADA SEBUAH RUMAH TERES SATU TINGKAT YANG SEDIA ADA KEPADA 2 TINGKAT DI ATAS LOT 16, JALAN MALINJA 3, TAMAN BUNGA RAYA, 53000 KUALA LUMPUR.",
+      "sector": "residential",
+      "scope": [
+        "renovation & A&A"
+      ],
+      "location": "Taman Bunga Raya, Setapak, Kuala Lumpur",
+      "state": "Kuala Lumpur",
+      "location_precise_source": "Lot 16, Jalan Malinja 3",
+      "client": "Private client",
+      "client_type": "individual",
+      "client_as_printed": "MR CHIAM HAN TWEE",
+      "client_publish": false,
+      "end_client_or_developer": null,
+      "contract_value_myr": 700000.0,
+      "value_publish": false,
+      "value_note": null,
+      "start": "2013-09",
+      "completion": "2014-08",
+      "status": "reference",
+      "is_subcontract": false,
+      "attributed_to": "directors_prior_experience",
+      "attribution_note": "Listed under 'Other reference projects'; pre-dates incorporation (24 Feb 2015).",
+      "source_pages": [
+        65
+      ],
+      "photo_pages": [
+        65
+      ],
+      "discrepancies": [
+        "Client spelled 'CHIAM' here and 'CHAIM' on p.52 - likely the same (repeat) client."
+      ],
+      "todos": [
+        "Privacy: private individual - do not name; location generalised to neighbourhood; precise lot/house number must not be published.",
+        "Values: contract value hidden by default (value_publish=false) until the family decides per project."
+      ],
+      "summary": "TODO(verify): 2-3 sentence summary to be written or approved by the family."
+    }
+  ]
+}
