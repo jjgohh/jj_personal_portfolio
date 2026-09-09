@@ -1,0 +1,43 @@
+# Netlify configuration for the Global Land Consortium website.
+#
+# The site is pre-built and committed, so there is no build step: Netlify
+# serves glc-website/site/ as static files. That means a deploy cannot fail
+# for a toolchain reason, and the site can also be dragged into Netlify by
+# hand. To change content, edit glc-website/content/projects.extracted.json
+# and run `python3 build.py` inside glc-website/, then commit site/.
+
+[build]
+  publish = "glc-website/site"
+  command = ""
+
+[build.processing]
+  skip_processing = false
+[build.processing.html]
+  pretty_urls = true
+
+# Photographs and CSS are content-addressed by the build, so cache them hard.
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# HTML must revalidate so a content change is visible immediately.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    # Only Google Fonts is loaded from outside the site.
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'"

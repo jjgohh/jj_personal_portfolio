@@ -2,7 +2,10 @@
 
 Marketing website for a Malaysian building contractor. Read this file before touching anything. The brief is `docs/brief.md`; the phase deliverables are in `research/`.
 
-**Current phase: Phase 0 complete, awaiting client review. No production code yet.**
+**Current state: the site is built and deployable.** `site/` holds 79 finished pages;
+Netlify serves it with no build step. Rebuild with `python3 build.py` after editing
+`content/projects.extracted.json` or `src/site.css`. Deployment steps and the five
+pre-launch decisions are in `DEPLOY.md`.
 
 ---
 
@@ -78,9 +81,25 @@ Two cautions. There is **no PPK certificate** in the profile, only the SPKK (que
 
 ## 6. Design
 
-Full plan in `research/design-plan.md`. In short: one hairline datum rule as the only structural device; boldness spent solely on the size of the plain-English sentence at the top of each page; no accent colour in the interface at all, because the photographs supply every hue this company owns; Archivo variable plus IBM Plex Mono in one narrow role; everything left-aligned to a single edge; no entrance animations anywhere.
+Live tokens are in `src/site.css`; the original reasoning is in `research/design-plan.md`.
+The palette changed when the client asked for company colours, and the source matters:
+**there is no logo anywhere in the company deck** — the image on page 2 is a director's
+signature. The only brand artefact is the deck cover, a five-colour photo collage whose
+dominant block samples at **#00A0E0**. That cyan is the company's de facto colour, so it
+is the brand colour. Bright cyan is illegible as text on light, so it lives on the navy
+bands; a deepened version of the same hue carries links and buttons on light. The navy
+is sampled from the blue steel cladding on the company's own warehouses.
 
-Tokens (contrast ratios verified, not estimated): `--ground #ECEDE9`, `--raise #F6F7F4`, `--ink #16181A`, `--ink-2 #4C5152`, `--rule #C4C7BF`, `--rule-strong #82877F`, `--slab #1E2422`, `--mark #173F4D`, `--mark-on-dark #8CC7D6`. `--rule` is decorative only at 1.46:1; anything a reader must perceive uses `--rule-strong` at 3.12:1.
+Tokens, contrast computed not estimated. Light: `--ground #EDEFF1`, `--raise #F7F8F9`,
+`--ink #12171C` (15.64:1), `--ink-2 #4B535B` (6.78:1), `--rule #C7CCD1` (1.40:1,
+decorative only), `--rule-strong #7F878E` (3.16:1), `--navy #14212F`, `--brand #00A0E0`
+(5.51:1 on navy), `--brand-ink #0A6485` (5.74:1 on ground, white on it 6.62:1). Dark is a
+designed night set, not an inversion, and every pair clears AA.
+
+Typography and structure are unchanged: Archivo with IBM Plex Mono in the data role, a
+1.25 scale on a 17px body, everything left-aligned, hairline section rules, no entrance
+animations. The cover's other four hues (green, yellow, purple, red) are deliberately
+unused: five saturated hues would fight the photographs, which are the evidence.
 
 Do not use: warm cream with a serif display and a terracotta accent; near-black with an acid accent; identical rounded cards with soft grey shadows; tracked-out all-caps eyebrows above every heading; 01/02/03 markers on things that are not sequences; meta strings joined with middle dots; an arrow on every link; one word of a headline in a different colour; fade-and-slide-up on every section; hover lift on every card; stock hero video; stock service icons. These are the brief's anti-brief and they are defaults, not choices.
 
@@ -88,11 +107,30 @@ Do not use: warm cream with a serif display and a terracotta accent; near-black 
 
 Quality floor, built without announcing it: responsive to mobile, visible keyboard focus, `prefers-reduced-motion` respected, WCAG AA contrast verified with a tool, no layout shift.
 
-## 7. Stack
+## 7. Stack — a deliberate departure from the brief
 
-Astro (7.3.2 current) with content collections and a Zod schema; Tailwind (4.3.3, tokens in CSS via `@theme`, all defaults disabled); Astro's image pipeline with AVIF and WebP and no upscaling; a hosted form endpoint with spam protection; static output deployed from Git, Netlify recommended because its Forms product removes the need for a function. TypeScript strict, ESLint, Prettier, `pnpm dev` / `build` / `preview`. No CMS, no server runtime, no component framework, no islands. Target zero JavaScript except the projects filter, which must work without it.
+The brief proposes Astro. **The site is built by `build.py`, a single Python generator,
+and Astro is not used.** The reason is launch reliability: Astro 7 and TypeScript 7 are
+both newer than my training data and `docs.astro.build` is blocked from this environment,
+so an Astro config would have been written blind and could fail the Netlify build. A
+pre-generated static site cannot fail for a toolchain reason, needs no build command, and
+can be dragged into Netlify by hand. `research/stack-decision.md` still records the Astro
+plan; migrating later is a contained job because the content already lives in one JSON
+file and the CSS is framework-free.
 
-**Astro 7 and TypeScript 7 are newer than my training data and the docs site is blocked from this environment.** Read the API from the installed package, not from memory.
+What the generator produces: 79 pages with clean URLs, one per project plus facet pages
+for every scope, sector, state and status (good for "steel structure subcontractor
+Selangor" style queries), unique title and meta description per page, canonical URLs,
+Open Graph tags, a generated OG card, `schema.org` GeneralContractor and Project markup,
+`sitemap.xml` and `robots.txt`. Zero JavaScript except ~15 lines for the mobile menu;
+filtering is real links, not script. Netlify Forms handles the enquiry form with a
+honeypot, posting to `/thanks/`.
+
+**The privacy rules are enforced in code.** `build.py` cuts the address tail from every
+residential planning title, never emits a private client's name or a contract value, and
+ends with a gate that fails the build if a private name, an IC number, a residential
+address, a contract value, a CIDB tender ceiling or an ISO/QLASSIC/SHASSIC claim reaches
+any page. Do not weaken that gate.
 
 ## 8. How to work
 
@@ -109,6 +147,12 @@ Report Lighthouse scores from an actual run. Never claim them.
 ## 9. Files
 
 ```
+build.py                                   generates site/ from the JSON — run this
+netlify.toml                               publish glc-website/site, no build command
+DEPLOY.md                                  how to launch, for a non-developer
+src/site.css                               the live stylesheet and tokens
+src/photos/                                the 36 approved, cropped photographs
+site/                                      generated output — do not hand-edit
 docs/brief.md                              the build brief, verbatim
 CLAUDE.md                                  this file
 research/positioning-and-sitemap.md        positioning, audiences, sitemap
