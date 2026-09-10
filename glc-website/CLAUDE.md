@@ -9,7 +9,14 @@ Netlify serves it with no build step.
 python3 build.py              # regenerate site/ after editing the JSON or the CSS
 python3 tools/make_logo.py    # regenerate the wordmark suite
 python3 tools/make_preview.py # bundle site/ into ../glc-site-preview.html for review
+python3 tools/make_zip.py     # ../glc-website-netlify.zip, for Netlify drag-and-drop
 ```
+
+**Mobile is verified, not assumed.** The layout is checked by script across seven
+widths from 320px to 768px and every page type: no horizontal scroll, no
+block-level tap target under 40px, no text under 12px. Re-run that check after any
+CSS change. The header brand must keep `flex:1 1 auto; min-width:0` — setting it to
+`flex:none` is what forced a 374px scroll width on a 320px screen.
 
 `make_preview.py` produces a single self-contained file that mirrors the real site exactly
 — same generator, no second copy to maintain. Deployment steps and the five pre-launch

@@ -673,8 +673,8 @@ def capabilities():
     <p class="mono dim">CIDB {SCOPE_CIDB[s]} &nbsp;·&nbsp; {STATS['scope_n'][s]} of our projects</p></div>
   <p class="prose" style="font-size:var(--s1); line-height:1.5">{SCOPE_WHAT[s]}</p>
   {cards(ex[:3])}
-  <p style="margin-top:var(--sp6)"><a href="/projects/scope/{slugify(s)}/">All
-    {SCOPE_SHORT[s].lower()} projects &rarr;</a></p>
+  <p style="margin-top:var(--sp6)"><a class="morelink"
+    href="/projects/scope/{slugify(s)}/">All {SCOPE_SHORT[s].lower()} projects &rarr;</a></p>
 </section>""")
     body = f"""
 <section class="wrap" style="padding-block:var(--sp7) var(--sp7)">
@@ -949,7 +949,8 @@ def facets():
             f"{SCOPE_LABEL[s]}",
             f"{len(items)} projects where this was our scope. "
             f"We are registered CIDB {SCOPE_CIDB[s]} for it. "
-            f'<a href="/capabilities/#{slugify(s)}">What this work involves &rarr;</a>',
+            f'<a class="morelink" href="/capabilities/#{slugify(s)}">What this work '
+            f'involves &rarr;</a>',
             f"projects/scope/{slugify(s)}", active={"scope": slugify(s)})
     for k, v in SECTOR.items():
         items = [p for p in P if p["sector"] == k]
