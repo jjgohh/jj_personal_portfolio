@@ -31,8 +31,8 @@ DOMAIN = os.environ.get("GLC_DOMAIN", "https://globallandconsortium.com").rstrip
 # The site is reachable by anyone with the link either way; this only keeps it out
 # of search results. Flip it with:  GLC_PUBLISH=1 python3 build.py
 INDEXABLE = os.environ.get("GLC_PUBLISH") == "1"
-TEL, TEL_H = "+60379729516", "+603-7972 9516"
-WA = "60379729516"
+TEL, TEL_H = "+60379729516", "+603-7972 9516"      # landline, for voice calls
+WA, WA_H = "60122939516", "+60 12-293 9516"        # mobile, for WhatsApp only
 EMAIL = "infoglcsb99@gmail.com"
 CO, CRN = "Global Land Consortium Sdn Bhd", "1089230-X"
 
@@ -315,7 +315,7 @@ def page(path, title, desc, body, nav_key="", jsonld=None, og_img="og.jpg"):
         <h2>Contact</h2>
         <ul>
           <li><a href="tel:{TEL}">{TEL_H}</a></li>
-          <li><a href="{wa}" rel="noopener">WhatsApp</a></li>
+          <li><a href="{wa}" rel="noopener">WhatsApp {WA_H}</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
           <li class="dim">Fax +603-7972 9615</li>
         </ul>
@@ -430,6 +430,12 @@ ORG_LD = {
     "@context": "https://schema.org", "@type": "GeneralContractor",
     "name": CO, "legalName": CO, "url": DOMAIN + "/",
     "telephone": TEL, "email": EMAIL, "faxNumber": "+60379729615",
+    "contactPoint": [
+        {"@type": "ContactPoint", "telephone": TEL, "contactType": "customer service",
+         "areaServed": "MY", "availableLanguage": ["en", "ms"]},
+        {"@type": "ContactPoint", "telephone": "+" + WA, "contactType": "sales",
+         "name": "WhatsApp", "areaServed": "MY", "availableLanguage": ["en", "ms"]},
+    ],
     "foundingDate": "2015-02-24", "identifier": CRN,
     "image": f"{DOMAIN}/assets/img/og.jpg",
     "address": {"@type": "PostalAddress", "addressLocality": "Kuala Lumpur",
@@ -544,7 +550,7 @@ def home():
     page("", f"{CO} — G6 building contractor, Klang Valley",
          f"A CIDB G6 building contractor in the Klang Valley. {STATS['comp_n']} buildings "
          f"completed since 2015 and {STATS['cur_n']} on site now: warehouses, factories, "
-         f"houses, shop and school interiors. WhatsApp {TEL_H}.",
+         f"houses, shop and school interiors. WhatsApp {WA_H}.",
          body, "", ORG_LD)
 
 def projects_index(items, title, desc, h1, intro, path, nav_key="/projects/",
@@ -828,7 +834,7 @@ def contact():
     If you have drawings, send them with the message and we will price off the drawings.</p>
   <div class="btns" style="margin-top:var(--sp6)">
     <a class="btn" href="{wa_link('Hello, I would like to discuss a building project.')}"
-       rel="noopener">{WA_ICON}WhatsApp {TEL_H}</a>
+       rel="noopener">{WA_ICON}WhatsApp {WA_H}</a>
     <a class="btn-2" href="tel:{TEL}">Call {TEL_H}</a>
   </div>
 </section>
@@ -837,7 +843,7 @@ def contact():
     <div>
       <p class="lbl" style="margin-bottom:var(--sp5)">Reach us</p>
       <dl class="facts">
-        <div><dt>WhatsApp</dt><dd><a href="{wa_link('Hello, I would like to discuss a building project.')}" rel="noopener">{TEL_H}</a></dd></div>
+        <div><dt>WhatsApp</dt><dd><a href="{wa_link('Hello, I would like to discuss a building project.')}" rel="noopener">{WA_H}</a></dd></div>
         <div><dt>Telephone</dt><dd><a href="tel:{TEL}">{TEL_H}</a></dd></div>
         <div><dt>Fax</dt><dd class="mono">+603-7972 9615</dd></div>
         <div><dt>Email</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd></div>
@@ -877,7 +883,8 @@ def contact():
   </div>
 </section>"""
     page("contact", f"Contact — {CO}",
-         f"WhatsApp or call {TEL_H}, or send an enquiry. A CIDB G6 building contractor in the "
+         f"WhatsApp {WA_H} or call {TEL_H}, or send an enquiry. A CIDB G6 building "
+         f"contractor in the "
          f"Klang Valley. Send your drawings and we will price off the drawings.",
          body, "/contact/")
 
@@ -887,7 +894,7 @@ def simple_pages():
 <section class="wrap" style="padding-block:var(--sp9)">
   <h1 style="font-size:var(--s4)">Thank you — we have your enquiry.</h1>
   <p class="lead" style="margin-top:var(--sp5)">A director will call you back. If it is urgent,
-    WhatsApp us on {TEL_H} and you will get an answer sooner.</p>
+    WhatsApp us on {WA_H} and you will get an answer sooner.</p>
   <div class="btns" style="margin-top:var(--sp7)">
     <a class="btn" href="{wa_link('Hello, I have just sent an enquiry through your website.')}"
        rel="noopener">{WA_ICON}WhatsApp us</a>

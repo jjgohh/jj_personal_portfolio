@@ -65,7 +65,8 @@ Two fields in `content/projects.extracted.json` are **internal only and must nev
 | Legal name | Global Land Consortium Sdn Bhd |
 | Registration no. | 1089230-X |
 | Incorporated | 24 February 2015, in Malaysia |
-| Tel · Fax | +603-7972 9516 · +603-7972 9615 |
+| Tel · Fax | +603-7972 9516 · +603-7972 9615 (landline, voice only) |
+| WhatsApp | +60 12-293 9516 — **a different number from the landline.** Every `wa.me` link and every place the WhatsApp number is shown as text uses this; `tel:` links keep the landline. Set in `build.py` as `WA` / `WA_H` |
 | Email on file | infoglcsb99@gmail.com — a proper domain address is question A3 |
 | Registered office | **Unresolved.** Three addresses appear across the profile and certificates. See question A1. Do not publish any of them yet |
 | Banker | Public Bank Berhad, Taman Desa branch |
