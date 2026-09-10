@@ -205,8 +205,6 @@ PRIOR_NOTE = ("Delivered by our directors before Global Land Consortium was "
               "incorporated in 2015.")
 
 # ── shell ────────────────────────────────────────────────────────────────
-MARK_SVG = ('<svg viewBox="0 0 58 49" aria-hidden="true"><rect x="0" y="38" width="58" height="11" fill="#00A0E0"/><rect x="8" y="0" width="42" height="11" fill="currentColor"/><rect x="8" y="0" width="11" height="38" fill="currentColor"/></svg>')
-
 WA_ICON = ('<svg class="wa-i" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 '
            '2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 '
            '1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68'
@@ -262,7 +260,7 @@ def page(path, title, desc, body, nav_key="", jsonld=None, og_img="og.jpg"):
 <a class="skip" href="#main">Skip to content</a>
 <header class="hdr">
   <div class="wrap hdr-in">
-    <a class="brand" href="/">{MARK_SVG}<span class="brand-t">
+    <a class="brand" href="/"><span class="brand-m">GLC</span><span class="brand-t">
       <b>Global Land Consortium</b><span>Sdn Bhd · {CRN}</span></span></a>
     <nav aria-label="Main">{navhtml}</nav>
     <div class="hdr-cta">

@@ -143,11 +143,14 @@ img{display:block; max-width:100%; height:auto; background:var(--raise)}
 .hdr-in{display:flex; align-items:center; gap:var(--sp5); min-height:68px}
 .brand{display:flex; align-items:center; gap:var(--sp3); text-decoration:none;
   color:var(--ink); flex:none}
-.brand svg{width:34px; height:29px; flex:none}
+.brand-m{font-size:27px; font-weight:700; letter-spacing:.005em; line-height:1;
+  padding-bottom:5px; border-bottom:4px solid var(--brand-ink); flex:none;
+  color:var(--ink)}
 .brand-t{display:flex; flex-direction:column}
-.brand b{font-size:var(--s-1); font-weight:700; letter-spacing:.05em; text-transform:uppercase;
-  line-height:1.25}
-.brand span{font-family:var(--f-mono); font-size:11px; color:var(--ink-2); letter-spacing:.02em}
+.brand-t b{font-size:var(--s-1); font-weight:700; letter-spacing:.05em;
+  text-transform:uppercase; line-height:1.25}
+.brand-t span{font-family:var(--f-mono); font-size:11px; color:var(--ink-2);
+  letter-spacing:.02em}
 .hdr nav{display:none; margin-left:auto; gap:var(--sp5)}
 @media (min-width:960px){ .hdr nav{display:flex} }
 .navlink{font-size:var(--s-1); font-weight:500; color:var(--ink); text-decoration:none;
@@ -180,7 +183,7 @@ img{display:block; max-width:100%; height:auto; background:var(--raise)}
 .hero-shot img{width:100%; aspect-ratio:5/6; object-fit:cover}
 @media (min-width:900px){ .hero-shot img{aspect-ratio:4/5} }
 .hero-cap{position:absolute; left:0; right:0; bottom:0; width:100%;
-  background:var(--navy); color:var(--on-navy);
+  max-width:none; margin-top:0; background:var(--navy); color:var(--on-navy);
   font-size:var(--s-1); line-height:1.4; padding:var(--sp4) var(--sp5)}
 .hero-cap b{display:block; font-weight:600}
 .hero-cap span{color:var(--brand); font-family:var(--f-mono); font-size:11px;
