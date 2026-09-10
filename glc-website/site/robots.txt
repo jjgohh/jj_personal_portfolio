@@ -1,4 +1,4 @@
+# Not open to search engines yet: corporate client names on this site
+# have not been cleared. See DEPLOY.md before publishing.
 User-agent: *
-Allow: /
-
-Sitemap: https://globallandconsortium.com/sitemap.xml
+Disallow: /

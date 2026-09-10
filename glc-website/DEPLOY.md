@@ -30,29 +30,67 @@ about ISO, QLASSIC, SHASSIC or safety records, because the company holds none.
 
 ## 2. Publish it
 
-### The easy way — drag and drop
+**The Netlify site already exists.** It was created on your account
+(`jjgoh1999@gmail.com`, team *PULP*) and is waiting for its first deploy:
 
-1. Sign in at **app.netlify.com**.
-2. Go to **Sites**, and find the box that says *"Want to deploy a new site
-   without connecting to Git? Drag and drop your site output folder here."*
-3. Drag the **`glc-website/site`** folder into that box.
-4. It goes live in under a minute on an address like
-   `random-name-12345.netlify.app`.
+- Project: **global-land-consortium**
+- Dashboard: <https://app.netlify.com/projects/global-land-consortium>
+- Address once deployed: <https://global-land-consortium.netlify.app>
 
-### The better way — connect the repository
+It has no files yet. Pick either route below; the first is better.
 
-Do this if you want the site to update itself whenever the files change.
+### Connect the repository — about a minute, and it keeps itself updated
 
-1. In Netlify choose **Add new site → Import an existing project → GitHub**.
-2. Pick this repository and the branch you want to publish.
-3. Netlify will read `netlify.toml` and fill the settings in for you:
+1. Open <https://app.netlify.com/projects/global-land-consortium>.
+2. Go to **Project configuration → Build & deploy → Continuous deployment**,
+   and choose **Link repository** (or **Import from Git**).
+3. Choose **GitHub** and pick `jjgohh/jj_personal_portfolio`.
+4. Set the **production branch** to `claude/install-frontend-design-skill-ingxlj`,
+   which is where the site lives. (Or merge that branch into `main` first and
+   point Netlify at `main` — either works.)
+5. Netlify reads `netlify.toml` and fills the rest in:
    - **Base directory:** leave empty
    - **Build command:** leave empty
    - **Publish directory:** `glc-website/site`
-4. Click **Deploy**.
+6. Click **Deploy**.
+
+From then on, every push to that branch republishes the site by itself.
+
+### Or drag and drop — no Git, no updates
+
+1. Download or copy the **`glc-website/site`** folder.
+2. Open the project dashboard, go to **Deploys**, and drag the folder onto the
+   drop area.
 
 There is no build step on purpose. Netlify just serves the finished files, so a
 deploy cannot fail because of a tool or a version.
+
+### Why I could not press deploy for you
+
+I created the project through the Netlify connector, but the file upload runs
+from this session's network, and this environment's egress policy denies
+`api.netlify.com` and Netlify's upload host outright. The same policy blocked
+CIDB, MyIPO and the reference websites earlier in the project. Connecting the
+repository sidesteps it completely, because Netlify then pulls the files from
+GitHub itself rather than receiving them from me.
+
+## 2a. The site is deliberately hidden from Google right now
+
+Every page carries `<meta name="robots" content="noindex,nofollow">` and
+`robots.txt` disallows everything. **This is on purpose.** The project pages
+name eleven corporate and institutional clients, and none of them has been
+asked yet (section 1, item 2). A `netlify.app` address is public, so anyone with
+the link can read it, but it will not turn up in search results.
+
+When the pre-launch list in section 1 is done, one flag opens it up:
+
+```
+cd glc-website
+GLC_DOMAIN=https://your-real-domain.com GLC_PUBLISH=1 python3 build.py
+```
+
+Commit the result and Netlify republishes. Check `site/robots.txt` afterwards:
+it should say `Allow: /`. Until you run that, leave it as it is.
 
 ## 3. Point your domain at it
 

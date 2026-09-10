@@ -25,6 +25,12 @@ DATA = json.loads((ROOT / "content" / "projects.extracted.json").read_text())
 PHOTO_SRC = ROOT / "src" / "photos"
 
 DOMAIN = os.environ.get("GLC_DOMAIN", "https://globallandconsortium.com").rstrip("/")
+
+# Search engines are blocked until the client has finished the pre-launch list in
+# DEPLOY.md — above all, asking the eleven named corporate clients for permission.
+# The site is reachable by anyone with the link either way; this only keeps it out
+# of search results. Flip it with:  GLC_PUBLISH=1 python3 build.py
+INDEXABLE = os.environ.get("GLC_PUBLISH") == "1"
 TEL, TEL_H = "+60379729516", "+603-7972 9516"
 WA = "60379729516"
 EMAIL = "infoglcsb99@gmail.com"
@@ -234,6 +240,8 @@ def page(path, title, desc, body, nav_key="", jsonld=None, og_img="og.jpg"):
         for h, t in NAV)
     drawer = "".join(f'<a href="{h}">{t}</a>' for h, t in NAV)
     ld = f'<script type="application/ld+json">{json.dumps(jsonld)}</script>' if jsonld else ""
+    norobots = ("" if INDEXABLE else
+                '<meta name="robots" content="noindex,nofollow">\n')
     html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -241,6 +249,7 @@ def page(path, title, desc, body, nav_key="", jsonld=None, og_img="og.jpg"):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
+{norobots}
 <link rel="canonical" href="{canon}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{esc(CO)}">
@@ -1005,8 +1014,14 @@ def assets():
     for f in sorted((ROOT / "src" / "fonts").glob("*.woff2")):
         shutil.copy(f, fdst / f.name)
 
-    (SITE / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
+    if INDEXABLE:
+        (SITE / "robots.txt").write_text(
+            f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
+    else:
+        (SITE / "robots.txt").write_text(
+            "# Not open to search engines yet: corporate client names on this site\n"
+            "# have not been cleared. See DEPLOY.md before publishing.\n"
+            "User-agent: *\nDisallow: /\n")
 
     urls = ["/", "/projects/", "/capabilities/", "/credentials/", "/about/", "/contact/",
             "/privacy/"]
@@ -1118,6 +1133,8 @@ def main():
     imgs = sum(1 for _ in (SITE / "assets" / "img").glob("*.jpg"))
     size = sum(f.stat().st_size for f in SITE.rglob("*") if f.is_file()) / 1024 / 1024
     print(f"  {pages} pages · {imgs} photographs · {n_urls} URLs in sitemap · {size:.1f} MB")
+    print(f"  search engines: {'ALLOWED' if INDEXABLE else 'blocked (set GLC_PUBLISH=1 to allow)'}")
+    print(f"  canonical domain: {DOMAIN}")
     if problems:
         print("\nBUILD FAILED — privacy and accuracy gate:")
         for x in problems:
